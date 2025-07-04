@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class LevelGrid : MonoBehaviour
 {
 	/// <summary>
 	///  Singleton
 	/// </summary>
-	public static Grid instance;
+	public static LevelGrid instance;
 
+	[Header("Grid Settings")]
 	public int width;
 	public int height;
 
@@ -24,12 +25,23 @@ public class Grid : MonoBehaviour
 
 	public Tile GetTile(int x, int y)
 	{
+		if (!IsValidPosition(x, y))
+			return null;
+
 		return tiles[x + y * width];
 	}
 
 	public void SetTile(int x, int y, Tile tile)
 	{
+		if (!IsValidPosition(x, y))
+			return;
+
 		tiles[x + y * width] = tile;
+	}
+
+	public bool IsValidPosition(int x, int y)
+	{
+		return x >= 0 && x < width && y >= 0 && y < height;
 	}
 
 	public Tile GetNeighborTile(int x, int y, Direction direction)
