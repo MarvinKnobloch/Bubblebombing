@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class GridInteractionUI : MonoBehaviour
 {
+	public GridManipulator gridManipulator;
+
 	public SpriteRenderer highlightRect;
 	public SpriteRenderer highlightArrow;
 	public float arrowOffset = 1f;
@@ -20,6 +22,7 @@ public class GridInteractionUI : MonoBehaviour
 		inputActions.Enable();
 		inputActions.Player.Cursor.performed += OnMousePos;
 		inputActions.Player.LMB.performed += OnLeftClick;
+		inputActions.Player.RMB.performed += OnRightClick;
 	}
 
 	public void MarkGridRow(int row, Direction direction)
@@ -116,6 +119,26 @@ public class GridInteractionUI : MonoBehaviour
 	{
 		Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 		Debug.Log("Left Click On " + tilePosition);
+
+		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
+		if (tile == null) return;
+
+		if (selectRow)
+			return;
+		else if (selectCol)
+			return;
+		else
+			gridManipulator.RotateTileCW(tile.index);
+	}
+
+	void OnRightClick(InputAction.CallbackContext context)
+	{
+		Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
+		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
+		if (tile == null) return;
+
+		if (!selectRow && !selectCol)
+			gridManipulator.RotateTileCCW(tile.index);
 	}
 
 	/*void LateUpdate()
