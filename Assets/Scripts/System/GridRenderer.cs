@@ -137,7 +137,7 @@ public class GridRenderer : MonoBehaviour
 	public Bounds GetGridBounds()
 	{
 		Vector2 gridSize = GetGridSize();
-		Vector3 center = transform.position + new Vector3(gridSize.x * 0.5f, gridSize.y * 0.5f, 0);
+		Vector3 center = transform.position + new Vector3(gridSize.x * 0.5f, gridSize.y * 0.5f, 0) - new Vector3(halfTile.x, halfTile.y, 0);
 		Vector3 size = new Vector3(gridSize.x, gridSize.y, 0);
 		return new Bounds(center, size);
 	}
