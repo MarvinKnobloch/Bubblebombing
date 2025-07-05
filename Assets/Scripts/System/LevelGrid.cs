@@ -55,10 +55,10 @@ public class LevelGrid : MonoBehaviour
 		switch (direction)
 		{
 			case Direction.Up:
-				neighborY = y - 1;
+				neighborY = y + 1;
 				break;
 			case Direction.Down:
-				neighborY = y + 1;
+				neighborY = y - 1;
 				break;
 			case Direction.Left:
 				neighborX = x - 1;
@@ -88,29 +88,42 @@ public class LevelGrid : MonoBehaviour
 			case Direction.Right:
 				return Direction.Left;
 			default:
-				return Direction.Up;
+				throw new System.Exception("Invalid direction");
 		}
 	}
 
 	public bool IsDirectionFree(int x, int y, Direction direction)
 	{
 		Tile tile = GetTile(x, y);
+		Debug.Log("IsDirectionFree: Tile is " + tile.index + " in direction " + direction);
 		
 		// Prüfe zuerst, ob die aktuelle Tile in die gewünschte Richtung frei ist
 		if (!tile.IsDirectionFree(direction))
+		{
+			Debug.Log("Tile is not free in direction " + direction);
 			return false;
+		}
 		
 		// Hole die Nachbartile
 		Tile neighborTile = GetNeighborTile(x, y, direction);
 		
 		// Wenn keine Nachbartile existiert (außerhalb der Grenzen), ist die Richtung nicht frei
 		if (neighborTile == null)
+		{
+			Debug.Log("Neighbor tile is null");
 			return false;
+		}
 		
 		// Bestimme die gegenüberliegende Richtung
 		Direction oppositeDirection = GetOppositeDirection(direction);
 		
 		// Prüfe, ob die Nachbartile in die gegenüberliegende Richtung frei ist
-		return neighborTile.IsDirectionFree(oppositeDirection);
+		if (!neighborTile.IsDirectionFree(oppositeDirection))
+		{
+			Debug.Log("Neighbor tile is not free in direction " + oppositeDirection);
+			return false;
+		}
+
+		return true;
 	}
 }
