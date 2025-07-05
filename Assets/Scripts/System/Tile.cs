@@ -9,6 +9,8 @@ public class Tile
 
 	private TileData tileData;
 
+	[System.NonSerialized] public bool locked = false;
+
 	public Tile(TileData tileData, int index)
 	{
 		this.tileData = tileData;
