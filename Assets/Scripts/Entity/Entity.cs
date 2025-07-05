@@ -10,7 +10,7 @@ public class Entity : MonoBehaviour
     public Rigidbody2D rb;
     public Vector2 target;
     private Vector2 oldPosition;
-    private Vector2Int PositionOnGrid = new Vector2Int(0,0);
+    public Vector2Int PositionOnGrid = new Vector2Int(0,0);
     private Direction facedDirection = Direction.Up;
     private Direction[] directionsToCheck = new Direction[4];
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -162,7 +162,7 @@ public class Entity : MonoBehaviour
             case Direction.Right:
                 return Direction.Up;
             default:
-                return Direction.Up;
+                throw new Exception("Invalid direction");
         }
     }
     public static Direction GetRightDirection(Direction direction)
@@ -178,7 +178,7 @@ public class Entity : MonoBehaviour
             case Direction.Right:
                 return Direction.Down;
             default:
-                return Direction.Up;
+                throw new Exception("Invalid direction");
         }
     }
 }

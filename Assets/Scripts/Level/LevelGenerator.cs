@@ -60,21 +60,6 @@ public class LevelGenerator : MonoBehaviour
             AddTileData(tileData);
         }
         
-        // 4 gespiegelte Versionen (horizontal gespiegelt, dann rotiert)
-        Directions mirroredCurve = MirrorDirectionsHorizontal(baseCurve);
-        
-        for (int rotation = 0; rotation < 4; rotation++)
-        {
-            TileData tileData = new TileData
-            {
-                sprite = curveSprite,
-                rotation = rotation * 90f,
-                paths = RotateDirections(mirroredCurve, rotation)
-            };
-            
-            AddTileData(tileData);
-        }
-        
         Debug.Log($"Generierte {tileData.Length} Kurven-Permutationen");
     }
     
@@ -194,10 +179,10 @@ public class LevelGenerator : MonoBehaviour
         for (int i = 0; i < rotations; i++)
         {
             Directions temp = result;
-            result.up = temp.left;
-            result.right = temp.up;
-            result.down = temp.right;
-            result.left = temp.down;
+            result.up = temp.right;    // was rechts war, ist jetzt oben
+            result.right = temp.down;  // was unten war, ist jetzt rechts
+            result.down = temp.left;   // was links war, ist jetzt unten
+            result.left = temp.up;     // was oben war, ist jetzt links
         }
         
         return result;
