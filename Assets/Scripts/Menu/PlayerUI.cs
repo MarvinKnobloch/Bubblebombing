@@ -26,6 +26,10 @@ public class PlayerUI : MonoBehaviour
     [Header("DialogBox")]
     public GameObject dialogBox;
 
+    [Header("NextTurn")]
+    [SerializeField] private GameObject startTurnButton;
+    [SerializeField] private GameObject endTurnButton;
+
     private float timer;
 
     private void Awake()
@@ -59,5 +63,28 @@ public class PlayerUI : MonoBehaviour
     {
         actionPoints.fillAmount = (float)current / max;
         actioPointsText.text = current + "/" + max;
+    }
+    public void StartDialog(DialogObj dialogObj)
+    {
+        dialogBox.GetComponent<DialogBox>().DialogStart(dialogObj);
+        dialogBox.SetActive(true);
+    }
+    public void StartTurnButtonToggle(bool toggle)
+    {
+        startTurnButton.SetActive(toggle);
+    }
+    public void StartTurnButtonPress()
+    {
+        TurnController.instance.StartTurn();
+        StartTurnButtonToggle(false);
+    }
+    public void EndTurnButtonToggle(bool toggle)
+    {
+        endTurnButton.SetActive(toggle);
+    }
+    public void EndTurnButtonPress()
+    {
+        TurnController.instance.EndTurn();
+        EndTurnButtonToggle(false);
     }
 }
