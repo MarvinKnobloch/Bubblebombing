@@ -18,6 +18,7 @@ public class Entity : MonoBehaviour
     private Direction[] directionsToCheck = new Direction[4];
 
     [Header("Other")]
+    [SerializeField] private Transform childSprite;
     public NpcValuesObj npcValuesObj;
     [SerializeField] private TextMeshProUGUI movementText;
     void Start()
@@ -112,35 +113,35 @@ public class Entity : MonoBehaviour
             directionsToCheck[2] = GetLeftDirection(facedDirection);
             directionsToCheck[1] = GetRightDirection(facedDirection);
         }
-            for (int i = 0; i < directionsToCheck.Length; i++)
+        for (int i = 0; i < directionsToCheck.Length; i++)
+        {
+            if (LevelGrid.instance.IsDirectionFree(PositionOnGrid.x, PositionOnGrid.y, directionsToCheck[i]))
             {
-                if (LevelGrid.instance.IsDirectionFree(PositionOnGrid.x, PositionOnGrid.y, directionsToCheck[i]))
+                //get neighbour coords
+                int x = PositionOnGrid.x;
+                int y = PositionOnGrid.y;
+                int neighborX = x, neighborY = y;
+                switch (directionsToCheck[i])
                 {
-                    //get neighbour coords
-                    int x = PositionOnGrid.x;
-                    int y = PositionOnGrid.y;
-                    int neighborX = x, neighborY = y;
-                    switch (directionsToCheck[i])
-                    {
-                        case Direction.Up:
-                            neighborY = y + 1;
-                            break;
-                        case Direction.Down:
-                            neighborY = y - 1;
-                            break;
-                        case Direction.Left:
-                            neighborX = x - 1;
-                            break;
-                        case Direction.Right:
-                            neighborX = x + 1;
-                            break;
-                    }
-                    PositionOnGrid = new Vector2Int(neighborX, neighborY);
-                    Face(directionsToCheck[i]);
-                    return new Vector2Int(neighborX, neighborY);
+                    case Direction.Up:
+                        neighborY = y + 1;
+                        break;
+                    case Direction.Down:
+                        neighborY = y - 1;
+                        break;
+                    case Direction.Left:
+                        neighborX = x - 1;
+                        break;
+                    case Direction.Right:
+                        neighborX = x + 1;
+                        break;
                 }
+                PositionOnGrid = new Vector2Int(neighborX, neighborY);
+                Face(directionsToCheck[i]);
+                return new Vector2Int(neighborX, neighborY);
             }
-        return new Vector2Int(0,0);
+        }
+        return GridRenderer.instance.WorldToTilePosition(transform.position);
     }
 
     private void Face(Direction direction)
@@ -150,16 +151,16 @@ public class Entity : MonoBehaviour
         switch (direction)
         {
             case Direction.Up:
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                childSprite.rotation = Quaternion.Euler(0, 0, 0);
                 break;
             case Direction.Left:
-                transform.rotation = Quaternion.Euler(0, 0, 90);
+                childSprite.rotation = Quaternion.Euler(0, 0, 90);
                 break;
             case Direction.Down:
-                transform.rotation = Quaternion.Euler(0, 0, 180);
+                childSprite.rotation = Quaternion.Euler(0, 0, 180);
                 break;
             case Direction.Right:
-                transform.rotation = Quaternion.Euler(0, 0, 270);
+                childSprite.rotation = Quaternion.Euler(0, 0, 270);
                 break;
         }
     }
