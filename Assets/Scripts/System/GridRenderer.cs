@@ -25,13 +25,9 @@ public class GridRenderer : MonoBehaviour
 		for (int i = 0; i < LevelGrid.instance.tiles.Length; i++)
 		{
 			Tile tile = LevelGrid.instance.tiles[i];
-			Sprite sprite = GetSpriteByTile(tile);
+			Sprite sprite = tile.GetSprite();
 			spriteRenderers[i].sprite = sprite;
+			spriteRenderers[i].transform.localRotation = Quaternion.Euler(0, 0, tile.GetSpriteRotation());
 		}
-	}
-
-	private Sprite GetSpriteByTile(Tile tile)
-	{
-		return dummySprite;
 	}
 }
