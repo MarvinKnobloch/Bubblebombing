@@ -515,6 +515,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 204688350610521432, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 204688350610521432, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 415780563
+      objectReference: {fileID: 0}
     - target: {fileID: 4152188265811182545, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
       propertyPath: m_Name
       value: Entity
@@ -701,11 +709,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelBuilder
   levelGenerator: {fileID: 6203611136370639768}
   tileFrequency:
-    curveWeight: 20
+    curveWeight: 30
     straightWeight: 25
-    tCrossWeight: 40
-    endWeight: 0
-    crossWeight: 0
+    tCrossWeight: 20
+    endWeight: 15
+    crossWeight: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
