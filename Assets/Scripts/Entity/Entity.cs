@@ -1,5 +1,7 @@
 using System;
+using TMPro;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Entity : MonoBehaviour
 {
@@ -14,11 +16,16 @@ public class Entity : MonoBehaviour
     public Vector2Int PositionOnGrid = new Vector2Int(0,0);
     private Direction facedDirection = Direction.Up;
     private Direction[] directionsToCheck = new Direction[4];
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [Header("Other")]
+    public NpcValuesObj npcValuesObj;
+    [SerializeField] private TextMeshProUGUI movementText;
     void Start()
     {
         rb.position = GridRenderer.instance.TileToWorldPosition(PositionOnGrid);
-        startTurn();
+
+        TurnController.instance.AddNpc(gameObject);
+        //startTurn();
     }
 
     // Update is called once per frame
@@ -38,7 +45,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    private void startTurn()
+    public void StartTurn()
     {
         state = EntityState.Move;
         GetNextTarget();
@@ -75,6 +82,12 @@ public class Entity : MonoBehaviour
         {
             GetNextTarget();
         }
+        movementText.text = remainingSteps.ToString();
+    }
+    public void SetRemaingSteps(int steps)
+    {
+        remainingSteps = steps;
+        movementText.text = remainingSteps.ToString();
     }
     private void GetNextTarget()
     {
@@ -137,16 +150,16 @@ public class Entity : MonoBehaviour
         switch (direction)
         {
             case Direction.Up:
-                this.transform.rotation = Quaternion.Euler(0, 0, 0);
+                transform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
             case Direction.Left:
-                this.transform.rotation = Quaternion.Euler(0, 0, 90);
+                transform.rotation = Quaternion.Euler(0, 0, 90);
                 break;
             case Direction.Down:
-                this.transform.rotation = Quaternion.Euler(0, 0, 180);
+                transform.rotation = Quaternion.Euler(0, 0, 180);
                 break;
             case Direction.Right:
-                this.transform.rotation = Quaternion.Euler(0, 0, 270);
+                transform.rotation = Quaternion.Euler(0, 0, 270);
                 break;
         }
     }
