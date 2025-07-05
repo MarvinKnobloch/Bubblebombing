@@ -29,6 +29,13 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private GameObject startTurnButton;
     [SerializeField] private GameObject endTurnButton;
 
+    [Header("Abilities")]
+    [SerializeField] private GameObject abilityUI;
+    [SerializeField] private GameObject tooltipWindow;
+    [SerializeField] private TextMeshProUGUI tooltipName;
+    [SerializeField] private TextMeshProUGUI tooltipCost;
+    [SerializeField] private TextMeshProUGUI tooltipDescription;
+
     private float timer;
 
     private void Awake()
@@ -88,5 +95,20 @@ public class PlayerUI : MonoBehaviour
     {
         TurnController.instance.EndTurn();
         EndTurnButtonToggle(false);
+        AbilitiyUIToggle(false);
+    }
+    public void AbilitiyUIToggle(bool toggle)
+    {
+        abilityUI.SetActive(toggle);
+    }
+    public void ToggleTooltipWindow(bool toggle, AbilityTooltipObj abilityTooltipObj)
+    {
+        tooltipWindow.SetActive(toggle);
+        if(toggle == true)
+        {
+            tooltipName.text = abilityTooltipObj.name;
+            tooltipCost.text = abilityTooltipObj.abilityCosts.ToString();
+            tooltipDescription.text = abilityTooltipObj.abilityDescription;
+        }
     }
 }

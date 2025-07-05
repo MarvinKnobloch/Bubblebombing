@@ -37,6 +37,7 @@ public class TurnController : MonoBehaviour
         yield return new WaitForSeconds(1);
         RollNpcMovment();
         GameManager.Instance.playerUI.EndTurnButtonToggle(true);
+        GameManager.Instance.playerUI.AbilitiyUIToggle(true);
     }
     private void RollNpcMovment()
     {
