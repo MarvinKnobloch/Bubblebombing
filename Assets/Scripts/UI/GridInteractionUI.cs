@@ -5,6 +5,8 @@ public class GridInteractionUI : MonoBehaviour
 {
 	public GridManipulator gridManipulator;
 
+	public TileData insertTileData;
+
 	public SpriteRenderer highlightRect;
 	public SpriteRenderer highlightArrow;
 	public Color allowedColor = Color.green;
@@ -169,6 +171,11 @@ public class GridInteractionUI : MonoBehaviour
 		if (interactionType == GridInteractionType.Tile)
 		{
 			gridManipulator.RotateTileCW(tile.index);
+		}
+
+		if (interactionType == GridInteractionType.Row)
+		{
+			gridManipulator.MoveRow(tilePosition.y, mousePosition.x < GridRenderer.instance.GetGridBounds().center.x ? Direction.Right : Direction.Left, insertTileData);
 		}
 	}
 
