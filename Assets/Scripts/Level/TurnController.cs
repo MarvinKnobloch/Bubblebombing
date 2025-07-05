@@ -7,6 +7,8 @@ public class TurnController : MonoBehaviour
     public static TurnController instance;
 
     private List<GameObject> npcs = new List<GameObject>();
+    [SerializeField] private int npcsOnField;
+    [SerializeField] private int npcsNoMoreMovement;
 
     private void Awake()
     {
@@ -23,9 +25,11 @@ public class TurnController : MonoBehaviour
         {
             npcs.Add(npc);
         }
+        npcsOnField = npcs.Count;
     }
     public void StartTurn()
     {
+        npcsNoMoreMovement = 0;
         StartCoroutine(RollAnimation());
     }
     IEnumerator RollAnimation()
@@ -38,12 +42,22 @@ public class TurnController : MonoBehaviour
     {
         foreach (GameObject npc in npcs)
         {
-            //GetNpcMaxMovment
-            int npcMovementPoints = 4;
+            //GetNpcMinMovement
+            //GetNpcMaxMovement
+            int npcMinMovementPoints = 1;
+            int npcMaxMovementPoints = 4;
 
-            int movementpoints = Random.Range(1, npcMovementPoints + 1);
+            int movementpoints = Random.Range(npcMinMovementPoints, npcMaxMovementPoints + 1);
             //display Movementpoints
             //Set npc Movementpoints;
+        }
+    }
+    public void NpcMovementFinished()
+    {
+        npcsNoMoreMovement++;
+        if(npcsNoMoreMovement >= npcsOnField)
+        {
+            GameManager.Instance.playerUI.StartTurnButtonToggle(true);
         }
     }
     public void EndTurn() 

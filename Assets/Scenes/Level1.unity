@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 802876681}
   - component: {fileID: 802876679}
   m_Layer: 0
-  m_Name: LevelDialog
+  m_Name: TurnController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016fe881bc3efc9458666d464e41ee52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelDialog
-  playStartDialog: 1
+  playStartDialog: 0
   dialogObj: {fileID: 11400000, guid: 8152845e4e70c994296080596dff675a, type: 2}
   startRound: {fileID: 11400000, guid: 42262dd64fa0ea04780ad6eebb14475d, type: 2}
 --- !u!4 &802876680
@@ -328,6 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15d01c1ebc39954fb1bf56fb068a902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnController
+  npcsOnField: 0
+  npcsNoMoreMovement: 0
 --- !u!1 &1408819239
 GameObject:
   m_ObjectHideFlags: 0
