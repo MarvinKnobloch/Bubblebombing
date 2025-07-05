@@ -620,6 +620,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridInteractionUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7569465012848836330, guid: 1ae159bf9c0756343ad973e05d14f075, type: 3}
+      propertyPath: linearMoveTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
