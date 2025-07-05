@@ -433,7 +433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2879550096688552411, guid: 8302faa09f87ab4478dec44ffd634b11, type: 3}
       propertyPath: playStartDialog
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6498031077032860066, guid: 8302faa09f87ab4478dec44ffd634b11, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
