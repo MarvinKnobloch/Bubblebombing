@@ -12,20 +12,33 @@ public class GridManipulator : MonoBehaviour
 	public AnimationCurve downscaleCurve;
 	public AnimationCurve animationCurve;
 	public AnimationCurve linearMoveCurve;
+	
+	public SpriteRenderer tempSpriteRenderer;
+
+	public AudioData moveAudio;
+	public AudioData rotateAudio;
+	private AudioSource audioSource;
 
 	private Vector3[] startPositions;
 	private SpriteRenderer[] spriteRenderers;
-	public SpriteRenderer tempSpriteRenderer;
+	
 	private Vector3 tempStartPosition;
 	private bool moveingLine = false;
 
+	private void Start()
+	{
+		audioSource = GetComponent<AudioSource>();
+	}
+
 	public void RotateTileCW(int tileId)
 	{
+		rotateAudio.Play(audioSource);
 		StartCoroutine(RotateTile(tileId, 90));
 	}
 
 	public void RotateTileCCW(int tileId)
 	{
+		rotateAudio.Play(audioSource);
 		StartCoroutine(RotateTile(tileId, -90));
 	}
 
@@ -74,18 +87,22 @@ public class GridManipulator : MonoBehaviour
 
 	public void MoveRow(int row, Direction direction, TileData newTileData)
 	{
+		if (moveingLine) return;
+		moveingLine = true;
+		moveAudio.Play(audioSource);
 		StartCoroutine(MoveRowAnimation(row, direction, newTileData));
 	}
 
 	public void MoveColumn(int column, Direction direction, TileData newTileData)
 	{
+		if (moveingLine) return;
+		moveingLine = true;
+		moveAudio.Play(audioSource);
 		StartCoroutine(MoveColumnAnimation(column, direction, newTileData));
 	}
 
 	private IEnumerator MoveRowAnimation(int row, Direction direction, TileData newTileData)
 	{
-		if (moveingLine) yield break;
-		moveingLine = true;
 		for (int i = 0; i < LevelGrid.instance.width; i++)
 		{
 			Tile tile = LevelGrid.instance.tiles[i + row * LevelGrid.instance.width];
@@ -157,8 +174,6 @@ public class GridManipulator : MonoBehaviour
 
 	private IEnumerator MoveColumnAnimation(int column, Direction direction, TileData newTileData)
 	{
-		if (moveingLine) yield break;
-		moveingLine = true;
 		for (int i = 0; i < LevelGrid.instance.height; i++)
 		{
 			Tile tile = LevelGrid.instance.tiles[column + i * LevelGrid.instance.width];
