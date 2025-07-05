@@ -1,10 +1,4 @@
-using System;
-using System.Text.RegularExpressions;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Entity : MonoBehaviour
 {
@@ -18,6 +12,7 @@ public class Entity : MonoBehaviour
     private Vector2 oldPosition;
     private Vector2Int PositionOnGrid = new Vector2Int(0,0);
     private Direction facedDirection = Direction.Up;
+    private Direction[] directionsToCheck = new Direction[4];
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -86,49 +81,51 @@ public class Entity : MonoBehaviour
         Vector3 target3D = GridRenderer.instance.TileToWorldPosition(targetTile);
         target = new Vector2(target3D.x, target3D.y);
         oldPosition = rb.position;
-        Debug.Log("Set new target to: "+target.ToString());
     }
 
     private Vector2Int GetNextTargetCoord()
     {
-        float rand = 0;
-        Direction[] directionsToCheck = { facedDirection, GetLeftDirection(facedDirection), GetRightDirection(facedDirection), LevelGrid.GetOppositeDirection(facedDirection) };
+        float rand = UnityEngine.Random.Range(0f, 1f);
+        directionsToCheck[0] = facedDirection;
+        directionsToCheck[3] = LevelGrid.GetOppositeDirection(facedDirection);
         if (rand < 0.5)
+        {
+            directionsToCheck[1] = GetLeftDirection(facedDirection);
+            directionsToCheck[2] = GetRightDirection(facedDirection);
+        }
+        else
         {
             directionsToCheck[2] = GetLeftDirection(facedDirection);
             directionsToCheck[1] = GetRightDirection(facedDirection);
         }
-        for (int i = 0; i < directionsToCheck.Length; i++)
-        {
-            if (LevelGrid.instance.IsDirectionFree(PositionOnGrid.x, PositionOnGrid.y, directionsToCheck[i]))
+            for (int i = 0; i < directionsToCheck.Length; i++)
             {
-                //get neighbour coords
-                int x = PositionOnGrid.x;
-                int y = PositionOnGrid.y;
-                int neighborX = x, neighborY = y;
-                switch (directionsToCheck[i])
+                if (LevelGrid.instance.IsDirectionFree(PositionOnGrid.x, PositionOnGrid.y, directionsToCheck[i]))
                 {
-                    case Direction.Up:
-                        neighborY = y + 1;
-                        break;
-                    case Direction.Down:
-                        neighborY = y - 1;
-                        break;
-                    case Direction.Left:
-                        neighborX = x - 1;
-                        break;
-                    case Direction.Right:
-                        neighborX = x + 1;
-                        break;
+                    //get neighbour coords
+                    int x = PositionOnGrid.x;
+                    int y = PositionOnGrid.y;
+                    int neighborX = x, neighborY = y;
+                    switch (directionsToCheck[i])
+                    {
+                        case Direction.Up:
+                            neighborY = y + 1;
+                            break;
+                        case Direction.Down:
+                            neighborY = y - 1;
+                            break;
+                        case Direction.Left:
+                            neighborX = x - 1;
+                            break;
+                        case Direction.Right:
+                            neighborX = x + 1;
+                            break;
+                    }
+                    PositionOnGrid = new Vector2Int(neighborX, neighborY);
+                    Face(directionsToCheck[i]);
+                    return new Vector2Int(neighborX, neighborY);
                 }
-                PositionOnGrid = new Vector2Int(neighborX, neighborY);
-                Debug.Log(entityName + " has Choosen direction " + directionsToCheck[i]);
-                Debug.Log("Target is at pos("+neighborX+ ", " + neighborY + ")");
-                //Debug.Break();
-                Face(directionsToCheck[i]);
-                return new Vector2Int(neighborX, neighborY);
             }
-        }
         return new Vector2Int(0,0);
     }
 
