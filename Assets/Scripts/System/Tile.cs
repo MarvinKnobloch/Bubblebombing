@@ -7,6 +7,25 @@ public class Tile
     public Directions paths;
 	public GameObject obj;
 
+	private TileData tileData;
+
+	public Tile(TileData tileData, int index)
+	{
+		this.tileData = tileData;
+		index = index;
+		paths = tileData.paths;
+	}
+
+	public Sprite GetSprite()
+	{
+		return tileData.sprite;
+	}
+
+	public float GetSpriteRotation()
+	{
+		return tileData.rotation;
+	}
+
 	public void RotateClockwise()
 	{
 		Directions temp = paths;

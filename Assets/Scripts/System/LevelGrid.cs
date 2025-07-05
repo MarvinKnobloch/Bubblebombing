@@ -11,6 +11,10 @@ public class LevelGrid : MonoBehaviour
 	public int width;
 	public int height;
 
+	[Tooltip("Muss ILevelBuilder implementierens")]
+	public GameObject levelBuilder;
+	public GameObject gridRenderer;
+
 	public Tile[] tiles;
 
 	private void Awake()
@@ -20,7 +24,7 @@ public class LevelGrid : MonoBehaviour
 		else
 			Destroy(gameObject);
 
-		tiles = new Tile[width * height];
+		tiles = levelBuilder.GetComponent<ILevelBuilder>().GenerateGrid(width, height, gridRenderer);
 	}
 
 	public Tile GetTile(int x, int y)

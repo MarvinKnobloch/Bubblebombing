@@ -165,6 +165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelGrid
   width: 10
   height: 10
+  levelBuilder: {fileID: 1822516073}
+  gridRenderer: {fileID: 1916754962}
 --- !u!1 &1314199271
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1822516074}
   - component: {fileID: 1822516075}
+  - component: {fileID: 1822516076}
   m_Layer: 0
   m_Name: ---LEVEL---
   m_TagString: Untagged
@@ -346,6 +349,158 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e2cead17763294dadb5e87c22f325d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  curveSprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+  straightSprite: {fileID: 21300000, guid: 43251f3554847a64c8959766fbbe9420, type: 3}
+  tCrossSprite: {fileID: 21300000, guid: a3fa29580e2a78043ae0ffa8e1be7d1b, type: 3}
+  endSprite: {fileID: 21300000, guid: b97759936cc5def4f96f6cc947d79e55, type: 3}
+  crossSprite: {fileID: 21300000, guid: 0304da1004188234699096fb0cf0b34b, type: 3}
+  tileData:
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 0
+    paths:
+      up: 0
+      down: 1
+      left: 0
+      right: 1
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 90
+    paths:
+      up: 0
+      down: 1
+      left: 1
+      right: 0
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 180
+    paths:
+      up: 1
+      down: 0
+      left: 1
+      right: 0
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 270
+    paths:
+      up: 1
+      down: 0
+      left: 0
+      right: 1
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 0
+    paths:
+      up: 0
+      down: 1
+      left: 1
+      right: 0
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 90
+    paths:
+      up: 1
+      down: 0
+      left: 1
+      right: 0
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 180
+    paths:
+      up: 1
+      down: 0
+      left: 0
+      right: 1
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 270
+    paths:
+      up: 0
+      down: 1
+      left: 0
+      right: 1
+  - sprite: {fileID: 21300000, guid: 43251f3554847a64c8959766fbbe9420, type: 3}
+    rotation: 0
+    paths:
+      up: 1
+      down: 1
+      left: 0
+      right: 0
+  - sprite: {fileID: 21300000, guid: 43251f3554847a64c8959766fbbe9420, type: 3}
+    rotation: 90
+    paths:
+      up: 0
+      down: 0
+      left: 1
+      right: 1
+  - sprite: {fileID: 21300000, guid: a3fa29580e2a78043ae0ffa8e1be7d1b, type: 3}
+    rotation: 0
+    paths:
+      up: 0
+      down: 1
+      left: 1
+      right: 1
+  - sprite: {fileID: 21300000, guid: a3fa29580e2a78043ae0ffa8e1be7d1b, type: 3}
+    rotation: 90
+    paths:
+      up: 1
+      down: 1
+      left: 1
+      right: 0
+  - sprite: {fileID: 21300000, guid: a3fa29580e2a78043ae0ffa8e1be7d1b, type: 3}
+    rotation: 180
+    paths:
+      up: 1
+      down: 0
+      left: 1
+      right: 1
+  - sprite: {fileID: 21300000, guid: a3fa29580e2a78043ae0ffa8e1be7d1b, type: 3}
+    rotation: 270
+    paths:
+      up: 1
+      down: 1
+      left: 0
+      right: 1
+  - sprite: {fileID: 21300000, guid: b97759936cc5def4f96f6cc947d79e55, type: 3}
+    rotation: 0
+    paths:
+      up: 0
+      down: 1
+      left: 0
+      right: 0
+  - sprite: {fileID: 21300000, guid: b97759936cc5def4f96f6cc947d79e55, type: 3}
+    rotation: 90
+    paths:
+      up: 0
+      down: 0
+      left: 1
+      right: 0
+  - sprite: {fileID: 21300000, guid: b97759936cc5def4f96f6cc947d79e55, type: 3}
+    rotation: 180
+    paths:
+      up: 1
+      down: 0
+      left: 0
+      right: 0
+  - sprite: {fileID: 21300000, guid: b97759936cc5def4f96f6cc947d79e55, type: 3}
+    rotation: 270
+    paths:
+      up: 0
+      down: 0
+      left: 0
+      right: 1
+  - sprite: {fileID: 21300000, guid: 0304da1004188234699096fb0cf0b34b, type: 3}
+    rotation: 0
+    paths:
+      up: 1
+      down: 1
+      left: 1
+      right: 1
+--- !u!114 &1822516076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822516073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5c5643d18973b419217affafa3b2c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelBuilder
+  levelGenerator: {fileID: 1822516075}
 --- !u!1 &1916754962
 GameObject:
   m_ObjectHideFlags: 0
