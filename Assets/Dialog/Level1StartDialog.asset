@@ -26,4 +26,5 @@ MonoBehaviour:
     dialogText: OK
     dialogEvent: []
     autoPlayInterval: 0
-  eventAfterDialogEnd: []
+  eventAfterDialogEnd:
+  - {fileID: 11400000, guid: 42262dd64fa0ea04780ad6eebb14475d, type: 2}

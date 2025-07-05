@@ -277,6 +277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 802876680}
+  - component: {fileID: 802876681}
   - component: {fileID: 802876679}
   m_Layer: 0
   m_Name: LevelDialog
@@ -299,6 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelDialog
   playStartDialog: 1
   dialogObj: {fileID: 11400000, guid: 8152845e4e70c994296080596dff675a, type: 2}
+  startRound: {fileID: 11400000, guid: 42262dd64fa0ea04780ad6eebb14475d, type: 2}
 --- !u!4 &802876680
 Transform:
   m_ObjectHideFlags: 0
@@ -314,6 +316,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &802876681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802876678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15d01c1ebc39954fb1bf56fb068a902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TurnController
 --- !u!1 &1408819239
 GameObject:
   m_ObjectHideFlags: 0
