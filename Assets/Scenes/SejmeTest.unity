@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 2
-  remainingSteps: 3
+  remainingSteps: 10
   t: 0
   state: 0
   rb: {fileID: 424787346}

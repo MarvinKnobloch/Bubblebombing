@@ -122,8 +122,9 @@ public class Entity : MonoBehaviour
                         break;
                 }
                 PositionOnGrid = new Vector2Int(neighborX, neighborY);
-                Debug.Log(entityName + " has CHoosen direction " + directionsToCheck[i]);
+                Debug.Log(entityName + " has Choosen direction " + directionsToCheck[i]);
                 Debug.Log("Target is at pos("+neighborX+ ", " + neighborY + ")");
+                Debug.Break();
                 Face(directionsToCheck[i]);
                 return new Vector2Int(neighborX, neighborY);
             }
