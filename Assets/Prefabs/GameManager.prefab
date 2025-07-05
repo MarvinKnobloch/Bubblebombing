@@ -2808,7 +2808,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5921857375665251865}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6753810226441156929}
+        m_TargetAssemblyTypeName: Abilties, Assembly-CSharp
+        m_MethodName: CreateSlowPadPreview
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3399824754836997116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6259,6 +6271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Abilties
   boostpadPreview: {fileID: 7156719744525915584, guid: 3d3d20c6304f4f94890f2b5c69c7fc5b, type: 3}
+  slowPadPreview: {fileID: 7156719744525915584, guid: f2e0b837f9c0ac04d8f1a8682a820326, type: 3}
 --- !u!1 &4545115981177378771
 GameObject:
   m_ObjectHideFlags: 0
@@ -10306,7 +10319,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6753810226441156929}
         m_TargetAssemblyTypeName: Abilties, Assembly-CSharp
-        m_MethodName: CreatBoostpadPreview
+        m_MethodName: CreateBoostpadPreview
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

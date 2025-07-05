@@ -20,7 +20,18 @@ public class Abilties : MonoBehaviour
     }
     private void Update()
     {
-        //if(controls.Player)
+        if (controls.Player.Ability5.WasPerformedThisFrame())
+        {
+            CreateBoostpadPreview();
+        }
+        else if (controls.Player.Ability6.WasPerformedThisFrame())
+        {
+            CreateSlowPadPreview();
+        }
+        else if(controls.Player.RMB.WasPerformedThisFrame())
+        {
+            CurrentPreviewDestroy();
+        }
     }
 
     public void CreateBoostpadPreview()
