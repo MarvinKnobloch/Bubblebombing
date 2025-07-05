@@ -95,12 +95,10 @@ public class LevelGrid : MonoBehaviour
 	public bool IsDirectionFree(int x, int y, Direction direction)
 	{
 		Tile tile = GetTile(x, y);
-		Debug.Log("IsDirectionFree: Tile is " + tile.index + " in direction " + direction);
 		
 		// Prüfe zuerst, ob die aktuelle Tile in die gewünschte Richtung frei ist
 		if (!tile.IsDirectionFree(direction))
 		{
-			Debug.Log("Tile is not free in direction " + direction);
 			return false;
 		}
 		
@@ -110,7 +108,6 @@ public class LevelGrid : MonoBehaviour
 		// Wenn keine Nachbartile existiert (außerhalb der Grenzen), ist die Richtung nicht frei
 		if (neighborTile == null)
 		{
-			Debug.Log("Neighbor tile is null");
 			return false;
 		}
 		
@@ -118,12 +115,6 @@ public class LevelGrid : MonoBehaviour
 		Direction oppositeDirection = GetOppositeDirection(direction);
 		
 		// Prüfe, ob die Nachbartile in die gegenüberliegende Richtung frei ist
-		if (!neighborTile.IsDirectionFree(oppositeDirection))
-		{
-			Debug.Log("Neighbor tile is not free in direction " + oppositeDirection);
-			return false;
-		}
-
-		return true;
+		return neighborTile.IsDirectionFree(oppositeDirection);
 	}
 }

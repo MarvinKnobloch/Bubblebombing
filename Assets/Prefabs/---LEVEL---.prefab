@@ -1,0 +1,273 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2282566861629900519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 425121549878858951}
+  - component: {fileID: 7192176699823778938}
+  - component: {fileID: 9018767052551874839}
+  m_Layer: 0
+  m_Name: ---LEVEL---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &425121549878858951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2282566861629900519}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2155690325983350549}
+  - {fileID: 8697128898862793219}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7192176699823778938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2282566861629900519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e2cead17763294dadb5e87c22f325d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  curveSprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+  straightSprite: {fileID: 21300000, guid: 43251f3554847a64c8959766fbbe9420, type: 3}
+  tCrossSprite: {fileID: 21300000, guid: a3fa29580e2a78043ae0ffa8e1be7d1b, type: 3}
+  endSprite: {fileID: 21300000, guid: b97759936cc5def4f96f6cc947d79e55, type: 3}
+  crossSprite: {fileID: 21300000, guid: 0304da1004188234699096fb0cf0b34b, type: 3}
+  tileData:
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 0
+    paths:
+      up: 0
+      down: 1
+      left: 0
+      right: 1
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 90
+    paths:
+      up: 1
+      down: 0
+      left: 0
+      right: 1
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 180
+    paths:
+      up: 1
+      down: 0
+      left: 1
+      right: 0
+  - sprite: {fileID: 21300000, guid: c7f44ae35da0d5547ab5b4a95611b3ce, type: 3}
+    rotation: 270
+    paths:
+      up: 0
+      down: 1
+      left: 1
+      right: 0
+  - sprite: {fileID: 21300000, guid: 43251f3554847a64c8959766fbbe9420, type: 3}
+    rotation: 0
+    paths:
+      up: 1
+      down: 1
+      left: 0
+      right: 0
+  - sprite: {fileID: 21300000, guid: 43251f3554847a64c8959766fbbe9420, type: 3}
+    rotation: 90
+    paths:
+      up: 0
+      down: 0
+      left: 1
+      right: 1
+  - sprite: {fileID: 21300000, guid: a3fa29580e2a78043ae0ffa8e1be7d1b, type: 3}
+    rotation: 0
+    paths:
+      up: 0
+      down: 1
+      left: 1
+      right: 1
+  - sprite: {fileID: 21300000, guid: a3fa29580e2a78043ae0ffa8e1be7d1b, type: 3}
+    rotation: 90
+    paths:
+      up: 1
+      down: 1
+      left: 0
+      right: 1
+  - sprite: {fileID: 21300000, guid: a3fa29580e2a78043ae0ffa8e1be7d1b, type: 3}
+    rotation: 180
+    paths:
+      up: 1
+      down: 0
+      left: 1
+      right: 1
+  - sprite: {fileID: 21300000, guid: a3fa29580e2a78043ae0ffa8e1be7d1b, type: 3}
+    rotation: 270
+    paths:
+      up: 1
+      down: 1
+      left: 1
+      right: 0
+  - sprite: {fileID: 21300000, guid: b97759936cc5def4f96f6cc947d79e55, type: 3}
+    rotation: 0
+    paths:
+      up: 0
+      down: 1
+      left: 0
+      right: 0
+  - sprite: {fileID: 21300000, guid: b97759936cc5def4f96f6cc947d79e55, type: 3}
+    rotation: 90
+    paths:
+      up: 0
+      down: 0
+      left: 0
+      right: 1
+  - sprite: {fileID: 21300000, guid: b97759936cc5def4f96f6cc947d79e55, type: 3}
+    rotation: 180
+    paths:
+      up: 1
+      down: 0
+      left: 0
+      right: 0
+  - sprite: {fileID: 21300000, guid: b97759936cc5def4f96f6cc947d79e55, type: 3}
+    rotation: 270
+    paths:
+      up: 0
+      down: 0
+      left: 1
+      right: 0
+  - sprite: {fileID: 21300000, guid: 0304da1004188234699096fb0cf0b34b, type: 3}
+    rotation: 0
+    paths:
+      up: 1
+      down: 1
+      left: 1
+      right: 1
+--- !u!114 &9018767052551874839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2282566861629900519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5c5643d18973b419217affafa3b2c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelBuilder
+  levelGenerator: {fileID: 7192176699823778938}
+  tileFrequency:
+    curveWeight: 30
+    straightWeight: 25
+    tCrossWeight: 30
+    endWeight: 0
+    crossWeight: 10
+--- !u!1 &5617431565416390131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8697128898862793219}
+  - component: {fileID: 1301646071766351296}
+  m_Layer: 0
+  m_Name: GridRenderer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8697128898862793219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5617431565416390131}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4, y: -4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 425121549878858951}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1301646071766351296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5617431565416390131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15b57ceae6e674e8a9b5b124fe5f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridRenderer
+  dummySprite: {fileID: 21300000, guid: 0304da1004188234699096fb0cf0b34b, type: 3}
+  tileSize: 1
+--- !u!1 &5907778267811718897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2155690325983350549}
+  - component: {fileID: 2998268460547522987}
+  m_Layer: 0
+  m_Name: GRID
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2155690325983350549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5907778267811718897}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 425121549878858951}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2998268460547522987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5907778267811718897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f84e86d97ee4f684696b6fe0ffc7a191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelGrid
+  width: 8
+  height: 8
+  levelBuilder: {fileID: 2282566861629900519}
+  gridRenderer: {fileID: 5617431565416390131}
