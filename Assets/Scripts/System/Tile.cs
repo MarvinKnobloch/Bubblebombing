@@ -12,8 +12,8 @@ public class Tile
 	public Tile(TileData tileData, int index)
 	{
 		this.tileData = tileData;
-		index = index;
-		paths = tileData.paths;
+		this.index = index;
+		this.paths = tileData.paths;
 	}
 
 	public Sprite GetSprite()
@@ -46,18 +46,13 @@ public class Tile
 
 	public bool IsDirectionFree(Direction direction)
 	{
-		switch (direction)
+		return direction switch
 		{
-			case Direction.Up:
-				return paths.up;
-			case Direction.Down:
-				return paths.down;
-			case Direction.Left:
-				return paths.left;
-			case Direction.Right:
-				return paths.right;
-			default:
-				return false;
-		}
+			Direction.Up => paths.up,
+			Direction.Down => paths.down,
+			Direction.Left => paths.left,
+			Direction.Right => paths.right,
+			_ => false,
+		};
 	}
 }

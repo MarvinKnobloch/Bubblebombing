@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelBuilder", menuName = "Scriptable Objects/LevelBuilder")]
 public class LevelBuilder : MonoBehaviour, ILevelBuilder
 {
 	public LevelGenerator levelGenerator;
