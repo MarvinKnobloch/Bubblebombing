@@ -121,8 +121,10 @@ public class Entity : MonoBehaviour
                         neighborX = x + 1;
                         break;
                 }
-                
-				PositionOnGrid = new Vector2Int(neighborX, neighborY);
+                PositionOnGrid = new Vector2Int(neighborX, neighborY);
+                Debug.Log(entityName + " has Choosen direction " + directionsToCheck[i]);
+                Debug.Log("Target is at pos("+neighborX+ ", " + neighborY + ")");
+                //Debug.Break();
                 Face(directionsToCheck[i]);
                 return new Vector2Int(neighborX, neighborY);
             }
