@@ -74,8 +74,8 @@ public class GridRenderer : MonoBehaviour
 	{
 		// Berechne die lokale Position der Tile (Zentrum)
 		Vector3 localPosition = new Vector3(
-			tilePosition.x * tileSize + tileSize * 0.5f,
-			tilePosition.y * tileSize + tileSize * 0.5f,
+			tilePosition.x * tileSize,
+			tilePosition.y * tileSize,
 			0
 		);
 		
@@ -88,7 +88,7 @@ public class GridRenderer : MonoBehaviour
 	/// </summary>
 	public Vector3 TileToWorldPosition(int x, int y)
 	{
-		return TileToWorldPosition(new Vector2Int(x, y)) - new Vector3(halfTile.x, halfTile.y, 0);
+		return TileToWorldPosition(new Vector2Int(x, y));
 	}
 
 	/// <summary>
