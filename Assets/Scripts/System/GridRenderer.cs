@@ -32,6 +32,11 @@ public class GridRenderer : MonoBehaviour
 		UpdateTiles();
 	}
 
+	public SpriteRenderer GetSpriteRenderer(int tileId)
+	{
+		return spriteRenderers[tileId];
+	}
+
 	private void UpdateTiles()
 	{
 		for (int i = 0; i < LevelGrid.instance.tiles.Length; i++)
