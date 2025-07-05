@@ -30,7 +30,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private GameObject endTurnButton;
 
     [Header("Abilities")]
-    [SerializeField] private GameObject abilityUI;
+    public Abilties abilityUI;
     [SerializeField] private GameObject tooltipWindow;
     [SerializeField] private TextMeshProUGUI tooltipName;
     [SerializeField] private TextMeshProUGUI tooltipCost;
@@ -99,7 +99,7 @@ public class PlayerUI : MonoBehaviour
     }
     public void AbilitiyUIToggle(bool toggle)
     {
-        abilityUI.SetActive(toggle);
+        abilityUI.gameObject.SetActive(toggle);
     }
     public void ToggleTooltipWindow(bool toggle, AbilityTooltipObj abilityTooltipObj)
     {
