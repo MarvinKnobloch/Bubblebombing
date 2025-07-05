@@ -5,6 +5,7 @@ public class GridInteractionUI : MonoBehaviour
 {
 	public SpriteRenderer highlightRect;
 	public SpriteRenderer highlightArrow;
+	public float arrowOffset = 1f;
 
 	public bool selectRow = true;
 	public bool selectCol = false;
@@ -32,12 +33,43 @@ public class GridInteractionUI : MonoBehaviour
 		highlightRect.transform.position = new Vector3(bounds.center.x, tileBounds.center.y, 0);
 		highlightRect.transform.localScale = new Vector3(bounds.size.x, tileBounds.size.y, 1);
 
+		if (direction == Direction.Right)
+		{
+			highlightArrow.transform.position = new Vector3(bounds.min.x - arrowOffset, tileBounds.center.y, 0);
+			highlightArrow.transform.rotation = Quaternion.Euler(0, 0, -90);
+		}
+		else
+		{
+			highlightArrow.transform.position = new Vector3(bounds.max.x + arrowOffset, tileBounds.center.y, 0);
+			highlightArrow.transform.rotation = Quaternion.Euler(0, 0, 90);
+		}
+
 		SetVisible(true);
 	}
 
 	public void MarkGridCol(int col, Direction direction)
 	{
+		if (direction == Direction.Left || direction == Direction.Right) return;
 
+		GridRenderer renderer = GridRenderer.instance;
+		Bounds bounds = renderer.GetGridBounds();
+		Bounds tileBounds = renderer.GetTileBounds(col, 0);
+		
+		highlightRect.transform.position = new Vector3(tileBounds.center.x, bounds.center.y, 0);
+		highlightRect.transform.localScale = new Vector3(tileBounds.size.x, bounds.size.y, 1);
+
+		if (direction == Direction.Down)
+		{
+			highlightArrow.transform.position = new Vector3(tileBounds.center.x, bounds.min.y - arrowOffset, 0);
+			highlightArrow.transform.rotation = Quaternion.Euler(0, 0, 0);
+		}
+		else
+		{
+			highlightArrow.transform.position = new Vector3(tileBounds.center.x, bounds.max.y + arrowOffset, 0);
+			highlightArrow.transform.rotation = Quaternion.Euler(0, 0, 180);
+		}
+
+		SetVisible(true);
 	}
 
 	public void MarkTile(int x, int y)
@@ -71,10 +103,11 @@ public class GridInteractionUI : MonoBehaviour
 			return;
 		}
 
+		Vector3 gridCenter = GridRenderer.instance.GetGridBounds().center;
 		if (selectRow)
-			MarkGridRow(tilePosition.y, Direction.Right);
+			MarkGridRow(tilePosition.y, mousePosition.x < gridCenter.x ? Direction.Right : Direction.Left);
 		else if (selectCol)
-			MarkGridCol(tilePosition.x, Direction.Down);
+			MarkGridCol(tilePosition.x, mousePosition.y < gridCenter.y ? Direction.Down : Direction.Up);
 		else
 			MarkTile(tilePosition.x, tilePosition.y);
 	}
