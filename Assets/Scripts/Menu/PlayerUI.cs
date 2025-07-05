@@ -16,6 +16,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI interactionText;
 
     [Header("Health")]
+    [SerializeField] private int currentHealth;
     [SerializeField] private Image[] healthIcons;
 
     [Header("ActionPoints")]
@@ -41,6 +42,7 @@ public class PlayerUI : MonoBehaviour
     private void Awake()
     {
         controls = new Controls();
+        currentHealth = healthIcons.Length;
     }
     private void Start()
     {
@@ -60,12 +62,20 @@ public class PlayerUI : MonoBehaviour
     {
         interactionText.text = text + " (<color=green>" + controls.Player.Interact.GetBindingDisplayString() + "</color>)";
     }
-    public void HealthUIUpdate(int current)
+    public void HealthUpdate(int damage)
     {
+        if (currentHealth <= 0) return;
+
+        currentHealth -= damage;
+
         for (int i = 0; i < healthIcons.Length; i++)
         {
-            if (i < current) healthIcons[i].gameObject.SetActive(true);
+            if (i < currentHealth) healthIcons[i].gameObject.SetActive(true);
             else healthIcons[i].gameObject.SetActive(false);
+        }
+        if(currentHealth <= 0)
+        {
+            //gameOver
         }
     }
     public void ActionPoints(int current, int max)
