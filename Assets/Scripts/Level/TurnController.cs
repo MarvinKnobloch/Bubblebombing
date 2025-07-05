@@ -34,7 +34,7 @@ public class TurnController : MonoBehaviour
     }
     IEnumerator RollAnimation()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.3f);
         RollNpcMovment();
         GameManager.Instance.playerUI.EndTurnButtonToggle(true);
         GameManager.Instance.playerUI.AbilitiyUIToggle(true);
@@ -43,14 +43,13 @@ public class TurnController : MonoBehaviour
     {
         foreach (GameObject npc in npcs)
         {
-            //GetNpcMinMovement
-            //GetNpcMaxMovement
-            int npcMinMovementPoints = 1;
-            int npcMaxMovementPoints = 4;
+            Entity entity = npc.GetComponent<Entity>();
+
+            int npcMinMovementPoints = entity.npcValuesObj.minMovementValue;
+            int npcMaxMovementPoints = entity.npcValuesObj.maxMovementValue;
 
             int movementpoints = Random.Range(npcMinMovementPoints, npcMaxMovementPoints + 1);
-            //display Movementpoints
-            //Set npc Movementpoints;
+            entity.SetRemaingSteps(movementpoints);
         }
     }
     public void NpcMovementFinished()
@@ -63,6 +62,11 @@ public class TurnController : MonoBehaviour
     }
     public void EndTurn() 
     {
+        foreach (GameObject npc in npcs)
+        {
+            Entity entity = npc.GetComponent<Entity>();
+            entity.StartTurn();
+        }
         //StartNpcMovement
     }
 }

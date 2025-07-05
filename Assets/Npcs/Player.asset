@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c75aeb18874bd34bb4fc80f09ffbd81, type: 3}
-  m_Name: Spinne
+  m_Name: Player
   m_EditorClassIdentifier: Assembly-CSharp::NpcValuesObj
-  minMovementValue: 1
-  maxMovementValue: 8
+  minMovementValue: 2
+  maxMovementValue: 4

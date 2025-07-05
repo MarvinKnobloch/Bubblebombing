@@ -11,7 +11,10 @@ public class BuildingPreview : MonoBehaviour
     void Update()
     {
         Vector3 mouseposi = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        gameObject.transform.position = new Vector3(Mathf.Round(mouseposi.x + 0.5f) - 0.5f, Mathf.Round(mouseposi.y + 0.5f) - 0.5f, 0);
+        transform.position = new Vector3(Mathf.Round(mouseposi.x + 0.5f) - 0.5f, Mathf.Round(mouseposi.y + 0.5f) - 0.5f, 0);
+
+        //Vector2 position = GridRenderer.instance.WorldToTilePosition(mouseposi);
+        //transform.position = position;
 
         //Vector3 mouseposi = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         //mouseposi.z = 0;
