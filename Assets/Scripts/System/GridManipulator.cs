@@ -16,6 +16,8 @@ public class GridManipulator : MonoBehaviour
 	private Vector3[] startPositions;
 	private SpriteRenderer[] spriteRenderers;
 	public SpriteRenderer tempSpriteRenderer;
+	private Vector3 tempStartPosition;
+	private bool moveingLine = false;
 
 	public void RotateTileCW(int tileId)
 	{
@@ -75,68 +77,172 @@ public class GridManipulator : MonoBehaviour
 		StartCoroutine(MoveRowAnimation(row, direction, newTileData));
 	}
 
+	public void MoveColumn(int column, Direction direction, TileData newTileData)
+	{
+		StartCoroutine(MoveColumnAnimation(column, direction, newTileData));
+	}
+
 	private IEnumerator MoveRowAnimation(int row, Direction direction, TileData newTileData)
 	{
+		if (moveingLine) yield break;
+		moveingLine = true;
 		for (int i = 0; i < LevelGrid.instance.width; i++)
 		{
 			Tile tile = LevelGrid.instance.tiles[i + row * LevelGrid.instance.width];
 			if (tile.locked) yield break;
 		}
 
-		if (spriteRenderers == null)
+		if (spriteRenderers == null || spriteRenderers.Length != LevelGrid.instance.width)
 		{
-			startPositions = new Vector3[LevelGrid.instance.width+1];
-			spriteRenderers = new SpriteRenderer[LevelGrid.instance.width+1];
+			startPositions = new Vector3[LevelGrid.instance.width];
+			spriteRenderers = new SpriteRenderer[LevelGrid.instance.width];
 		}
 
-		int j;
-		float animationTimer = 0f;
 		float offset;
 		if (direction == Direction.Right)
 		{
-			j = 0;
 			offset = 1;
-			spriteRenderers[LevelGrid.instance.width] = tempSpriteRenderer;
-			tempSpriteRenderer.transform.localPosition = new Vector3(-GridRenderer.instance.tileSize, 0, 0);
+			tempStartPosition = GridRenderer.instance.TileToWorldPosition(new Vector2Int(-1, row));
 		}
 		else
 		{
-			j = 1;
 			offset = -1;
-			spriteRenderers[0] = tempSpriteRenderer;
-			tempSpriteRenderer.transform.localPosition = new Vector3(LevelGrid.instance.width * GridRenderer.instance.tileSize, 0, 0);
+			tempStartPosition = GridRenderer.instance.TileToWorldPosition(new Vector2Int(LevelGrid.instance.width, row));
 		}
+		tempSpriteRenderer.sprite = newTileData.sprite;
+		tempSpriteRenderer.transform.rotation = Quaternion.Euler(0, 0, newTileData.rotation);
+		tempSpriteRenderer.enabled = true;
+
 		for (int i = 0; i < LevelGrid.instance.width; i++)
 		{
 			Tile tile = LevelGrid.instance.tiles[i + row * LevelGrid.instance.width];
 			tile.locked = true;
-			spriteRenderers[j] = GridRenderer.instance.GetSpriteRenderer(tile.index);
-			startPositions[j] = spriteRenderers[j].transform.localPosition;
-			j++;
+			spriteRenderers[i] = GridRenderer.instance.GetSpriteRenderer(tile.index);
+			startPositions[i] = spriteRenderers[i].transform.localPosition;
 		}
 
+		Vector2 deltaPosition = new Vector2(offset, 0) * GridRenderer.instance.tileSize;
+		yield return StartCoroutine(MoveLineAnimation(deltaPosition));
+
+		int index;
+		if (direction == Direction.Right)
+		{
+			for (int i = LevelGrid.instance.width - 1; i > 0; i--)
+			{
+				index = row * LevelGrid.instance.width + i;
+				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index - 1];
+				tile.index = index;
+				tile.locked = false;
+			}
+			index = row * LevelGrid.instance.width;
+			LevelGrid.instance.tiles[index] = new Tile(newTileData, index);
+		}
+		else
+		{
+			for (int i = 0; i < LevelGrid.instance.width - 1; i++)
+			{
+				index = row * LevelGrid.instance.width + i;
+				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index + 1];
+				tile.index = index;
+				tile.locked = false;
+			}
+			index = row * LevelGrid.instance.width + LevelGrid.instance.width - 1;
+			LevelGrid.instance.tiles[index] = new Tile(newTileData, index);
+		}
+
+		GridRenderer.instance.UpdateTiles();
+		tempSpriteRenderer.enabled = false;
+		moveingLine = false;
+	}
+
+	private IEnumerator MoveColumnAnimation(int column, Direction direction, TileData newTileData)
+	{
+		if (moveingLine) yield break;
+		moveingLine = true;
+		for (int i = 0; i < LevelGrid.instance.height; i++)
+		{
+			Tile tile = LevelGrid.instance.tiles[column + i * LevelGrid.instance.width];
+			if (tile.locked) yield break;
+		}
+
+		if (spriteRenderers == null || spriteRenderers.Length != LevelGrid.instance.height)
+		{
+			startPositions = new Vector3[LevelGrid.instance.height];
+			spriteRenderers = new SpriteRenderer[LevelGrid.instance.height];
+		}
+
+		float offset;
+		if (direction == Direction.Up)
+		{
+			offset = 1;
+			tempStartPosition = GridRenderer.instance.TileToWorldPosition(new Vector2Int(column, -1));
+		}
+		else
+		{
+			offset = -1;
+			tempStartPosition = GridRenderer.instance.TileToWorldPosition(new Vector2Int(column, LevelGrid.instance.height));
+		}
 		tempSpriteRenderer.sprite = newTileData.sprite;
 		tempSpriteRenderer.transform.rotation = Quaternion.Euler(0, 0, newTileData.rotation);
+		tempSpriteRenderer.enabled = true;
 
+		for (int i = 0; i < LevelGrid.instance.height; i++)
+		{
+			Tile tile = LevelGrid.instance.tiles[column + i * LevelGrid.instance.width];
+			tile.locked = true;
+			spriteRenderers[i] = GridRenderer.instance.GetSpriteRenderer(tile.index);
+			startPositions[i] = spriteRenderers[i].transform.localPosition;
+		}
+
+		Vector2 deltaPosition = new Vector2(0, offset) * GridRenderer.instance.tileSize;
+		yield return StartCoroutine(MoveLineAnimation(deltaPosition));
+
+		int index;
+		if (direction == Direction.Up)
+		{
+			for (int i = LevelGrid.instance.height - 1; i > 0; i--)
+			{
+				index = column + i * LevelGrid.instance.width;
+				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index - LevelGrid.instance.width];
+				tile.index = index;
+				tile.locked = false;
+			}
+			index = column;
+			LevelGrid.instance.tiles[index] = new Tile(newTileData, index);
+		}
+		else
+		{
+			for (int i = 0; i < LevelGrid.instance.height - 1; i++)
+			{
+				index = column + i * LevelGrid.instance.width;
+				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index + LevelGrid.instance.width];
+				tile.index = index;
+				tile.locked = false;
+			}
+			index = column + (LevelGrid.instance.height - 1) * LevelGrid.instance.width;
+			LevelGrid.instance.tiles[index] = new Tile(newTileData, index);
+		}
+
+		GridRenderer.instance.UpdateTiles();
+		tempSpriteRenderer.enabled = false;
+		moveingLine = false;
+	}
+
+	private IEnumerator MoveLineAnimation(Vector2 deltaPosition)
+	{
+		float animationTimer = 0f;
 		while (animationTimer < linearMoveTime)
 		{
 			animationTimer += Time.deltaTime;
-
-			for (int i = 0; i <= LevelGrid.instance.width; i++)
+			for (int i = 0; i < spriteRenderers.Length; i++)
 			{
 				Vector3 startPosition = startPositions[i];
-				Vector3 endPosition = startPosition + new Vector3(offset, 0, 0);
+				Vector3 endPosition = startPosition + new Vector3(deltaPosition.x, deltaPosition.y, 0);
 				spriteRenderers[i].transform.localPosition = Vector3.Lerp(startPosition, endPosition, linearMoveCurve.Evaluate(animationTimer / linearMoveTime));
 			}
+			Vector3 tempEndPosition = tempStartPosition + new Vector3(deltaPosition.x, deltaPosition.y, 0);
+			tempSpriteRenderer.transform.localPosition = Vector3.Lerp(tempStartPosition, tempEndPosition, linearMoveCurve.Evaluate(animationTimer / linearMoveTime));
 			yield return null;
-		}
-
-		for (int i = 0; i < LevelGrid.instance.width; i++)
-		{
-			Tile tile = LevelGrid.instance.tiles[i + row * LevelGrid.instance.width];
-			tile.locked = false;
-			tile.paths = newTileData.paths;
-			spriteRenderers[i].transform.localPosition = Vector3.zero;
 		}
 	}
 }

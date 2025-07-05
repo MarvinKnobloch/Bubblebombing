@@ -177,6 +177,10 @@ public class GridInteractionUI : MonoBehaviour
 		{
 			gridManipulator.MoveRow(tilePosition.y, mousePosition.x < GridRenderer.instance.GetGridBounds().center.x ? Direction.Right : Direction.Left, insertTileData);
 		}
+		else if (interactionType == GridInteractionType.Column)
+		{
+			gridManipulator.MoveColumn(tilePosition.x, mousePosition.y < GridRenderer.instance.GetGridBounds().center.y ? Direction.Up : Direction.Down, insertTileData);
+		}
 	}
 
 	void OnRightClick(InputAction.CallbackContext context)
