@@ -109,10 +109,10 @@ public class Entity : MonoBehaviour
                 switch (directionsToCheck[i])
                 {
                     case Direction.Up:
-                        neighborY = y - 1;
+                        neighborY = y + 1;
                         break;
                     case Direction.Down:
-                        neighborY = y + 1;
+                        neighborY = y - 1;
                         break;
                     case Direction.Left:
                         neighborX = x - 1;
@@ -124,7 +124,7 @@ public class Entity : MonoBehaviour
                 PositionOnGrid = new Vector2Int(neighborX, neighborY);
                 Debug.Log(entityName + " has Choosen direction " + directionsToCheck[i]);
                 Debug.Log("Target is at pos("+neighborX+ ", " + neighborY + ")");
-                Debug.Break();
+                //Debug.Break();
                 Face(directionsToCheck[i]);
                 return new Vector2Int(neighborX, neighborY);
             }

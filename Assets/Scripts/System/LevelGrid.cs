@@ -55,10 +55,10 @@ public class LevelGrid : MonoBehaviour
 		switch (direction)
 		{
 			case Direction.Up:
-				neighborY = y - 1;
+				neighborY = y + 1;
 				break;
 			case Direction.Down:
-				neighborY = y + 1;
+				neighborY = y - 1;
 				break;
 			case Direction.Left:
 				neighborX = x - 1;
