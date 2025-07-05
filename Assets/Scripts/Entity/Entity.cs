@@ -16,7 +16,7 @@ public class Entity : MonoBehaviour
     public Rigidbody2D rb;
     public Vector2 target;
     private Vector2 oldPosition;
-    private Vector2Int PositionOnGrid = new Vector2Int(0,0);
+    public Vector2Int PositionOnGrid = new Vector2Int(0,0);
     private Direction facedDirection = Direction.Up;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -109,10 +109,10 @@ public class Entity : MonoBehaviour
                 switch (directionsToCheck[i])
                 {
                     case Direction.Up:
-                        neighborY = y - 1;
+                        neighborY = y + 1;
                         break;
                     case Direction.Down:
-                        neighborY = y + 1;
+                        neighborY = y - 1;
                         break;
                     case Direction.Left:
                         neighborX = x - 1;
@@ -121,10 +121,8 @@ public class Entity : MonoBehaviour
                         neighborX = x + 1;
                         break;
                 }
-                PositionOnGrid = new Vector2Int(neighborX, neighborY);
-                Debug.Log(entityName + " has Choosen direction " + directionsToCheck[i]);
-                Debug.Log("Target is at pos("+neighborX+ ", " + neighborY + ")");
-                Debug.Break();
+                
+				PositionOnGrid = new Vector2Int(neighborX, neighborY);
                 Face(directionsToCheck[i]);
                 return new Vector2Int(neighborX, neighborY);
             }
@@ -165,7 +163,7 @@ public class Entity : MonoBehaviour
             case Direction.Right:
                 return Direction.Up;
             default:
-                return Direction.Up;
+                throw new Exception("Invalid direction");
         }
     }
     public static Direction GetRightDirection(Direction direction)
@@ -181,7 +179,7 @@ public class Entity : MonoBehaviour
             case Direction.Right:
                 return Direction.Down;
             default:
-                return Direction.Up;
+                throw new Exception("Invalid direction");
         }
     }
 }
