@@ -60,4 +60,9 @@ public class PlayerUI : MonoBehaviour
         actionPoints.fillAmount = (float)current / max;
         actioPointsText.text = current + "/" + max;
     }
+    public void StartDialog(DialogObj dialogObj)
+    {
+        dialogBox.GetComponent<DialogBox>().DialogStart(dialogObj);
+        dialogBox.SetActive(true);
+    }
 }
