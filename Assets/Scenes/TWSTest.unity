@@ -623,6 +623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1316747710}
   - component: {fileID: 1316747711}
+  - component: {fileID: 1316747712}
   m_Layer: 0
   m_Name: GridInteractionUI
   m_TagString: Untagged
@@ -659,11 +660,108 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad30c0c2169c4f4c8ffb5041c9bfa7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridInteractionUI
+  gridManipulator: {fileID: 1316747712}
   highlightRect: {fileID: 478119078}
   highlightArrow: {fileID: 1140801546}
   arrowOffset: 0.5
   selectRow: 0
-  selectCol: 1
+  selectCol: 0
+--- !u!114 &1316747712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316747709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845d70e60544b064eb023bd2ce995f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridManipulator
+  upscaleTime: 0.5
+  rotateTime: 0.5
+  downscaleTime: 0.5
+  upscaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  downscaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -1.1558111
+      outSlope: -1.1558111
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16241276
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.9020394
+      outSlope: 1.9020394
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.086771846
+    - serializedVersion: 3
+      time: 1
+      value: 1.0013428
+      inSlope: -1.0975368
+      outSlope: -1.0975368
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16059315
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1822516073
 GameObject:
   m_ObjectHideFlags: 0
