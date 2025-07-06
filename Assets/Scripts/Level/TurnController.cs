@@ -7,7 +7,8 @@ public class TurnController : MonoBehaviour
     public static TurnController instance;
 
     [Header("ActionPoints")]
-    [SerializeField] private int startActionPoints;
+    [SerializeField] private int maxActionPoints;
+    [SerializeField] private int actionPointsEachRound;
     private int currentActionPoints;
 
     [Header("TurnValues")]
@@ -49,7 +50,8 @@ public class TurnController : MonoBehaviour
         GameManager.Instance.playerUI.EndTurnButtonToggle(true);
         GameManager.Instance.playerUI.AbilitiyUIToggle(true);
 
-        currentActionPoints = startActionPoints;
+        currentActionPoints += actionPointsEachRound;
+        if (currentActionPoints > maxActionPoints) currentActionPoints = maxActionPoints;
         ActionPointsUpdate(0);
     }
     public bool CheckForActionPoints(int amount)
