@@ -41,8 +41,7 @@ public class Entity : MonoBehaviour
                 MoveUpdate();
                 break;
             default:
-                Debug.Log("Incorect EntityState");
-                break;
+                throw new Exception("Invalid State");
         }
     }
 
@@ -146,7 +145,6 @@ public class Entity : MonoBehaviour
 
     private void Face(Direction direction)
     {
-        Debug.Log("Facing direction" + direction);
         facedDirection = direction;
         switch (direction)
         {
@@ -164,6 +162,52 @@ public class Entity : MonoBehaviour
                 break;
         }
     }
+
+    public void Fear(Vector2 sourcePos)
+    {
+        Direction closestFacingDirection = GetClosestFacing(transform.position, sourcePos);
+        Face(LevelGrid.GetOppositeDirection(closestFacingDirection));
+    }
+    public void Lure(Vector2 sourcePos)
+    {
+        Direction closestFacingDirection = GetClosestFacing(transform.position, sourcePos);
+        Face(closestFacingDirection);
+    }
+
+    public void Damage()
+    {
+        Debug.Log("Iplement player losing health!");
+    }
+
+    public void ChangeSteps(int val)
+    {
+        remainingSteps += val;
+        remainingSteps = Math.Max(remainingSteps, 0);
+    }
+
+
+    public Direction GetClosestFacing(Vector2 V1, Vector2 V2)
+    {
+        // Calculate direction vector from V1 to V2
+        Vector3 direction = (V2 - V1).normalized;
+
+        // Get the angle in degrees (-180 to 180)
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Normalize angle to 0-360 range
+        if (angle < 0)
+            angle += 360;
+
+        if (angle >= 315 || angle < 45)
+            return Direction.Right;
+        else if (angle >= 45 && angle < 135)
+            return Direction.Up;
+        else if (angle >= 135 && angle < 225)
+            return Direction.Left;
+        else // angle >= 225 && angle < 315
+            return Direction.Down;
+    }
+
     public static Direction GetLeftDirection(Direction direction)
     {
         switch (direction)
