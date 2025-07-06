@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b888703b7ed6843a46bec5ca94831a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  spriteManager: {fileID: 0}
+  spriteManager: {fileID: 2187079279465655051}
   entityName: Point
   moveSpeed: 2
   remainingSteps: 10
@@ -405,6 +405,7 @@ MonoBehaviour:
   rb: {fileID: 8668259052442351059}
   target: {x: 0, y: 0}
   PositionOnGrid: {x: 0, y: 0}
+  facedDirection: 0
   childSprite: {fileID: 5042770733690563003}
   npcValuesObj: {fileID: 11400000, guid: 22ff6d45733302c4fac80e288ae17705, type: 2}
   movementText: {fileID: 6984676725427620627}

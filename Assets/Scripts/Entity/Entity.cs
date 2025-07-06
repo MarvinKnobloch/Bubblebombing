@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour
     public Vector2 target;
     private Vector2 oldPosition;
     public Vector2Int PositionOnGrid = new Vector2Int(0,0);
-    private Direction facedDirection = Direction.Up;
+    public Direction facedDirection = Direction.Up;
     private Direction[] directionsToCheck = new Direction[4];
 
     [Header("Other")]
@@ -24,6 +24,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private TextMeshProUGUI movementText;
     void Start()
     {
+        Face(facedDirection);
         rb.position = GridRenderer.instance.TileToWorldPosition(PositionOnGrid);
 
         TurnController.instance.AddNpc(gameObject);
