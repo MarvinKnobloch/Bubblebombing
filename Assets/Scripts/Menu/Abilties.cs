@@ -25,10 +25,10 @@ public class Abilties : MonoBehaviour
     private void Awake()
     {
         controls = new Controls();
+        baseColor = buttons[0].GetComponent<Image>().color;
     }
     private void OnEnable()
     {
-        baseColor = buttons[0].GetComponent<Image>().color;
         controls.Enable();
     }
     private void Update()
