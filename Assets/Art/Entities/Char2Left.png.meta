@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ab1b4ace569348645ab7bfb0075c70bb
+guid: 432d59c8e3ab6bb488a938c228b9d113
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5065286499203031680
-    second: Teufel_0
+      213: 8955041254182638265
+    second: Char2Left_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Teufel_0
+      name: Char2Left_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 1
-        width: 26
-        height: 31
+        x: 7
+        y: 0
+        width: 20
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 08ddb6914cc74b9b0800000000000000
-      internalID: -5065286499203031680
+      spriteID: 9b256882392b64c70800000000000000
+      internalID: 8955041254182638265
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Teufel_0: -5065286499203031680
+      Char2Left_0: 8955041254182638265
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

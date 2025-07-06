@@ -112,6 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5042770733690563003}
   - component: {fileID: 3643108919344086685}
+  - component: {fileID: 2187079279465655051}
   m_Layer: 8
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -190,9 +191,26 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2187079279465655051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3839252546776924286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431f6bb4851db8047b65ce1fd9960eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  spriteRenderer: {fileID: 3643108919344086685}
+  left: {fileID: -7407206068268243143, guid: 9ef2a95fcae25f54c8cced4b874aab6b, type: 3}
+  up: {fileID: -8875547015468949130, guid: e843c1086221df44394cb6a69009d047, type: 3}
+  right: {fileID: 4102929192407404611, guid: 2855e44a21cddb94da47d8cfdb648300, type: 3}
+  down: {fileID: 7760036963511933595, guid: 11a0d3072e9ff654fb6754c100fd6cd6, type: 3}
 --- !u!1 &4044382668777209651
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +360,6 @@ GameObject:
   - component: {fileID: 8668259052442351059}
   - component: {fileID: 7001118002239820735}
   - component: {fileID: 7864835384870189917}
-  - component: {fileID: -6024992539975241262}
   m_Layer: 8
   m_Name: Entity
   m_TagString: Player
@@ -374,11 +391,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4152188265811182545}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9b888703b7ed6843a46bec5ca94831a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  spriteManager: {fileID: 0}
+  entityName: Point
   moveSpeed: 2
   remainingSteps: 10
   t: 0
@@ -469,18 +488,6 @@ MonoBehaviour:
     m_Bits: 448
   objectType: 0
   isDestroyable: 0
---- !u!114 &-6024992539975241262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152188265811182545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81ec31868c46821478760528ffa3cffd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlaceableObject
 --- !u!1 &5605374199013606727
 GameObject:
   m_ObjectHideFlags: 0
