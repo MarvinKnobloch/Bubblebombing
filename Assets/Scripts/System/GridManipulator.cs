@@ -12,15 +12,15 @@ public class GridManipulator : MonoBehaviour
 	public AnimationCurve downscaleCurve;
 	public AnimationCurve animationCurve;
 	public AnimationCurve linearMoveCurve;
-	
-	public SpriteRenderer tempSpriteRenderer;
 
 	public AudioData moveAudio;
 	public AudioData rotateAudio;
 	private AudioSource audioSource;
 
+	public TileGrafik tempGrafik;
+
 	private Vector3[] startPositions;
-	private SpriteRenderer[] spriteRenderers;
+	private TileGrafik[] tileGrafics;
 	
 	private Vector3 tempStartPosition;
 	private bool moveingLine = false;
@@ -47,7 +47,7 @@ public class GridManipulator : MonoBehaviour
 		Tile tile = LevelGrid.instance.tiles[tileId];
 		if (tile.locked) yield break;
 		tile.locked = true;
-		SpriteRenderer spriteRenderer = GridRenderer.instance.GetSpriteRenderer(tileId);
+		TileGrafik spriteRenderer = GridRenderer.instance.GetTileGrafik(tileId);
 		float startRotation = spriteRenderer.transform.rotation.eulerAngles.z;
 
 		spriteRenderer.sortingOrder = 100;
@@ -101,6 +101,28 @@ public class GridManipulator : MonoBehaviour
 		StartCoroutine(MoveColumnAnimation(column, direction, newTileData));
 	}
 
+	public void PlaceObject(int tileId, PlaceableObject placeableObject)
+	{
+		Tile tile = LevelGrid.instance.tiles[tileId];
+		if (tile.locked) return;
+		tile.locked = true;
+		TileGrafik grafic = GridRenderer.instance.GetTileGrafik(tileId);
+		if (grafic.tileObject == null)
+			grafic.PlaceObject(Instantiate(placeableObject, grafic.transform));
+		tile.locked = false;
+	}
+
+	public void RemoveObject(int tileId)
+	{
+		Tile tile = LevelGrid.instance.tiles[tileId];
+		if (tile.locked) return;
+		tile.locked = true;
+		TileGrafik grafic = GridRenderer.instance.GetTileGrafik(tileId);
+		Destroy(grafic.tileObject.gameObject);
+		grafic.tileObject = null;
+		tile.locked = false;
+	}
+
 	private IEnumerator MoveRowAnimation(int row, Direction direction, TileData newTileData)
 	{
 		for (int i = 0; i < LevelGrid.instance.width; i++)
@@ -109,10 +131,10 @@ public class GridManipulator : MonoBehaviour
 			if (tile.locked) yield break;
 		}
 
-		if (spriteRenderers == null || spriteRenderers.Length != LevelGrid.instance.width)
+		if (tileGrafics == null || tileGrafics.Length != LevelGrid.instance.width)
 		{
 			startPositions = new Vector3[LevelGrid.instance.width];
-			spriteRenderers = new SpriteRenderer[LevelGrid.instance.width];
+			tileGrafics = new TileGrafik[LevelGrid.instance.width];
 		}
 
 		float offset;
@@ -126,16 +148,16 @@ public class GridManipulator : MonoBehaviour
 			offset = -1;
 			tempStartPosition = GridRenderer.instance.TileToWorldPosition(new Vector2Int(LevelGrid.instance.width, row));
 		}
-		tempSpriteRenderer.sprite = newTileData.sprite;
-		tempSpriteRenderer.transform.rotation = Quaternion.Euler(0, 0, newTileData.rotation);
-		tempSpriteRenderer.enabled = true;
+		tempGrafik.SetSprite(newTileData.sprite);
+		tempGrafik.SetRotation(Quaternion.Euler(0, 0, newTileData.rotation));
+		tempGrafik.SetVisible(true);
 
 		for (int i = 0; i < LevelGrid.instance.width; i++)
 		{
 			Tile tile = LevelGrid.instance.tiles[i + row * LevelGrid.instance.width];
 			tile.locked = true;
-			spriteRenderers[i] = GridRenderer.instance.GetSpriteRenderer(tile.index);
-			startPositions[i] = spriteRenderers[i].transform.localPosition;
+			tileGrafics[i] = GridRenderer.instance.GetTileGrafik(tile.index);
+			startPositions[i] = tileGrafics[i].transform.localPosition;
 		}
 
 		Vector2 deltaPosition = new Vector2(offset, 0) * GridRenderer.instance.tileSize;
@@ -148,6 +170,7 @@ public class GridManipulator : MonoBehaviour
 			{
 				index = row * LevelGrid.instance.width + i;
 				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index - 1];
+				tileGrafics[i].PlaceObject(tileGrafics[i - 1].tileObject);
 				tile.index = index;
 				tile.locked = false;
 			}
@@ -160,6 +183,7 @@ public class GridManipulator : MonoBehaviour
 			{
 				index = row * LevelGrid.instance.width + i;
 				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index + 1];
+				tileGrafics[i].PlaceObject(tileGrafics[i + 1].tileObject);
 				tile.index = index;
 				tile.locked = false;
 			}
@@ -168,7 +192,7 @@ public class GridManipulator : MonoBehaviour
 		}
 
 		GridRenderer.instance.UpdateTiles();
-		tempSpriteRenderer.enabled = false;
+		tempGrafik.SetVisible(false);
 		moveingLine = false;
 	}
 
@@ -180,10 +204,10 @@ public class GridManipulator : MonoBehaviour
 			if (tile.locked) yield break;
 		}
 
-		if (spriteRenderers == null || spriteRenderers.Length != LevelGrid.instance.height)
+		if (tileGrafics == null || tileGrafics.Length != LevelGrid.instance.height)
 		{
 			startPositions = new Vector3[LevelGrid.instance.height];
-			spriteRenderers = new SpriteRenderer[LevelGrid.instance.height];
+			tileGrafics = new TileGrafik[LevelGrid.instance.height];
 		}
 
 		float offset;
@@ -197,16 +221,16 @@ public class GridManipulator : MonoBehaviour
 			offset = -1;
 			tempStartPosition = GridRenderer.instance.TileToWorldPosition(new Vector2Int(column, LevelGrid.instance.height));
 		}
-		tempSpriteRenderer.sprite = newTileData.sprite;
-		tempSpriteRenderer.transform.rotation = Quaternion.Euler(0, 0, newTileData.rotation);
-		tempSpriteRenderer.enabled = true;
+		tempGrafik.SetSprite(newTileData.sprite);
+		tempGrafik.SetRotation(Quaternion.Euler(0, 0, newTileData.rotation));
+		tempGrafik.SetVisible(true);
 
 		for (int i = 0; i < LevelGrid.instance.height; i++)
 		{
 			Tile tile = LevelGrid.instance.tiles[column + i * LevelGrid.instance.width];
 			tile.locked = true;
-			spriteRenderers[i] = GridRenderer.instance.GetSpriteRenderer(tile.index);
-			startPositions[i] = spriteRenderers[i].transform.localPosition;
+			tileGrafics[i] = GridRenderer.instance.GetTileGrafik(tile.index);
+			startPositions[i] = tileGrafics[i].transform.localPosition;
 		}
 
 		Vector2 deltaPosition = new Vector2(0, offset) * GridRenderer.instance.tileSize;
@@ -219,6 +243,7 @@ public class GridManipulator : MonoBehaviour
 			{
 				index = column + i * LevelGrid.instance.width;
 				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index - LevelGrid.instance.width];
+				tileGrafics[i].PlaceObject(tileGrafics[i - 1].tileObject);
 				tile.index = index;
 				tile.locked = false;
 			}
@@ -231,6 +256,7 @@ public class GridManipulator : MonoBehaviour
 			{
 				index = column + i * LevelGrid.instance.width;
 				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index + LevelGrid.instance.width];
+				tileGrafics[i].PlaceObject(tileGrafics[i + 1].tileObject);
 				tile.index = index;
 				tile.locked = false;
 			}
@@ -239,7 +265,7 @@ public class GridManipulator : MonoBehaviour
 		}
 
 		GridRenderer.instance.UpdateTiles();
-		tempSpriteRenderer.enabled = false;
+		tempGrafik.SetVisible(false);
 		moveingLine = false;
 	}
 
@@ -249,14 +275,14 @@ public class GridManipulator : MonoBehaviour
 		while (animationTimer < linearMoveTime)
 		{
 			animationTimer += Time.deltaTime;
-			for (int i = 0; i < spriteRenderers.Length; i++)
+			for (int i = 0; i < tileGrafics.Length; i++)
 			{
 				Vector3 startPosition = startPositions[i];
 				Vector3 endPosition = startPosition + new Vector3(deltaPosition.x, deltaPosition.y, 0);
-				spriteRenderers[i].transform.localPosition = Vector3.Lerp(startPosition, endPosition, linearMoveCurve.Evaluate(animationTimer / linearMoveTime));
+				tileGrafics[i].transform.localPosition = Vector3.Lerp(startPosition, endPosition, linearMoveCurve.Evaluate(animationTimer / linearMoveTime));
 			}
 			Vector3 tempEndPosition = tempStartPosition + new Vector3(deltaPosition.x, deltaPosition.y, 0);
-			tempSpriteRenderer.transform.localPosition = Vector3.Lerp(tempStartPosition, tempEndPosition, linearMoveCurve.Evaluate(animationTimer / linearMoveTime));
+			tempGrafik.SetPosition(Vector3.Lerp(tempStartPosition, tempEndPosition, linearMoveCurve.Evaluate(animationTimer / linearMoveTime)));
 			yield return null;
 		}
 	}

@@ -23,6 +23,6 @@ public class LevelDialog : MonoBehaviour
 
     private void StartRound()
     {
-        GameManager.Instance.playerUI.StartTurnButtonToggle(true);
+        TurnController.instance.CheckForNextRound();
     }
 }

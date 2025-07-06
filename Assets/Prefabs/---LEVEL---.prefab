@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf15b57ceae6e674e8a9b5b124fe5f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridRenderer
-  dummySprite: {fileID: 21300000, guid: 0304da1004188234699096fb0cf0b34b, type: 3}
+  graficPrefab: {fileID: 4799407593174720943, guid: f2309591a851fec47bf6db52e4c5c67a, type: 3}
   tileSize: 1
 --- !u!1 &5907778267811718897
 GameObject:

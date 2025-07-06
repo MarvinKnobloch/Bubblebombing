@@ -6,6 +6,7 @@ public class TurnController : MonoBehaviour
 {
     public static TurnController instance;
 
+    [SerializeField] private bool autoStartRound;
     private List<GameObject> npcs = new List<GameObject>();
     [SerializeField] private int npcsOnField;
     [SerializeField] private int npcsNoMoreMovement;
@@ -57,8 +58,16 @@ public class TurnController : MonoBehaviour
         npcsNoMoreMovement++;
         if(npcsNoMoreMovement >= npcsOnField)
         {
-            GameManager.Instance.playerUI.StartTurnButtonToggle(true);
+            CheckForNextRound();
         }
+    }
+    public void CheckForNextRound()
+    {
+        if (autoStartRound)
+        {
+            StartTurn();
+        }
+        else GameManager.Instance.playerUI.StartTurnButtonToggle(true);
     }
     public void EndTurn() 
     {
