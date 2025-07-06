@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: -5065286499203031680, guid: ab1b4ace569348645ab7bfb0075c70bb, type: 3}
     - target: {fileID: 3643108919344086685, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
       propertyPath: m_Color.b
-      value: 0.02336242
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3643108919344086685, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
       propertyPath: m_Color.g
-      value: 0.049391188
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3643108919344086685, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
       propertyPath: m_Color.r
-      value: 0.7075472
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4152188265811182545, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
       propertyPath: m_Name
@@ -84,8 +84,23 @@ PrefabInstance:
       propertyPath: collisionLayers.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 8142595529765973124, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
+      propertyPath: spriteManager
+      value: 
+      objectReference: {fileID: 5774881136414867844}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
+--- !u!114 &5774881136414867844 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2187079279465655051, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
+  m_PrefabInstance: {fileID: 5656079988776381071}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431f6bb4851db8047b65ce1fd9960eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'

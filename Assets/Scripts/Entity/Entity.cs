@@ -5,7 +5,8 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class Entity : MonoBehaviour
 {
-    private string entityName = "Point";
+    public SpriteManager spriteManager;
+    public string entityName = "Point";
     [SerializeField] private float moveSpeed = 5f;
     public int remainingSteps = 3;
     public float t = 0;
@@ -45,6 +46,7 @@ public class Entity : MonoBehaviour
         }
     }
 
+    [ContextMenu("Start turn")]
     public void StartTurn()
     {
         state = EntityState.Move;
@@ -146,21 +148,22 @@ public class Entity : MonoBehaviour
     private void Face(Direction direction)
     {
         facedDirection = direction;
-        switch (direction)
-        {
-            case Direction.Up:
-                childSprite.rotation = Quaternion.Euler(0, 0, 0);
-                break;
-            case Direction.Left:
-                childSprite.rotation = Quaternion.Euler(0, 0, 90);
-                break;
-            case Direction.Down:
-                childSprite.rotation = Quaternion.Euler(0, 0, 180);
-                break;
-            case Direction.Right:
-                childSprite.rotation = Quaternion.Euler(0, 0, 270);
-                break;
-        }
+        spriteManager.Face(direction);
+        //switch (direction)
+        //{
+        //    case Direction.Up:
+        //        childSprite.rotation = Quaternion.Euler(0, 0, 0);
+        //        break;
+        //    case Direction.Left:
+        //        childSprite.rotation = Quaternion.Euler(0, 0, 90);
+        //        break;
+        //    case Direction.Down:
+        //        childSprite.rotation = Quaternion.Euler(0, 0, 180);
+        //        break;
+        //    case Direction.Right:
+        //        childSprite.rotation = Quaternion.Euler(0, 0, 270);
+        //        break;
+        //}
     }
 
     public void Fear(Vector2 sourcePos)

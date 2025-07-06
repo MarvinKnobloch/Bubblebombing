@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1a1c56334f8749844979fbd09da44fa7
+guid: 85866cb4f8d8e404f88f160361c04fe1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2929300127841677521
-    second: HugFlame_0
+      213: 7466926778284236322
+    second: 1751730860228_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HugFlame_0
+      name: 1751730860228_0
       rect:
         serializedVersion: 2
-        x: 309
-        y: 61
-        width: 1552
-        height: 1862
+        x: 7
+        y: 0
+        width: 17
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f2f8d77cd090957d0800000000000000
-      internalID: -2929300127841677521
+      spriteID: 22edb77e75adf9760800000000000000
+      internalID: 7466926778284236322
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HugFlame_0: -2929300127841677521
+      1751730860228_0: 7466926778284236322
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
