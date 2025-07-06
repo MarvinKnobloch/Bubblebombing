@@ -208,7 +208,7 @@ public class GridInteractionUI : MonoBehaviour
 		if (interactionType == GridInteractionType.PlaceObject)
 		{
 			gridManipulator.PlaceObject(tile.index, placeableObjectPrefab);
-			interactionType = GridInteractionType.MoveLine;
+			//interactionType = GridInteractionType.MoveLine;
 		}
 
 		if (interactionType == GridInteractionType.RemoveObject)

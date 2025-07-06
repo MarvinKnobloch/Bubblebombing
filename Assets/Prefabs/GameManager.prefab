@@ -1228,7 +1228,6 @@ MonoBehaviour:
   healthIcons:
   - {fileID: 2397799165931929984}
   - {fileID: 5917088226165976086}
-  - {fileID: 8202400338688601754}
   actionPoints: {fileID: 0}
   actioPointsText: {fileID: 0}
   dialogBox: {fileID: 1476839471865304374}
@@ -2040,7 +2039,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3686041050281060877}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6753810226441156929}
+        m_TargetAssemblyTypeName: Abilties, Assembly-CSharp
+        m_MethodName: SetHorrifyOption
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &713913159649637422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2936,7 +2947,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6753810226441156929}
         m_TargetAssemblyTypeName: Abilties, Assembly-CSharp
-        m_MethodName: CreateSlowPadPreview
+        m_MethodName: SetSlowOption
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6649,9 +6660,9 @@ MonoBehaviour:
   baseColor: {r: 0.40392157, g: 0.40392157, b: 0.40392157, a: 1}
   selectedColor: {r: 0.071591586, g: 0.49056602, b: 0.025453899, a: 1}
   lurePrefab: {fileID: 2887514162442245937, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
-  horrifyPrefab: {fileID: 0}
-  boostPrefab: {fileID: 0}
-  slowPrefab: {fileID: 0}
+  horrifyPrefab: {fileID: 1479251126492931835, guid: c4c9d997912893e4b92f4302a9864553, type: 3}
+  boostPrefab: {fileID: 6929845043762324666, guid: a630e43f38a8fd3409e83657a0f1f11b, type: 3}
+  slowPrefab: {fileID: 5710585939422997124, guid: bc8bd1e7ebc995443b6e4028a328a8a8, type: 3}
 --- !u!1 &4545115981177378771
 GameObject:
   m_ObjectHideFlags: 0
@@ -6745,7 +6756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6455298789783742056
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6761,10 +6772,10 @@ RectTransform:
   - {fileID: 5785181980824804554}
   m_Father: {fileID: 1177402316362557253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 170, y: -30}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8284587389420808459
 CanvasRenderer:
@@ -10924,7 +10935,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6753810226441156929}
         m_TargetAssemblyTypeName: Abilties, Assembly-CSharp
-        m_MethodName: CreateBoostpadPreview
+        m_MethodName: SetBoostOption
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

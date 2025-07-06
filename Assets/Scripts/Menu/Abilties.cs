@@ -38,19 +38,8 @@ public class Abilties : MonoBehaviour
         else if (controls.Player.Ability2.WasPerformedThisFrame()) SetRotationOption();
         else if (controls.Player.Ability3.WasPerformedThisFrame()) SetLureOption();
         else if (controls.Player.Ability4.WasPerformedThisFrame()) SetHorrifyOption();
-
-        //else if (controls.Player.Ability5.WasPerformedThisFrame())
-        //{
-        //    CreateBoostpadPreview();
-        //}
-        //else if (controls.Player.Ability6.WasPerformedThisFrame())
-        //{
-        //    CreateSlowPadPreview();
-        //}
-        //else if (controls.Player.RMB.WasPerformedThisFrame())
-        //{
-        //    CurrentPreviewDestroy();
-        //}
+        else if (controls.Player.Ability5.WasPerformedThisFrame()) SetBoostOption();
+        else if (controls.Player.Ability6.WasPerformedThisFrame()) SetSlowOption();
     }
     public void SetMoveOption()
     {
