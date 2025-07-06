@@ -5,6 +5,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     public SpriteManager spriteManager;
+	public Zahlenrad zahlenrad;
     public string entityName = "Point";
     [SerializeField] private float moveSpeed = 5f;
     public int remainingSteps = 3;
@@ -143,13 +144,23 @@ public class Entity : MonoBehaviour
         {
             GetNextTarget();
         }
-        movementText.text = remainingSteps.ToString();
+		SetRemaingSteps(remainingSteps);
     }
+
     public void SetRemaingSteps(int steps)
     {
         remainingSteps = steps;
         movementText.text = remainingSteps.ToString();
+		if (remainingSteps > 0)
+		{
+			zahlenrad.ForceShowValue(steps);
+		}
+		else
+		{
+			zahlenrad.gameObject.SetActive(false);
+		}
     }
+
     private void GetNextTarget()
     {
         Vector2Int targetTile = GetNextTargetCoord();
@@ -252,6 +263,12 @@ public class Entity : MonoBehaviour
             animationT = 2;
         }
     }
+
+	public void RollNewMovement()
+	{
+		int value = zahlenrad.Roll();
+		remainingSteps = value;
+	}
 
     public void ChangeSteps(int val)
     {

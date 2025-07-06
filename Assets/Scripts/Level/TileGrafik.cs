@@ -32,8 +32,8 @@ public class TileGrafik : MonoBehaviour
 	public void SetRotation(Quaternion rotation)
 	{
 		spriteRenderer.transform.rotation = rotation;
-		//foreach (PlaceableObject tileObject in tileObjects)
-		//	tileObject.transform.rotation = rotation;
+		foreach (PlaceableObject tileObject in tileObjects)
+			tileObject.transform.rotation = Quaternion.identity;
 	}
 
 	public void SetSprite(Sprite sprite)
@@ -69,6 +69,7 @@ public class TileGrafik : MonoBehaviour
 		placeableObject.owner = this;
 		placeableObject.transform.SetParent(transform);
 		placeableObject.transform.localPosition = Vector3.zero;
+		placeableObject.transform.rotation = Quaternion.identity;
 		tileObjects.Add(placeableObject);
 
 		Debug.Log("Objekt " + placeableObject.name + " plaziert auf " + transform.position);
