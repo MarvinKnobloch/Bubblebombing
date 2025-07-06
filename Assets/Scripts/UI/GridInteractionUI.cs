@@ -235,9 +235,10 @@ public class GridInteractionUI : MonoBehaviour
 	{
 		interactionType = interactionType == GridInteractionType.RotateTile ? GridInteractionType.None : GridInteractionType.RotateTile; 
     }
-	public void SetInteractionType(GridInteractionType type)
+	public void SetInteractionType(GridInteractionType type, PlaceableObject placementPrefab = null)
     {
         interactionType = type;
+		placeableObjectPrefab = placementPrefab;
     }
 
 	/*void LateUpdate()

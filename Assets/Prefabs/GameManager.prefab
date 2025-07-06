@@ -6295,6 +6295,7 @@ MonoBehaviour:
   - {fileID: 1017928530699720985}
   baseColor: {r: 0.40392157, g: 0.40392157, b: 0.40392157, a: 1}
   selectedColor: {r: 0.071591586, g: 0.49056602, b: 0.025453899, a: 1}
+  lurePrefab: {fileID: 2887514162442245937, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
 --- !u!1 &4545115981177378771
 GameObject:
   m_ObjectHideFlags: 0
@@ -11668,7 +11669,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5737568546292965766}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6753810226441156929}
+        m_TargetAssemblyTypeName: Abilties, Assembly-CSharp
+        m_MethodName: SetLureOption
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8557426419353896224
 MonoBehaviour:
   m_ObjectHideFlags: 0
