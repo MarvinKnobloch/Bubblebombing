@@ -39,8 +39,12 @@ public class GridInteractionUI : MonoBehaviour
 
 		GameManager.Instance.playerUI.abilityUI.gridInteractionUI = this;
 	}
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
 
-	public void MarkGridRow(int row, Direction direction)
+    public void MarkGridRow(int row, Direction direction)
 	{
 		if (direction == Direction.Up || direction == Direction.Down) return;
 
@@ -196,7 +200,7 @@ public class GridInteractionUI : MonoBehaviour
         }
 
         Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
-		Debug.Log("Left Click On " + tilePosition);
+		//Debug.Log("Left Click On " + tilePosition);
 
 		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
 		if (tile == null) return;

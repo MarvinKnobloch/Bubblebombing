@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DirectCollision : BaseCollision
@@ -6,22 +7,25 @@ public class DirectCollision : BaseCollision
     public bool isDestroyable;
     protected override void TriggerAction(GameObject target)
     {
-        switch (objectType)
+        if(target.TryGetComponent(out Entity targetEntity))
         {
-            case ObjectType.Damge:
-                target.GetComponent<Entity>().Damage();
-                break;
-            case ObjectType.Speed:
-                target.GetComponent<Entity>().ChangeSteps(1);
-                break;
-            case ObjectType.Slow:
-                target.GetComponent<Entity>().ChangeSteps(-1);
-                break;
+            switch (objectType)
+            {
+                case ObjectType.Damage:
+                    target.GetComponent<Entity>().Damage();
+                    break;
+                case ObjectType.Speed:
+                    target.GetComponent<Entity>().ChangeSteps(1);
+                    break;
+                case ObjectType.Slow:
+                    target.GetComponent<Entity>().ChangeSteps(-1);
+                    break;
 
-        }
-        if (isDestroyable)
-        {
-            Destroy(this);
+            }
+            if (isDestroyable)
+            {
+                Destroy(this);
+            }
         }
     }
 
@@ -29,7 +33,7 @@ public class DirectCollision : BaseCollision
 
 public enum ObjectType
 {
-    Damge,
+    Damage,
     Speed,
     Slow
 }

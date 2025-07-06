@@ -122,7 +122,25 @@ public class MenuController : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    private void BackToMainMenu()
+    public void NextLevel()
+    {
+        int nextlevel = SceneManager.GetActiveScene().buildIndex + 1;
+
+        Debug.Log(SceneManager.sceneCountInBuildSettings);
+        Debug.Log(nextlevel);
+        if (SceneManager.sceneCountInBuildSettings > nextlevel)
+        {
+            gameIsPaused = false;
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = normalFixedDeltaTime;
+            SceneManager.LoadScene(nextlevel);
+        }
+        else
+        {
+
+        }
+    }
+    public void BackToMainMenu()
     {
         //AudioManager.Instance.PlayUtilityOneshot((int)AudioManager.UtilitySounds.MenuSelect);
         gameIsPaused = false;
