@@ -137,7 +137,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 0c8ac12190af8f444ba74370059e9183, type: 3}
   m_Resource: {fileID: 8300000, guid: 0c8ac12190af8f444ba74370059e9183, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -721,6 +721,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3657080729154329764, guid: 1ae159bf9c0756343ad973e05d14f075, type: 3}
+      propertyPath: interactionType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3657080729154329764, guid: 1ae159bf9c0756343ad973e05d14f075, type: 3}
+      propertyPath: placeableObjectPrefab
+      value: 
+      objectReference: {fileID: 8830480835879175294, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
     - target: {fileID: 7232816711109229740, guid: 1ae159bf9c0756343ad973e05d14f075, type: 3}
       propertyPath: m_Name
       value: GridInteractionUI

@@ -7,11 +7,11 @@ public class GridRenderer : MonoBehaviour
 	/// </summary>
 	public static GridRenderer instance;
 
-	public Sprite dummySprite;
+	public TileGrafik graficPrefab;
 	public float tileSize = 1;
 	private Vector2 halfTile;
 
-	private SpriteRenderer[] spriteRenderers;
+	private TileGrafik[] spriteRenderers;
 
 	private void Awake()
 	{
@@ -21,17 +21,19 @@ public class GridRenderer : MonoBehaviour
 			Destroy(gameObject);
 
 		halfTile = new Vector2(tileSize * 0.5f, tileSize * 0.5f);
-		spriteRenderers = new SpriteRenderer[LevelGrid.instance.tiles.Length];
+		spriteRenderers = new TileGrafik[LevelGrid.instance.tiles.Length];
 
 		for (int i = 0; i < spriteRenderers.Length; i++)
 		{
-			spriteRenderers[i] = new GameObject("Tile " + i).AddComponent<SpriteRenderer>();
-			spriteRenderers[i].transform.SetParent(transform);
+			TileGrafik grafic = Instantiate(graficPrefab, transform);
+			grafic.name = "Tile " + i;
+			grafic.ApplyTile(LevelGrid.instance.tiles[i]);
+			spriteRenderers[i] = grafic;
 		}
 		UpdateTiles();
 	}
 
-	public SpriteRenderer GetSpriteRenderer(int tileId)
+	public TileGrafik GetTileGrafik(int tileId)
 	{
 		return spriteRenderers[tileId];
 	}
@@ -41,10 +43,7 @@ public class GridRenderer : MonoBehaviour
 		for (int i = 0; i < LevelGrid.instance.tiles.Length; i++)
 		{
 			Tile tile = LevelGrid.instance.tiles[i];
-			Sprite sprite = tile.GetSprite();
-			spriteRenderers[i].sprite = sprite;
-			spriteRenderers[i].transform.localPosition = new Vector3(i % LevelGrid.instance.width * tileSize, i / LevelGrid.instance.width * tileSize, 0);
-			spriteRenderers[i].transform.localRotation = Quaternion.Euler(0, 0, tile.GetSpriteRotation());
+			spriteRenderers[i].ApplyTile(tile);
 		}
 	}
 

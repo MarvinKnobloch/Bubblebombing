@@ -3,6 +3,12 @@ using UnityEngine.InputSystem;
 
 public class GridInteractionUI : MonoBehaviour
 {
+	[Header("Objekt zum plazieren")]
+	public PlaceableObject placeableObjectPrefab;
+	[Header("TileData für neue Tiles")]
+	public TileData newTileData;
+
+	[Space]
 	public GridManipulator gridManipulator;
 
 	public TileData insertTileData;
@@ -12,8 +18,10 @@ public class GridInteractionUI : MonoBehaviour
 	public Color allowedColor = Color.green;
 	public Color notAllowedColor = Color.red;
 	public float arrowOffset = 1f;
-
-	private GridInteractionType interactionType = GridInteractionType.None;
+	
+	[Header("Interaction Type")]
+	public GridInteractionType interactionType = GridInteractionType.None;
+	private bool moveRow = false;
 
 	public Controls inputActions;
 	private Vector2 mousePosition;
@@ -87,13 +95,16 @@ public class GridInteractionUI : MonoBehaviour
 		highlightRect.transform.position = new Vector3(tileBounds.center.x, tileBounds.center.y, 0);
 		highlightRect.size = new Vector2(tileBounds.size.x, tileBounds.size.y);
 
+		highlightArrow.transform.position = new Vector3(tileBounds.center.x, tileBounds.center.y + 0.1f, 0);
+		highlightArrow.transform.rotation = Quaternion.Euler(0, 0, 180);
+
 		SetVisible(true);
 	}
 
 	void SetVisible(bool visible)
 	{
 		highlightRect.gameObject.SetActive(visible);
-		highlightArrow.gameObject.SetActive(visible);
+		highlightArrow.gameObject.SetActive(visible && interactionType != GridInteractionType.RotateTile);
 	}
 
 	void OnMousePos(InputAction.CallbackContext context)
@@ -102,7 +113,7 @@ public class GridInteractionUI : MonoBehaviour
 
 		Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 
-		if (interactionType == GridInteractionType.Tile)
+		if (interactionType == GridInteractionType.RotateTile)
 		{
 			if (!IsValidTilePosition(tilePosition.x, tilePosition.y))
 			{
@@ -114,30 +125,38 @@ public class GridInteractionUI : MonoBehaviour
 			return;
 		}
 
-		if (!IsValidGroupPosition(tilePosition.x, tilePosition.y))
+		if (interactionType == GridInteractionType.MoveLine)
 		{
-			SetVisible(false);
-			return;
+			if (!IsValidGroupPosition(tilePosition.x, tilePosition.y))
+			{
+				SetVisible(false);
+				return;
+			}
+
+			Vector3 gridCenter = GridRenderer.instance.GetGridBounds().center;
+			
+			// Berechne die Entfernung von der Mitte in beiden Richtungen
+			float distanceX = Mathf.Abs(mousePosition.x - gridCenter.x);
+			float distanceY = Mathf.Abs(mousePosition.y - gridCenter.y);
+			
+			// Wähle Zeile oder Spalte basierend auf der größeren Entfernung
+			if (distanceX > distanceY)
+			{
+				// Horizontal weiter entfernt -> Zeile auswählen
+				MarkGridRow(tilePosition.y, mousePosition.x < gridCenter.x ? Direction.Right : Direction.Left);
+				moveRow = true;
+			}
+			else
+			{
+				// Vertikal weiter entfernt -> Spalte auswählen
+				MarkGridCol(tilePosition.x, mousePosition.y < gridCenter.y ? Direction.Down : Direction.Up);
+				moveRow = false;
+			}
 		}
 
-		Vector3 gridCenter = GridRenderer.instance.GetGridBounds().center;
-		
-		// Berechne die Entfernung von der Mitte in beiden Richtungen
-		float distanceX = Mathf.Abs(mousePosition.x - gridCenter.x);
-		float distanceY = Mathf.Abs(mousePosition.y - gridCenter.y);
-		
-		// Wähle Zeile oder Spalte basierend auf der größeren Entfernung
-		if (distanceX > distanceY)
+		if (interactionType == GridInteractionType.PlaceObject)
 		{
-			// Horizontal weiter entfernt -> Zeile auswählen
-			MarkGridRow(tilePosition.y, mousePosition.x < gridCenter.x ? Direction.Right : Direction.Left);
-			interactionType = GridInteractionType.Row;
-		}
-		else
-		{
-			// Vertikal weiter entfernt -> Spalte auswählen
-			MarkGridCol(tilePosition.x, mousePosition.y < gridCenter.y ? Direction.Down : Direction.Up);
-			interactionType = GridInteractionType.Column;
+			MarkTile(tilePosition.x, tilePosition.y);
 		}
 	}
 
@@ -168,18 +187,28 @@ public class GridInteractionUI : MonoBehaviour
 		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
 		if (tile == null) return;
 
-		if (interactionType == GridInteractionType.Tile)
+		if (interactionType == GridInteractionType.RotateTile)
 		{
 			gridManipulator.RotateTileCW(tile.index);
 		}
 
-		if (interactionType == GridInteractionType.Row)
+		if (interactionType == GridInteractionType.MoveLine)
 		{
-			gridManipulator.MoveRow(tilePosition.y, mousePosition.x < GridRenderer.instance.GetGridBounds().center.x ? Direction.Right : Direction.Left, insertTileData);
+			if (moveRow)
+				gridManipulator.MoveRow(tilePosition.y, mousePosition.x < GridRenderer.instance.GetGridBounds().center.x ? Direction.Right : Direction.Left, insertTileData);
+			else
+				gridManipulator.MoveColumn(tilePosition.x, mousePosition.y < GridRenderer.instance.GetGridBounds().center.y ? Direction.Up : Direction.Down, insertTileData);
 		}
-		else if (interactionType == GridInteractionType.Column)
+
+		if (interactionType == GridInteractionType.PlaceObject)
 		{
-			gridManipulator.MoveColumn(tilePosition.x, mousePosition.y < GridRenderer.instance.GetGridBounds().center.y ? Direction.Up : Direction.Down, insertTileData);
+			gridManipulator.PlaceObject(tile.index, placeableObjectPrefab);
+			interactionType = GridInteractionType.MoveLine;
+		}
+
+		if (interactionType == GridInteractionType.RemoveObject)
+		{
+			gridManipulator.RemoveObject(tile.index);
 		}
 	}
 
@@ -189,7 +218,7 @@ public class GridInteractionUI : MonoBehaviour
 		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
 		if (tile == null) return;
 
-		if (interactionType == GridInteractionType.Tile)
+		if (interactionType == GridInteractionType.RotateTile)
 		{
 			gridManipulator.RotateTileCCW(tile.index);
 		}
@@ -197,7 +226,7 @@ public class GridInteractionUI : MonoBehaviour
 
 	void OnToggleInteractionType(InputAction.CallbackContext context)
 	{
-		interactionType = interactionType == GridInteractionType.Tile ? GridInteractionType.None : GridInteractionType.Tile;
+		interactionType = interactionType == GridInteractionType.RotateTile ? GridInteractionType.None : GridInteractionType.RotateTile;
 	}
 
 	/*void LateUpdate()
@@ -210,12 +239,4 @@ public class GridInteractionUI : MonoBehaviour
 			MarkTile(tilePosition.x, tilePosition.y);
 		}
 	}*/
-}
-
-enum GridInteractionType
-{
-	None,
-	Row,
-	Column,
-	Tile
 }

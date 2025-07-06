@@ -190,6 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6180600745547344544}
   - component: {fileID: 6976222104955799202}
+  - component: {fileID: 8409964634938841410}
   m_Layer: 0
   m_Name: TempSprite
   m_TagString: Untagged
@@ -270,6 +271,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8409964634938841410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061133574524883387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 346305af2c9e8ef43a8f73fd1be36f43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileGrafik
+  spriteRenderer: {fileID: 6976222104955799202}
+  tileObject: {fileID: 0}
 --- !u!1 &7232816711109229740
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +469,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  tempSpriteRenderer: {fileID: 6976222104955799202}
+  tempGrafik: {fileID: 8409964634938841410}
   moveAudio: {fileID: 11400000, guid: 938366b6c42c63148b8e81be51543873, type: 2}
   rotateAudio: {fileID: 11400000, guid: b6e98724ac02077499a34bff9593eb9c, type: 2}
 --- !u!82 &152083276561771558
