@@ -42,6 +42,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
     [NonSerialized] public bool isGameOver;
 
+    [Header("Victory")]
+    [SerializeField] private GameObject nextLevelScreen;
+    [SerializeField] private GameObject gameCompleteScreen;
+
     [Header("CurrentLevel")]
     [SerializeField] private TextMeshProUGUI currentLevelText;
 
@@ -130,6 +134,19 @@ public class PlayerUI : MonoBehaviour
             tooltipName.text = abilityTooltipObj.name;
             tooltipCost.text = abilityTooltipObj.abilityCosts.ToString();
             tooltipDescription.text = abilityTooltipObj.abilityDescription;
+        }
+    }
+    public void Victory()
+    {
+        int nextlevel = SceneManager.GetActiveScene().buildIndex + 1;
+
+        if (SceneManager.sceneCountInBuildSettings > nextlevel)
+        {
+            nextLevelScreen.SetActive(true);
+        }
+        else
+        {
+            gameCompleteScreen.SetActive(true);
         }
     }
 }
