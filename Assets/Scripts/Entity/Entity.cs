@@ -173,10 +173,10 @@ public class Entity : MonoBehaviour
         Direction closestFacingDirection = GetClosestFacing(transform.position, sourcePos);
         Face(closestFacingDirection);
     }
-
+    [ContextMenu("1 Damage")]
     public void Damage()
     {
-        Debug.Log("Iplement player losing health!");
+        GameManager.Instance.playerUI.HealthUpdate(1);
     }
 
     public void ChangeSteps(int val)
