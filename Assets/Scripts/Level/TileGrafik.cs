@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TileGrafik : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
-	public PlaceableObject tileObject;
+	public List<PlaceableObject> tileObjects = new List<PlaceableObject>();
 
 	public int sortingOrder { get => spriteRenderer.sortingOrder; set => spriteRenderer.sortingOrder = value; }
 
@@ -24,14 +25,14 @@ public class TileGrafik : MonoBehaviour
 	public void SetPosition(Vector3 position)
 	{
 		spriteRenderer.transform.position = position;
-		if (tileObject != null)
+		foreach (PlaceableObject tileObject in tileObjects)
 			tileObject.transform.position = position;
 	}
 
 	public void SetRotation(Quaternion rotation)
 	{
 		spriteRenderer.transform.rotation = rotation;
-		if (tileObject != null)
+		foreach (PlaceableObject tileObject in tileObjects)
 			tileObject.transform.rotation = rotation;
 	}
 
@@ -43,34 +44,44 @@ public class TileGrafik : MonoBehaviour
 	public void SetVisible(bool visible)
 	{
 		spriteRenderer.enabled = visible;
-		if (tileObject != null)
+		foreach (PlaceableObject tileObject in tileObjects)
 			tileObject.gameObject.SetActive(visible);
+	}
+
+	public void MoveObjects(TileGrafik source)
+	{
+		this.tileObjects = source.tileObjects;
+		source.tileObjects = new List<PlaceableObject>();
+		foreach (PlaceableObject tileObject in tileObjects)
+		{
+			tileObject.owner = this;
+			tileObject.transform.SetParent(transform);
+			tileObject.transform.localPosition = Vector3.zero;
+		}
 	}
 
 	public void PlaceObject(PlaceableObject placeableObject)
 	{
-		if (tileObject != null)
-		{
-			RemoveObject();
-		}
 		if (placeableObject == null) return;
-		tileObject = placeableObject;
-		if (tileObject.owner != null)
-			tileObject.owner.tileObject = null;
-		tileObject.owner = this;
-		tileObject.transform.SetParent(transform);
-		tileObject.transform.localPosition = Vector3.zero;
+		if (placeableObject.owner != null)
+			placeableObject.owner.tileObjects.Remove(placeableObject);
+		placeableObject.owner = this;
+		placeableObject.transform.SetParent(transform);
+		placeableObject.transform.localPosition = Vector3.zero;
+		tileObjects.Add(placeableObject);
 
 		Debug.Log("Objekt " + placeableObject.name + " plaziert auf " + transform.position);
 	}
 
-	public void RemoveObject()
+	public void RemoveObjects()
 	{
-		if (tileObject != null)
+		foreach (PlaceableObject placeableObject in tileObjects)
 		{
-			Debug.Log("Objekt " + tileObject.name + " entfernt von " + transform.position);
-			Destroy(tileObject.gameObject);
-			tileObject = null;
+			if (placeableObject.canBeRemoved)
+			{
+				Debug.Log("Objekt " + placeableObject.name + " entfernt von " + transform.position);
+				Destroy(placeableObject.gameObject);
+			}
 		}
 	}
 }

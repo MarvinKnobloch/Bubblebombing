@@ -37,6 +37,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tooltipCost;
     [SerializeField] private TextMeshProUGUI tooltipDescription;
 
+    [Header("GameOver")]
+    [SerializeField] private GameObject gameOverScreen;
+    public bool gameOver;
+
     private float timer;
 
     private void Awake()
@@ -67,6 +71,7 @@ public class PlayerUI : MonoBehaviour
         if (currentHealth <= 0) return;
 
         currentHealth -= damage;
+        if (currentHealth < 0) currentHealth = 0;
 
         for (int i = 0; i < healthIcons.Length; i++)
         {
@@ -75,7 +80,7 @@ public class PlayerUI : MonoBehaviour
         }
         if(currentHealth <= 0)
         {
-            //gameOver
+            gameOverScreen.SetActive(true);
         }
     }
     public void ActionPoints(int current, int max)

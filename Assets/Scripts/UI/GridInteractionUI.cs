@@ -208,7 +208,7 @@ public class GridInteractionUI : MonoBehaviour
 		if (interactionType == GridInteractionType.PlaceObject)
 		{
 			gridManipulator.PlaceObject(tile.index, placeableObjectPrefab);
-			interactionType = GridInteractionType.MoveLine;
+			//interactionType = GridInteractionType.MoveLine;
 		}
 
 		if (interactionType == GridInteractionType.RemoveObject)
@@ -235,9 +235,10 @@ public class GridInteractionUI : MonoBehaviour
 	{
 		interactionType = interactionType == GridInteractionType.RotateTile ? GridInteractionType.None : GridInteractionType.RotateTile; 
     }
-	public void SetInteractionType(GridInteractionType type)
+	public void SetInteractionType(GridInteractionType type, PlaceableObject placementPrefab = null)
     {
         interactionType = type;
+		placeableObjectPrefab = placementPrefab;
     }
 
 	/*void LateUpdate()

@@ -107,8 +107,7 @@ public class GridManipulator : MonoBehaviour
 		if (tile.locked) return;
 		tile.locked = true;
 		TileGrafik grafic = GridRenderer.instance.GetTileGrafik(tileId);
-		if (grafic.tileObject == null)
-			grafic.PlaceObject(Instantiate(placeableObject, grafic.transform));
+		grafic.PlaceObject(Instantiate(placeableObject, grafic.transform));
 		tile.locked = false;
 	}
 
@@ -118,8 +117,7 @@ public class GridManipulator : MonoBehaviour
 		if (tile.locked) return;
 		tile.locked = true;
 		TileGrafik grafic = GridRenderer.instance.GetTileGrafik(tileId);
-		Destroy(grafic.tileObject.gameObject);
-		grafic.tileObject = null;
+		grafic.RemoveObjects();
 		tile.locked = false;
 	}
 
@@ -170,7 +168,7 @@ public class GridManipulator : MonoBehaviour
 			{
 				index = row * LevelGrid.instance.width + i;
 				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index - 1];
-				tileGrafics[i].PlaceObject(tileGrafics[i - 1].tileObject);
+				tileGrafics[i].MoveObjects(tileGrafics[i - 1]);
 				tile.index = index;
 				tile.locked = false;
 			}
@@ -183,7 +181,7 @@ public class GridManipulator : MonoBehaviour
 			{
 				index = row * LevelGrid.instance.width + i;
 				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index + 1];
-				tileGrafics[i].PlaceObject(tileGrafics[i + 1].tileObject);
+				tileGrafics[i].MoveObjects(tileGrafics[i + 1]);
 				tile.index = index;
 				tile.locked = false;
 			}
@@ -243,7 +241,7 @@ public class GridManipulator : MonoBehaviour
 			{
 				index = column + i * LevelGrid.instance.width;
 				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index - LevelGrid.instance.width];
-				tileGrafics[i].PlaceObject(tileGrafics[i - 1].tileObject);
+				tileGrafics[i].MoveObjects(tileGrafics[i - 1]);
 				tile.index = index;
 				tile.locked = false;
 			}
@@ -256,7 +254,7 @@ public class GridManipulator : MonoBehaviour
 			{
 				index = column + i * LevelGrid.instance.width;
 				Tile tile = LevelGrid.instance.tiles[index] = LevelGrid.instance.tiles[index + LevelGrid.instance.width];
-				tileGrafics[i].PlaceObject(tileGrafics[i + 1].tileObject);
+				tileGrafics[i].MoveObjects(tileGrafics[i + 1]);
 				tile.index = index;
 				tile.locked = false;
 			}
