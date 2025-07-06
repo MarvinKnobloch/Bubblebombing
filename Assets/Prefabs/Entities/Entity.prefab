@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 8668259052442351059}
   - component: {fileID: 7001118002239820735}
   - component: {fileID: 7864835384870189917}
+  - component: {fileID: 3175457295711394364}
   m_Layer: 8
   m_Name: Entity
   m_TagString: Player
@@ -488,6 +489,19 @@ MonoBehaviour:
     m_Bits: 448
   objectType: 0
   isDestroyable: 0
+--- !u!114 &3175457295711394364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152188265811182545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ec31868c46821478760528ffa3cffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaceableObject
+  canBeRemoved: 0
 --- !u!1 &5605374199013606727
 GameObject:
   m_ObjectHideFlags: 0

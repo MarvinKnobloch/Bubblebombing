@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Entity : MonoBehaviour
 {
@@ -79,6 +78,7 @@ public class Entity : MonoBehaviour
         {
             TurnController.instance.NpcMovementFinished();
             state = EntityState.Idle;
+			GetComponent<PlaceableObject>().UpdatePosition(PositionOnGrid);
         }
         else
         {

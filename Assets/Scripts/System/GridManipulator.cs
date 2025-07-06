@@ -64,7 +64,7 @@ public class GridManipulator : MonoBehaviour
 		while (animationTimer < rotateTime)
 		{
 			animationTimer += Time.deltaTime;
-			spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, animationCurve.Evaluate(animationTimer / rotateTime) * rotation + startRotation);
+			spriteRenderer.SetRotation(Quaternion.Euler(0, 0, animationCurve.Evaluate(animationTimer / rotateTime) * rotation + startRotation));
 			yield return null;
 		}
 
@@ -126,7 +126,11 @@ public class GridManipulator : MonoBehaviour
 		for (int i = 0; i < LevelGrid.instance.width; i++)
 		{
 			Tile tile = LevelGrid.instance.tiles[i + row * LevelGrid.instance.width];
-			if (tile.locked) yield break;
+			if (tile.locked)
+			{
+				moveingLine = false;
+				yield break;
+			}
 		}
 
 		if (tileGrafics == null || tileGrafics.Length != LevelGrid.instance.width)
@@ -199,7 +203,11 @@ public class GridManipulator : MonoBehaviour
 		for (int i = 0; i < LevelGrid.instance.height; i++)
 		{
 			Tile tile = LevelGrid.instance.tiles[column + i * LevelGrid.instance.width];
-			if (tile.locked) yield break;
+			if (tile.locked)
+			{
+				moveingLine = false;
+				yield break;
+			}
 		}
 
 		if (tileGrafics == null || tileGrafics.Length != LevelGrid.instance.height)

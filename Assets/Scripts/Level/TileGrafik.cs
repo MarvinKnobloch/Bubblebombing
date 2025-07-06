@@ -32,8 +32,8 @@ public class TileGrafik : MonoBehaviour
 	public void SetRotation(Quaternion rotation)
 	{
 		spriteRenderer.transform.rotation = rotation;
-		foreach (PlaceableObject tileObject in tileObjects)
-			tileObject.transform.rotation = rotation;
+		//foreach (PlaceableObject tileObject in tileObjects)
+		//	tileObject.transform.rotation = rotation;
 	}
 
 	public void SetSprite(Sprite sprite)
@@ -51,6 +51,7 @@ public class TileGrafik : MonoBehaviour
 	public void MoveObjects(TileGrafik source)
 	{
 		this.tileObjects = source.tileObjects;
+		this.spriteRenderer.transform.rotation = source.spriteRenderer.transform.rotation;
 		source.tileObjects = new List<PlaceableObject>();
 		foreach (PlaceableObject tileObject in tileObjects)
 		{
