@@ -50,5 +50,8 @@ TagManager:
   - name: Character
     uniqueID: 1735772689
     locked: 0
+  - name: Effekte
+    uniqueID: 606999129
+    locked: 0
   m_RenderingLayers:
   - Default

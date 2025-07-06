@@ -25,7 +25,6 @@ public class Audioslider : MonoBehaviour
     }
     public void MasterValuechange(float slidervalue)
     {
-        float textvalue = slidervalue;
         sliderText.text = Mathf.Round(slider.normalizedValue * 100).ToString();
 
         SetDecibel(slidervalue, volumeString, 0);
@@ -39,14 +38,12 @@ public class Audioslider : MonoBehaviour
     }
     public void MusicValueChange(float slidervalue)
     {
-        float textvalue = slidervalue;
         sliderText.text = Mathf.Round(slider.normalizedValue * 100).ToString();
 
         SetDecibel(slidervalue, volumeString, 0);
     }
     public void SoundEffectValueChange(float slidervalue)
     {
-        float textvalue = slidervalue;
         sliderText.text = Mathf.Round(slider.normalizedValue * 100).ToString();
 
         SetDecibel(slidervalue, volumeString, 10);
@@ -58,25 +55,14 @@ public class Audioslider : MonoBehaviour
         }
         //else AudioManager.Instance.PlayUtilityOneshot((int)AudioManager.UtilitySounds.MenuSelect);
     }
-    private void SetDecibel(float sliderValue, string audioString, int maxDecibel)
+
+    private void SetDecibel(float value, string audioString, int maxDecibel)
     {
         PlayerPrefs.SetInt("AudioHasBeenChange", 1);
-        PlayerPrefs.SetFloat("SliderValue" + audioString, sliderValue);
+        PlayerPrefs.SetFloat("SliderValue" + audioString, value);
 
-        float decibel = Mathf.Log10(sliderValue) * 20;
+        float decibel = value / 100f * 80f - 80;
 
-        audioMixer.SetFloat(audioString, decibel);
-        bool gotvalue = audioMixer.GetFloat(audioString, out float soundvalue);
-
-        if (gotvalue == true)
-        {
-            if (soundvalue > maxDecibel)
-            {
-                Debug.Log(soundvalue);
-                audioMixer.SetFloat(audioString, maxDecibel);
-            }
-        }
-        PlayerPrefs.SetFloat(audioString, decibel);
-
+        audioMixer.SetFloat(audioString, Mathf.Clamp(decibel, -80, 0));
     }
 }
