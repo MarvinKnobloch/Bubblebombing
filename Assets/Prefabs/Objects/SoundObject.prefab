@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 2aea84f44844aeb43a2704b24988c700, type: 3}
+    - target: {fileID: 3728704185991693192, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7557906713062410195, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -68,6 +72,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8343930199029760808, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 897370764708117034}
+    - targetCorrespondingSourceObject: {fileID: 8343930199029760808, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2887514162442245937}
   m_SourcePrefab: {fileID: 100100000, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
 --- !u!1 &8733587934543074245 stripped
 GameObject:
@@ -90,3 +97,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   soundType: 0
+--- !u!114 &2887514162442245937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8733587934543074245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ec31868c46821478760528ffa3cffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaceableObject

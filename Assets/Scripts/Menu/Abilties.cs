@@ -16,6 +16,12 @@ public class Abilties : MonoBehaviour
     [SerializeField] private Color baseColor;
     [SerializeField] private Color selectedColor;
 
+    [Header("PlacementPrefabs")]
+    [SerializeField] private PlaceableObject lurePrefab;
+    [SerializeField] private PlaceableObject horrifyPrefab;
+    [SerializeField] private PlaceableObject boostPrefab;
+    [SerializeField] private PlaceableObject slowPrefab;
+
     private void Awake()
     {
         controls = new Controls();
@@ -30,6 +36,8 @@ public class Abilties : MonoBehaviour
         if (controls.Menu.MenuESC.WasPerformedThisFrame()) ResetType();
         else if (controls.Player.Ability1.WasPerformedThisFrame()) SetMoveOption();
         else if (controls.Player.Ability2.WasPerformedThisFrame()) SetRotationOption();
+        else if (controls.Player.Ability3.WasPerformedThisFrame()) SetLureOption();
+        else if (controls.Player.Ability4.WasPerformedThisFrame()) SetHorrifyOption();
 
         //else if (controls.Player.Ability5.WasPerformedThisFrame())
         //{
@@ -54,19 +62,28 @@ public class Abilties : MonoBehaviour
         gridInteractionUI.SetInteractionType(GridInteractionType.RotateTile);
         ButtonUpdate(1);
     }
-    public void CreateBoostpadPreview()
+    public void SetLureOption()
     {
-        CurrentPreviewDestroy();
-       currentPreview = Instantiate(boostpadPreview, Mouse.current.position.ReadValue(), Quaternion.identity);  
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, lurePrefab);
+        ButtonUpdate(2);
     }
-    public void CreateSlowPadPreview()
+    public void SetHorrifyOption()
     {
-        CurrentPreviewDestroy();
-        currentPreview = Instantiate(slowPadPreview, Mouse.current.position.ReadValue(), Quaternion.identity);
+        if (horrifyPrefab == null) return;
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, horrifyPrefab);
+        ButtonUpdate(3);
     }
-    private void CurrentPreviewDestroy()
+    public void SetBoostOption()
     {
-        if (currentPreview != null) Destroy(currentPreview);
+        if (boostPrefab == null) return;
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, boostPrefab);
+        ButtonUpdate(4);
+    }
+    public void SetSlowOption()
+    {
+        if (slowPrefab == null) return;
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, slowPrefab);
+        ButtonUpdate(5);
     }
     private void ResetType()
     {
