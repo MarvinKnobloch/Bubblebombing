@@ -43,40 +43,43 @@ public class Abilties : MonoBehaviour
     }
     public void SetMoveOption()
     {
-        gridInteractionUI.SetInteractionType(GridInteractionType.MoveLine);
+        int costs = buttons[0].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
         ButtonUpdate(0);
+        gridInteractionUI.SetInteractionType(GridInteractionType.MoveLine, costs);
     }
     public void SetRotationOption() 
     {
-        gridInteractionUI.SetInteractionType(GridInteractionType.RotateTile);
+        int costs = buttons[1].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
         ButtonUpdate(1);
+        gridInteractionUI.SetInteractionType(GridInteractionType.RotateTile, costs);
     }
     public void SetLureOption()
     {
-        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, lurePrefab);
+        int costs = buttons[2].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
         ButtonUpdate(2);
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, lurePrefab);
     }
     public void SetHorrifyOption()
     {
-        if (horrifyPrefab == null) return;
-        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, horrifyPrefab);
+        int costs = buttons[3].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
         ButtonUpdate(3);
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, horrifyPrefab);
     }
     public void SetBoostOption()
     {
-        if (boostPrefab == null) return;
-        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, boostPrefab);
+        int costs = buttons[4].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
         ButtonUpdate(4);
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, boostPrefab);
     }
     public void SetSlowOption()
     {
-        if (slowPrefab == null) return;
-        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, slowPrefab);
+        int costs = buttons[5].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
         ButtonUpdate(5);
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, slowPrefab);
     }
     private void ResetType()
     {
-        gridInteractionUI.SetInteractionType(GridInteractionType.None);
+        gridInteractionUI.SetInteractionType(GridInteractionType.None, 0);
         ButtonUpdate(-1);
     }
     private void ButtonUpdate(int selectedNumber)

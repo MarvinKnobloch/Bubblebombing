@@ -20,7 +20,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Image[] healthIcons;
 
     [Header("ActionPoints")]
-    [SerializeField] private Image actionPoints;
+    [SerializeField] private GameObject actionPoints;
     [SerializeField] private TextMeshProUGUI actioPointsText;
 
     [Header("DialogBox")]
@@ -83,10 +83,10 @@ public class PlayerUI : MonoBehaviour
             gameOverScreen.SetActive(true);
         }
     }
-    public void ActionPoints(int current, int max)
+    public void ActionPoints(int amount, bool toggle = true)
     {
-        actionPoints.fillAmount = (float)current / max;
-        actioPointsText.text = current + "/" + max;
+        actionPoints.SetActive(toggle);
+        actioPointsText.text = amount.ToString();
     }
     public void StartDialog(DialogObj dialogObj)
     {

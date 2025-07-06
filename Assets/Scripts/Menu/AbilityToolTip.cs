@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class AbilityToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private AbilityTooltipObj abilityTooltipObj;
+    public AbilityTooltipObj abilityTooltipObj;
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(abilityTooltipObj != null)

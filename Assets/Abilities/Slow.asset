@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Slow
   m_EditorClassIdentifier: Assembly-CSharp::AbilityTooltipObj
   abilityName: Slow
-  abilityCosts: 1
+  abilityCosts: 2
   abilityDescription: Each npc which enters this field will lose one movement.

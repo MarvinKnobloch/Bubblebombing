@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15d01c1ebc39954fb1bf56fb068a902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnController
+  startActionPoints: 8
   autoStartRound: 1
   npcsOnField: 0
   npcsNoMoreMovement: 0

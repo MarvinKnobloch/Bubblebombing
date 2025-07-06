@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Boost
   m_EditorClassIdentifier: Assembly-CSharp::AbilityTooltipObj
   abilityName: Boost
-  abilityCosts: 1
+  abilityCosts: 2
   abilityDescription: Each npc which enters this field will gain one movement.
