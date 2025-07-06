@@ -16,6 +16,12 @@ public class Abilties : MonoBehaviour
     [SerializeField] private Color baseColor;
     [SerializeField] private Color selectedColor;
 
+    [Header("PlacementPrefabs")]
+    [SerializeField] private PlaceableObject lurePrefab;
+    [SerializeField] private PlaceableObject horrifyPrefab;
+    [SerializeField] private PlaceableObject boostPrefab;
+    [SerializeField] private PlaceableObject slowPrefab;
+
     private void Awake()
     {
         controls = new Controls();
@@ -30,47 +36,50 @@ public class Abilties : MonoBehaviour
         if (controls.Menu.MenuESC.WasPerformedThisFrame()) ResetType();
         else if (controls.Player.Ability1.WasPerformedThisFrame()) SetMoveOption();
         else if (controls.Player.Ability2.WasPerformedThisFrame()) SetRotationOption();
-
-        //else if (controls.Player.Ability5.WasPerformedThisFrame())
-        //{
-        //    CreateBoostpadPreview();
-        //}
-        //else if (controls.Player.Ability6.WasPerformedThisFrame())
-        //{
-        //    CreateSlowPadPreview();
-        //}
-        //else if (controls.Player.RMB.WasPerformedThisFrame())
-        //{
-        //    CurrentPreviewDestroy();
-        //}
+        else if (controls.Player.Ability3.WasPerformedThisFrame()) SetLureOption();
+        else if (controls.Player.Ability4.WasPerformedThisFrame()) SetHorrifyOption();
+        else if (controls.Player.Ability5.WasPerformedThisFrame()) SetBoostOption();
+        else if (controls.Player.Ability6.WasPerformedThisFrame()) SetSlowOption();
     }
     public void SetMoveOption()
     {
-        gridInteractionUI.SetInteractionType(GridInteractionType.MoveLine);
+        int costs = buttons[0].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
         ButtonUpdate(0);
+        gridInteractionUI.SetInteractionType(GridInteractionType.MoveLine, costs);
     }
     public void SetRotationOption() 
     {
-        gridInteractionUI.SetInteractionType(GridInteractionType.RotateTile);
+        int costs = buttons[1].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
         ButtonUpdate(1);
+        gridInteractionUI.SetInteractionType(GridInteractionType.RotateTile, costs);
     }
-    public void CreateBoostpadPreview()
+    public void SetLureOption()
     {
-        CurrentPreviewDestroy();
-       currentPreview = Instantiate(boostpadPreview, Mouse.current.position.ReadValue(), Quaternion.identity);  
+        int costs = buttons[2].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
+        ButtonUpdate(2);
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, lurePrefab);
     }
-    public void CreateSlowPadPreview()
+    public void SetHorrifyOption()
     {
-        CurrentPreviewDestroy();
-        currentPreview = Instantiate(slowPadPreview, Mouse.current.position.ReadValue(), Quaternion.identity);
+        int costs = buttons[3].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
+        ButtonUpdate(3);
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, horrifyPrefab);
     }
-    private void CurrentPreviewDestroy()
+    public void SetBoostOption()
     {
-        if (currentPreview != null) Destroy(currentPreview);
+        int costs = buttons[4].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
+        ButtonUpdate(4);
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, boostPrefab);
+    }
+    public void SetSlowOption()
+    {
+        int costs = buttons[5].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
+        ButtonUpdate(5);
+        gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, slowPrefab);
     }
     private void ResetType()
     {
-        gridInteractionUI.SetInteractionType(GridInteractionType.None);
+        gridInteractionUI.SetInteractionType(GridInteractionType.None, 0);
         ButtonUpdate(-1);
     }
     private void ButtonUpdate(int selectedNumber)

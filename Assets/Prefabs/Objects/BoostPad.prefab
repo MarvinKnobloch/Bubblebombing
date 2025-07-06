@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8649184715317227972, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
+      propertyPath: objectType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7557906713062410195, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8343930199029760808, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
       propertyPath: m_Name
-      value: Object
+      value: BoostPad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

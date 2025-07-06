@@ -6,6 +6,11 @@ public class TurnController : MonoBehaviour
 {
     public static TurnController instance;
 
+    [Header("ActionPoints")]
+    [SerializeField] private int startActionPoints;
+    private int currentActionPoints;
+
+    [Header("TurnValues")]
     [SerializeField] private bool autoStartRound;
     private List<GameObject> npcs = new List<GameObject>();
     [SerializeField] private int npcsOnField;
@@ -18,6 +23,10 @@ public class TurnController : MonoBehaviour
             instance = this;
         }
         else Destroy(gameObject);
+    }
+    private void Start()
+    {
+
     }
 
     public void AddNpc(GameObject npc)
@@ -39,6 +48,19 @@ public class TurnController : MonoBehaviour
         RollNpcMovment();
         GameManager.Instance.playerUI.EndTurnButtonToggle(true);
         GameManager.Instance.playerUI.AbilitiyUIToggle(true);
+
+        currentActionPoints = startActionPoints;
+        ActionPointsUpdate(0);
+    }
+    public bool CheckForActionPoints(int amount)
+    {
+        if (currentActionPoints >= amount) return true;
+        else return false;
+    }
+    public void ActionPointsUpdate(int amount)
+    {
+        currentActionPoints -= amount;
+        GameManager.Instance.playerUI.ActionPoints(currentActionPoints);
     }
     private void RollNpcMovment()
     {
@@ -65,6 +87,8 @@ public class TurnController : MonoBehaviour
     {
         if (autoStartRound)
         {
+            if (GameManager.Instance.playerUI.gameOver) return;
+
             StartTurn();
         }
         else GameManager.Instance.playerUI.StartTurnButtonToggle(true);

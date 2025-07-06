@@ -9,13 +9,17 @@ public class Entity : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     public int remainingSteps = 3;
     public float t = 0;
-    [SerializeField] private EntityState state;
+    private float animationT = 0;
+    public int respawnTime;
+    private int remainingRespawnTime;
+    [SerializeField] public EntityState state;
     public Rigidbody2D rb;
     public Vector2 target;
     private Vector2 oldPosition;
     public Vector2Int PositionOnGrid = new Vector2Int(0,0);
-    private Direction facedDirection = Direction.Up;
+    public Direction facedDirection = Direction.Up;
     private Direction[] directionsToCheck = new Direction[4];
+    private bool stopMoving;
 
     [Header("Other")]
     [SerializeField] private Transform childSprite;
@@ -23,6 +27,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private TextMeshProUGUI movementText;
     void Start()
     {
+        Face(facedDirection);
         rb.position = GridRenderer.instance.TileToWorldPosition(PositionOnGrid);
 
         TurnController.instance.AddNpc(gameObject);
@@ -35,10 +40,17 @@ public class Entity : MonoBehaviour
         switch (state)
         {
             case EntityState.Idle:
+                movementText.color = Color.white;
                 IdleUpdate();
                 break;
             case EntityState.Move:
+                movementText.color = Color.black;
                 MoveUpdate();
+                break;
+            case EntityState.Spawning:
+                movementText.color = Color.red;
+                MoveUpdate();
+                SpawnUpdate();
                 break;
             default:
                 throw new Exception("Invalid State");
@@ -48,21 +60,65 @@ public class Entity : MonoBehaviour
     [ContextMenu("Start turn")]
     public void StartTurn()
     {
-        state = EntityState.Move;
-        GetNextTarget();
-    }
+        if (remainingRespawnTime <= 0)
+        {
+            state = EntityState.Idle;
+        }
+        if (state == EntityState.Idle)
+        {
+            GetNextTarget();
+        }
+        t = 0;
+        animationT = 0;
+
+        if (state == EntityState.Idle)
+		{
+			state = EntityState.Move;
+            stopMoving = false;
+		}
+	}
 
     private void MoveUpdate()
     {
         t += moveSpeed * Time.deltaTime;
         if (t >= 1)
         {
-            OnTargetReached();
+            if (state != EntityState.Spawning)
+            {
+                OnTargetReached();
+            }
+            else
+            {
+                stopMoving = true;
+            }
         }
-        else
+        else if (!stopMoving)
         {
             rb.MovePosition(Vector2.Lerp(oldPosition, target, t));
         }
+    }
+
+    private void SpawnUpdate()
+    {
+        animationT += moveSpeed * Time.deltaTime;
+        if ((animationT >= 1)&&(animationT < 2))
+        {
+            SpawnTick();
+        }
+		else if (animationT < 2)
+		{
+			//Debug.Log("Update transparency!");
+		}
+
+    }
+
+    private void SpawnTick()
+    {
+        Debug.Log("Spawn Tick");
+        remainingRespawnTime -= 1;
+        TurnController.instance.NpcMovementFinished();
+        animationT = 2;
+
     }
 
     private void IdleUpdate()
@@ -182,6 +238,18 @@ public class Entity : MonoBehaviour
         GameManager.Instance.playerUI.HealthUpdate(1);
     }
 
+    public void Respawn()
+    {
+        if (state != EntityState.Spawning)
+        {
+            remainingRespawnTime = respawnTime;
+            TurnController.instance.NpcMovementFinished();
+            Debug.Log("Respawning " + entityName);
+            state = EntityState.Spawning;
+            animationT = 2;
+        }
+    }
+
     public void ChangeSteps(int val)
     {
         remainingSteps += val;
@@ -249,5 +317,6 @@ public class Entity : MonoBehaviour
 public enum EntityState
 {
     Idle,
-    Move
+    Move,
+    Spawning
 }

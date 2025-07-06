@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Lore
   m_EditorClassIdentifier: Assembly-CSharp::AbilityTooltipObj
   abilityName: Lore
-  abilityCosts: 1
+  abilityCosts: 2
   abilityDescription: All npcs in range will try to move to this object.

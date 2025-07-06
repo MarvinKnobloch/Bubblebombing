@@ -20,7 +20,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Image[] healthIcons;
 
     [Header("ActionPoints")]
-    [SerializeField] private Image actionPoints;
+    [SerializeField] private GameObject actionPoints;
     [SerializeField] private TextMeshProUGUI actioPointsText;
 
     [Header("DialogBox")]
@@ -36,6 +36,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tooltipName;
     [SerializeField] private TextMeshProUGUI tooltipCost;
     [SerializeField] private TextMeshProUGUI tooltipDescription;
+
+    [Header("GameOver")]
+    [SerializeField] private GameObject gameOverScreen;
+    public bool gameOver;
 
     private float timer;
 
@@ -67,6 +71,7 @@ public class PlayerUI : MonoBehaviour
         if (currentHealth <= 0) return;
 
         currentHealth -= damage;
+        if (currentHealth < 0) currentHealth = 0;
 
         for (int i = 0; i < healthIcons.Length; i++)
         {
@@ -75,13 +80,13 @@ public class PlayerUI : MonoBehaviour
         }
         if(currentHealth <= 0)
         {
-            //gameOver
+            gameOverScreen.SetActive(true);
         }
     }
-    public void ActionPoints(int current, int max)
+    public void ActionPoints(int amount, bool toggle = true)
     {
-        actionPoints.fillAmount = (float)current / max;
-        actioPointsText.text = current + "/" + max;
+        actionPoints.SetActive(toggle);
+        actioPointsText.text = amount.ToString();
     }
     public void StartDialog(DialogObj dialogObj)
     {

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5854467390910356626
+--- !u!1001 &790513379155448045
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,14 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8649184715317227972, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
-      propertyPath: objectType
-      value: 2
+    - target: {fileID: 146072049323653930, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
+      propertyPath: m_Radius
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 3728704185991693192, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f0f0141ece9558f4a8493312490211fc, type: 3}
+      objectReference: {fileID: 21300000, guid: 2aea84f44844aeb43a2704b24988c700, type: 3}
     - target: {fileID: 7557906713062410195, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -58,10 +58,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8343930199029760808, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
       propertyPath: m_Name
-      value: SlowPad
+      value: Lure
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8649184715317227972, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8343930199029760808, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 897370764708117034}
+    - targetCorrespondingSourceObject: {fileID: 8343930199029760808, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2887514162442245937}
   m_SourcePrefab: {fileID: 100100000, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
+--- !u!1 &8733587934543074245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8343930199029760808, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
+  m_PrefabInstance: {fileID: 790513379155448045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &897370764708117034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8733587934543074245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c533a6e2b77f1a42b95bae7eb6fad04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundCollision
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 320
+  soundType: 0
+--- !u!114 &2887514162442245937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8733587934543074245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ec31868c46821478760528ffa3cffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaceableObject
+  canBeRemoved: 1

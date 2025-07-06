@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Move
   m_EditorClassIdentifier: Assembly-CSharp::AbilityTooltipObj
   abilityName: Move
-  abilityCosts: 3
+  abilityCosts: 4
   abilityDescription: Move all pieces in a row or column

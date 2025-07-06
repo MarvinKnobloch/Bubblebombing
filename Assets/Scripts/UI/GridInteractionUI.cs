@@ -22,6 +22,7 @@ public class GridInteractionUI : MonoBehaviour
 	[Header("Interaction Type")]
 	public GridInteractionType interactionType = GridInteractionType.None;
 	private bool moveRow = false;
+	private int currentInteractionCosts;
 
 	public Controls inputActions;
 	private Vector2 mousePosition;
@@ -185,8 +186,13 @@ public class GridInteractionUI : MonoBehaviour
 	void OnLeftClick(InputAction.CallbackContext context)
 	{
 		if (interactionType == GridInteractionType.None) return;
+        if (TurnController.instance.CheckForActionPoints(currentInteractionCosts) == false)
+        {
+            //PlaySound
+            return;
+        }
 
-		Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
+        Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 		Debug.Log("Left Click On " + tilePosition);
 
 		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
@@ -195,7 +201,8 @@ public class GridInteractionUI : MonoBehaviour
 		if (interactionType == GridInteractionType.RotateTile)
 		{
 			gridManipulator.RotateTileCW(tile.index);
-		}
+            TurnController.instance.ActionPointsUpdate(currentInteractionCosts);
+        }
 
 		if (interactionType == GridInteractionType.MoveLine)
 		{
@@ -203,13 +210,14 @@ public class GridInteractionUI : MonoBehaviour
 				gridManipulator.MoveRow(tilePosition.y, mousePosition.x < GridRenderer.instance.GetGridBounds().center.x ? Direction.Right : Direction.Left, insertTileData);
 			else
 				gridManipulator.MoveColumn(tilePosition.x, mousePosition.y < GridRenderer.instance.GetGridBounds().center.y ? Direction.Up : Direction.Down, insertTileData);
-		}
+            TurnController.instance.ActionPointsUpdate(currentInteractionCosts);
+        }
 
 		if (interactionType == GridInteractionType.PlaceObject)
 		{
 			gridManipulator.PlaceObject(tile.index, placeableObjectPrefab);
-			interactionType = GridInteractionType.MoveLine;
-		}
+			TurnController.instance.ActionPointsUpdate(currentInteractionCosts);
+        }
 
 		if (interactionType == GridInteractionType.RemoveObject)
 		{
@@ -220,6 +228,12 @@ public class GridInteractionUI : MonoBehaviour
 	void OnRightClick(InputAction.CallbackContext context)
 	{
         if (interactionType == GridInteractionType.None) return;
+		if (TurnController.instance.CheckForActionPoints(currentInteractionCosts) == false)
+		{ 
+			//PlaySound
+			return;
+		}
+
 
         Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
@@ -228,16 +242,19 @@ public class GridInteractionUI : MonoBehaviour
 		if (interactionType == GridInteractionType.RotateTile)
 		{
 			gridManipulator.RotateTileCCW(tile.index);
-		}
+            TurnController.instance.ActionPointsUpdate(currentInteractionCosts);
+        }
 	}
 
 	void OnToggleInteractionType(InputAction.CallbackContext context)
 	{
 		interactionType = interactionType == GridInteractionType.RotateTile ? GridInteractionType.None : GridInteractionType.RotateTile; 
     }
-	public void SetInteractionType(GridInteractionType type)
+	public void SetInteractionType(GridInteractionType type, int actionCost, PlaceableObject placementPrefab = null)
     {
         interactionType = type;
+		currentInteractionCosts = actionCost;
+		placeableObjectPrefab = placementPrefab;
     }
 
 	/*void LateUpdate()

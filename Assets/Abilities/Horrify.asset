@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Horrify
   m_EditorClassIdentifier: Assembly-CSharp::AbilityTooltipObj
   abilityName: Horrify
-  abilityCosts: 1
+  abilityCosts: 2
   abilityDescription: All npcs in range will try to move away from this object.
