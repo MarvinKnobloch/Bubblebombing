@@ -65,6 +65,8 @@ public class TurnController : MonoBehaviour
     {
         if (autoStartRound)
         {
+            if (GameManager.Instance.playerUI.gameOver) return;
+
             StartTurn();
         }
         else GameManager.Instance.playerUI.StartTurnButtonToggle(true);
