@@ -51,7 +51,7 @@ public class TileGrafik : MonoBehaviour
 	public void MoveObjects(TileGrafik source)
 	{
 		this.tileObjects = source.tileObjects;
-		this.spriteRenderer.transform.rotation = source.spriteRenderer.transform.rotation;
+		//this.spriteRenderer.transform.rotation = source.spriteRenderer.transform.rotation;
 		source.tileObjects = new List<PlaceableObject>();
 		foreach (PlaceableObject tileObject in tileObjects)
 		{

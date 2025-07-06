@@ -9,6 +9,8 @@ public class Tile
 
 	private TileData tileData;
 
+	[System.NonSerialized] public float deltaRotation;
+
 	[System.NonSerialized] public bool locked = false;
 
 	public Tile(TileData tileData, int index)
@@ -25,7 +27,7 @@ public class Tile
 
 	public float GetSpriteRotation()
 	{
-		return tileData.rotation;
+		return tileData.rotation + deltaRotation;
 	}
 
 	public void RotateClockwise()
@@ -35,6 +37,7 @@ public class Tile
 		paths.right = temp.down;
 		paths.down = temp.left;
 		paths.left = temp.up;
+		deltaRotation += 90;
 	}
 
 	public void RotateCounterClockwise()
@@ -44,6 +47,7 @@ public class Tile
 		paths.left = temp.down;
 		paths.down = temp.right;
 		paths.right = temp.up;
+		deltaRotation -= 90;
 	}
 
 	public bool IsDirectionFree(Direction direction)
