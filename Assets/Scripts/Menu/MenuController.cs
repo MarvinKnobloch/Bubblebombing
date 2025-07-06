@@ -69,6 +69,7 @@ public class MenuController : MonoBehaviour
         else
         {
             //if (Player.Instance == null) return;
+            if (GameManager.Instance.playerUI.abilityUI.gridInteractionUI.interactionType != GridInteractionType.None) return;
             if (GameManager.Instance.playerUI.dialogBox.activeSelf == true) return;
             if (confirmController.activeSelf == true) confirmController.SetActive(false);
 

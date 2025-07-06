@@ -35,6 +35,8 @@ public class GridInteractionUI : MonoBehaviour
 		inputActions.Player.LMB.performed += OnLeftClick;
 		inputActions.Player.RMB.performed += OnRightClick;
 		inputActions.Player.Space.performed += OnToggleInteractionType;
+
+		GameManager.Instance.playerUI.abilityUI.gridInteractionUI = this;
 	}
 
 	public void MarkGridRow(int row, Direction direction)
@@ -111,54 +113,55 @@ public class GridInteractionUI : MonoBehaviour
 	{
 		mousePosition = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
 
-		Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
+        Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 
-		if (interactionType == GridInteractionType.RotateTile)
-		{
-			if (!IsValidTilePosition(tilePosition.x, tilePosition.y))
-			{
-				SetVisible(false);
-				return;
-			}
+        if (interactionType == GridInteractionType.RotateTile)
+        {
+            if (!IsValidTilePosition(tilePosition.x, tilePosition.y))
+            {
+                SetVisible(false);
+                return;
+            }
 
-			MarkTile(tilePosition.x, tilePosition.y);
-			return;
-		}
+            MarkTile(tilePosition.x, tilePosition.y);
+            return;
+        }
 
-		if (interactionType == GridInteractionType.MoveLine)
-		{
-			if (!IsValidGroupPosition(tilePosition.x, tilePosition.y))
-			{
-				SetVisible(false);
-				return;
-			}
+        if (interactionType == GridInteractionType.MoveLine)
+        {
+            if (!IsValidGroupPosition(tilePosition.x, tilePosition.y))
+            {
+                SetVisible(false);
+                return;
+            }
 
-			Vector3 gridCenter = GridRenderer.instance.GetGridBounds().center;
-			
-			// Berechne die Entfernung von der Mitte in beiden Richtungen
-			float distanceX = Mathf.Abs(mousePosition.x - gridCenter.x);
-			float distanceY = Mathf.Abs(mousePosition.y - gridCenter.y);
-			
-			// Wähle Zeile oder Spalte basierend auf der größeren Entfernung
-			if (distanceX > distanceY)
-			{
-				// Horizontal weiter entfernt -> Zeile auswählen
-				MarkGridRow(tilePosition.y, mousePosition.x < gridCenter.x ? Direction.Right : Direction.Left);
-				moveRow = true;
-			}
-			else
-			{
-				// Vertikal weiter entfernt -> Spalte auswählen
-				MarkGridCol(tilePosition.x, mousePosition.y < gridCenter.y ? Direction.Down : Direction.Up);
-				moveRow = false;
-			}
-		}
+            Vector3 gridCenter = GridRenderer.instance.GetGridBounds().center;
 
-		if (interactionType == GridInteractionType.PlaceObject)
-		{
-			MarkTile(tilePosition.x, tilePosition.y);
-		}
-	}
+            // Berechne die Entfernung von der Mitte in beiden Richtungen
+            float distanceX = Mathf.Abs(mousePosition.x - gridCenter.x);
+            float distanceY = Mathf.Abs(mousePosition.y - gridCenter.y);
+
+            // Wähle Zeile oder Spalte basierend auf der größeren Entfernung
+            if (distanceX > distanceY)
+            {
+                // Horizontal weiter entfernt -> Zeile auswählen
+                MarkGridRow(tilePosition.y, mousePosition.x < gridCenter.x ? Direction.Right : Direction.Left);
+                moveRow = true;
+            }
+            else
+            {
+                // Vertikal weiter entfernt -> Spalte auswählen
+                MarkGridCol(tilePosition.x, mousePosition.y < gridCenter.y ? Direction.Down : Direction.Up);
+                moveRow = false;
+            }
+        }
+
+        if (interactionType == GridInteractionType.PlaceObject)
+        {
+            MarkTile(tilePosition.x, tilePosition.y);
+        }
+    }
+
 
 	bool IsValidTilePosition(int x, int y)
 	{
@@ -181,6 +184,8 @@ public class GridInteractionUI : MonoBehaviour
 
 	void OnLeftClick(InputAction.CallbackContext context)
 	{
+		if (interactionType == GridInteractionType.None) return;
+
 		Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 		Debug.Log("Left Click On " + tilePosition);
 
@@ -214,7 +219,9 @@ public class GridInteractionUI : MonoBehaviour
 
 	void OnRightClick(InputAction.CallbackContext context)
 	{
-		Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
+        if (interactionType == GridInteractionType.None) return;
+
+        Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
 		if (tile == null) return;
 
@@ -226,8 +233,12 @@ public class GridInteractionUI : MonoBehaviour
 
 	void OnToggleInteractionType(InputAction.CallbackContext context)
 	{
-		interactionType = interactionType == GridInteractionType.RotateTile ? GridInteractionType.None : GridInteractionType.RotateTile;
-	}
+		interactionType = interactionType == GridInteractionType.RotateTile ? GridInteractionType.None : GridInteractionType.RotateTile; 
+    }
+	public void SetInteractionType(GridInteractionType type)
+    {
+        interactionType = type;
+    }
 
 	/*void LateUpdate()
 	{
