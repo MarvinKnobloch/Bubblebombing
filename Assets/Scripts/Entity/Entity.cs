@@ -130,6 +130,9 @@ public class Entity : MonoBehaviour
     {
         t = 0;
         remainingSteps -= 1;
+
+        if (remainingSteps < 0) remainingSteps = 0;
+
         if (remainingSteps <= 0)
         {
             TurnController.instance.NpcMovementFinished();

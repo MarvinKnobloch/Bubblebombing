@@ -193,7 +193,7 @@ public class GridInteractionUI : MonoBehaviour
         }
 
         Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
-		Debug.Log("Left Click On " + tilePosition);
+		//Debug.Log("Left Click On " + tilePosition);
 
 		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
 		if (tile == null) return;
