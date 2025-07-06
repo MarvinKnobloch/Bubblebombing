@@ -67,12 +67,7 @@ public class TurnController : MonoBehaviour
         foreach (GameObject npc in npcs)
         {
             Entity entity = npc.GetComponent<Entity>();
-
-            int npcMinMovementPoints = entity.npcValuesObj.minMovementValue;
-            int npcMaxMovementPoints = entity.npcValuesObj.maxMovementValue;
-
-            int movementpoints = Random.Range(npcMinMovementPoints, npcMaxMovementPoints + 1);
-            entity.SetRemaingSteps(movementpoints);
+            entity.RollNewMovement();
         }
     }
     public void NpcMovementFinished()

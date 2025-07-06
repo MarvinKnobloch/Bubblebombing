@@ -113,7 +113,10 @@ public class GridInteractionUI : MonoBehaviour
 	void OnMousePos(InputAction.CallbackContext context)
 	{
 		mousePosition = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
+	}
 
+	public void UpdateTool()
+	{
         Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 
         if (interactionType == GridInteractionType.RotateTile)
