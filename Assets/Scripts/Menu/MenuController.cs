@@ -126,18 +126,12 @@ public class MenuController : MonoBehaviour
     {
         int nextlevel = SceneManager.GetActiveScene().buildIndex + 1;
 
-        Debug.Log(SceneManager.sceneCountInBuildSettings);
-        Debug.Log(nextlevel);
         if (SceneManager.sceneCountInBuildSettings > nextlevel)
         {
             gameIsPaused = false;
             Time.timeScale = 1;
             Time.fixedDeltaTime = normalFixedDeltaTime;
             SceneManager.LoadScene(nextlevel);
-        }
-        else
-        {
-
         }
     }
     public void BackToMainMenu()

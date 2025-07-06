@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Abilties : MonoBehaviour
@@ -26,6 +27,12 @@ public class Abilties : MonoBehaviour
     {
         controls = new Controls();
         baseColor = buttons[0].GetComponent<Image>().color;
+
+        if(SceneManager.GetActiveScene().buildIndex == (int)Scenes.Level1)
+        {
+            int avialableAbilties= 2;
+            ButtonDisable(avialableAbilties);
+        }
     }
     private void Update()
     {
@@ -36,6 +43,11 @@ public class Abilties : MonoBehaviour
         else if (controls.Player.Ability4.WasPerformedThisFrame()) SetHorrifyOption();
         else if (controls.Player.Ability5.WasPerformedThisFrame()) SetBoostOption();
         else if (controls.Player.Ability6.WasPerformedThisFrame()) SetSlowOption();
+    }
+
+    private void ButtonDisable(int availableButtons)
+    {
+
     }
     public void SetMoveOption()
     {
