@@ -39,8 +39,12 @@ public class GridInteractionUI : MonoBehaviour
 
 		GameManager.Instance.playerUI.abilityUI.gridInteractionUI = this;
 	}
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
 
-	public void MarkGridRow(int row, Direction direction)
+    public void MarkGridRow(int row, Direction direction)
 	{
 		if (direction == Direction.Up || direction == Direction.Down) return;
 

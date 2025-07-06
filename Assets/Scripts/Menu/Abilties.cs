@@ -27,10 +27,6 @@ public class Abilties : MonoBehaviour
         controls = new Controls();
         baseColor = buttons[0].GetComponent<Image>().color;
     }
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
     private void Update()
     {
         if (controls.Menu.MenuESC.WasPerformedThisFrame()) ResetType();

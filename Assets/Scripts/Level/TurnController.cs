@@ -25,11 +25,6 @@ public class TurnController : MonoBehaviour
         }
         else Destroy(gameObject);
     }
-    private void Start()
-    {
-
-    }
-
     public void AddNpc(GameObject npc)
     {
         if(npcs.Contains(npc) == false)
@@ -89,7 +84,7 @@ public class TurnController : MonoBehaviour
     {
         if (autoStartRound)
         {
-            if (GameManager.Instance.playerUI.gameOver) return;
+            if (GameManager.Instance.playerUI.isGameOver) return;
 
             StartTurn();
         }

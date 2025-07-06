@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using static GameManager;
+using Unity.VisualScripting;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -39,7 +40,10 @@ public class PlayerUI : MonoBehaviour
 
     [Header("GameOver")]
     [SerializeField] private GameObject gameOverScreen;
-    public bool gameOver;
+    [NonSerialized] public bool isGameOver;
+
+    [Header("CurrentLevel")]
+    [SerializeField] private TextMeshProUGUI currentLevelText;
 
     private float timer;
 
@@ -47,7 +51,8 @@ public class PlayerUI : MonoBehaviour
     {
         controls = new Controls();
         currentHealth = healthIcons.Length;
-    }
+        currentLevelText.text = SceneManager.GetActiveScene().name;
+    }   
     private void Start()
     {
         StartCoroutine(InteractionFieldDisable());
@@ -80,6 +85,7 @@ public class PlayerUI : MonoBehaviour
         }
         if(currentHealth <= 0)
         {
+            isGameOver = true;
             gameOverScreen.SetActive(true);
         }
     }
