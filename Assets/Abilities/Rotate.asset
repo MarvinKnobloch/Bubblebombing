@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rotate
   m_EditorClassIdentifier: Assembly-CSharp::AbilityTooltipObj
   abilityName: Rotate
-  abilityCosts: 1
+  abilityCosts: 2
   abilityDescription: Rotate one piece by 90 degrees.

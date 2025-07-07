@@ -111,7 +111,7 @@ public class MenuController : MonoBehaviour
     }
     public void SetBackToMainMenuConfirm()
     {
-        OpenConfirmController(BackToMainMenu, "Back to main menu?");
+        OpenConfirmController(BackToMainMenu, "Zurück zum Hauptmenü?");
     }
     public void ResetPlayer(bool playSound)
     {
