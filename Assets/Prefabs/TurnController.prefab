@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnController
   maxActionPoints: 10
-  actionPointsEachRound: 5
+  actionPointsEachRound: 6
   autoStartRound: 1
   rollDelay: 0.9
   delayAfterMovementFinished: 0.5
