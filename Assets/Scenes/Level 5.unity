@@ -450,6 +450,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6753810226441156929, guid: 4721b70add2cbd540884359e6574f5b4, type: 3}
+      propertyPath: lurePrefab
+      value: 
+      objectReference: {fileID: 326357262503462697, guid: 9f123756bdd5782449163dd5eb9fd794, type: 3}
+    - target: {fileID: 6753810226441156929, guid: 4721b70add2cbd540884359e6574f5b4, type: 3}
+      propertyPath: horrifyPrefab
+      value: 
+      objectReference: {fileID: 4787170044604921309, guid: b9a379cd06b225d4aaeb6f8ee35d94d5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

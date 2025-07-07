@@ -31,7 +31,6 @@ public class Abilties : MonoBehaviour
     private void Awake()
     {
         controls = new Controls();
-        baseColor = buttons[0].GetComponent<Image>().color;
 
         if (SceneManager.GetActiveScene().buildIndex == (int)Scenes.Level1) ButtonDisable(level1AbilityCount);
         else if (SceneManager.GetActiveScene().buildIndex == (int)Scenes.Level2) ButtonDisable(level2AbilityCount);
@@ -123,8 +122,11 @@ public class Abilties : MonoBehaviour
     {
         for (int i = 0; i < buttons.Length; i++)
         {
-            if(i == selectedNumber) buttons[selectedNumber].GetComponent<Image>().color = selectedColor;
-            else buttons[i].GetComponent<Image>().color = baseColor;
+			Button button = buttons[i].GetComponent<Button>();
+			var colors = button.colors;
+            if (i == selectedNumber) colors.normalColor = selectedColor;
+            else colors.normalColor = baseColor;
+			button.colors = colors;
         }       
     }
 }
