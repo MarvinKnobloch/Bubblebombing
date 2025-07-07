@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b700e12577f660d4082d79c3d54791ef, type: 3}
-  m_Name: Lure
+  m_Name: Anlocken
   m_EditorClassIdentifier: Assembly-CSharp::AbilityTooltipObj
-  abilityName: Lure
+  abilityName: Anlocken
   abilityCosts: 2
-  abilityDescription: All npcs in range will try to move to this object.
+  abilityDescription: "Erzeugt ein Ger\xE4usch.\nReichweite: 2 Tiles in jede Richtung.\nAlle
+    Einheiten versuchen zum Ger\xE4usch zu laufen."
