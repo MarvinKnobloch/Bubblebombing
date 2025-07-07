@@ -137,6 +137,10 @@ public class GridInteractionUI : MonoBehaviour
 	{
         Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 
+		if (interactionType == GridInteractionType.None)
+		{
+            SetVisible(false);
+        }
         if (interactionType == GridInteractionType.RotateTile)
         {
             if (!IsValidTilePosition(tilePosition.x, tilePosition.y))
