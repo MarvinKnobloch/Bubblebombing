@@ -117,6 +117,7 @@ public class GridInteractionUI : MonoBehaviour
 	void OnMousePos(InputAction.CallbackContext context)
 	{
 		mousePosition = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
+		UpdateTool();
 	}
 
 	public void UpdateTool()
@@ -262,6 +263,8 @@ public class GridInteractionUI : MonoBehaviour
         interactionType = type;
 		currentInteractionCosts = actionCost;
 		placeableObjectPrefab = placementPrefab;
+
+		UpdateTool();
     }
 
 	/*void LateUpdate()

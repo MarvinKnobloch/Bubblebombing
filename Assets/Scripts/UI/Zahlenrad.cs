@@ -56,7 +56,7 @@ public class Zahlenrad : MonoBehaviour
 	IEnumerator Rotate()
 	{
 		speed = rotationSpeed;
-		if (rotationCount < 7) rotationCount = 70;
+		if (rotationCount < 1) rotationCount = 1;
 		float leftRotations = rotationCount * 360f;
 		float angleCorrection = (targetNumber + valueOffset - 1) * 90;
 		//float angle = transform.localRotation.eulerAngles.x;
@@ -75,7 +75,7 @@ public class Zahlenrad : MonoBehaviour
 			yield return null;
 		}
 
-		Debug.Log("Value: " + targetNumber);
+		//ebug.Log("Value: " + targetNumber);
 		onValueChanged?.Invoke(targetNumber);
 	}
 }

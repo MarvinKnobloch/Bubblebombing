@@ -23,16 +23,27 @@ public class Abilties : MonoBehaviour
     [SerializeField] private PlaceableObject boostPrefab;
     [SerializeField] private PlaceableObject slowPrefab;
 
+    [Header("LevelAbilityCount")]
+    [SerializeField] private int level1AbilityCount;
+    [SerializeField] private int level2AbilityCount;
+    [SerializeField] private int level3AbilityCount;
+
     private void Awake()
     {
         controls = new Controls();
         baseColor = buttons[0].GetComponent<Image>().color;
 
-        if(SceneManager.GetActiveScene().buildIndex == (int)Scenes.Level1)
-        {
-            int avialableAbilties= 2;
-            ButtonDisable(avialableAbilties);
-        }
+        if (SceneManager.GetActiveScene().buildIndex == (int)Scenes.Level1) ButtonDisable(level1AbilityCount);
+        else if (SceneManager.GetActiveScene().buildIndex == (int)Scenes.Level2) ButtonDisable(level2AbilityCount);
+        else if (SceneManager.GetActiveScene().buildIndex == (int)Scenes.Level3) ButtonDisable(level3AbilityCount);
+    }
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
     }
     private void Update()
     {
@@ -45,9 +56,15 @@ public class Abilties : MonoBehaviour
         else if (controls.Player.Ability6.WasPerformedThisFrame()) SetSlowOption();
     }
 
-    private void ButtonDisable(int availableButtons)
+    private void ButtonDisable(int availableAbilities)
     {
-
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if(i + 1 > availableAbilities)
+            {
+                buttons[i].gameObject.SetActive(false);
+            }
+        }
     }
     public void SetMoveOption()
     {
@@ -63,26 +80,38 @@ public class Abilties : MonoBehaviour
     }
     public void SetLureOption()
     {
-        int costs = buttons[2].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
-        ButtonUpdate(2);
+        int currentNumber = 2;
+        if (buttons[currentNumber].gameObject.activeSelf == false) return;
+
+        int costs = buttons[currentNumber].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
+        ButtonUpdate(currentNumber);
         gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, lurePrefab);
     }
     public void SetHorrifyOption()
     {
-        int costs = buttons[3].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
-        ButtonUpdate(3);
+        int currentNumber = 3;
+        if (buttons[currentNumber].gameObject.activeSelf == false) return;
+
+        int costs = buttons[currentNumber].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
+        ButtonUpdate(currentNumber);
         gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, horrifyPrefab);
     }
     public void SetBoostOption()
     {
-        int costs = buttons[4].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
-        ButtonUpdate(4);
+        int currentNumber = 4;
+        if (buttons[currentNumber].gameObject.activeSelf == false) return;
+
+        int costs = buttons[currentNumber].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
+        ButtonUpdate(currentNumber);
         gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, boostPrefab);
     }
     public void SetSlowOption()
     {
-        int costs = buttons[5].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
-        ButtonUpdate(5);
+        int currentNumber = 5;
+        if (buttons[currentNumber].gameObject.activeSelf == false) return;
+
+        int costs = buttons[currentNumber].GetComponent<AbilityToolTip>().abilityTooltipObj.abilityCosts;
+        ButtonUpdate(currentNumber);
         gridInteractionUI.SetInteractionType(GridInteractionType.PlaceObject, costs, slowPrefab);
     }
     private void ResetType()

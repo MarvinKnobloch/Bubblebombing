@@ -7509,6 +7509,9 @@ MonoBehaviour:
   horrifyPrefab: {fileID: 1479251126492931835, guid: c4c9d997912893e4b92f4302a9864553, type: 3}
   boostPrefab: {fileID: 6929845043762324666, guid: a630e43f38a8fd3409e83657a0f1f11b, type: 3}
   slowPrefab: {fileID: 5710585939422997124, guid: bc8bd1e7ebc995443b6e4028a328a8a8, type: 3}
+  level1AbilityCount: 2
+  level2AbilityCount: 3
+  level3AbilityCount: 4
 --- !u!1 &4545115981177378771
 GameObject:
   m_ObjectHideFlags: 0

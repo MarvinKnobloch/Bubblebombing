@@ -13,9 +13,11 @@ public class TurnController : MonoBehaviour
 
     [Header("TurnValues")]
     [SerializeField] private bool autoStartRound;
+    [SerializeField] private float rollDelay;
+    [SerializeField] private float delayAfterMovementFinished;
     private List<GameObject> npcs = new List<GameObject>();
-    [SerializeField] private int npcsOnField;
-    [SerializeField] private int npcsNoMoreMovement;
+    private int npcsOnField;
+    private int npcsNoMoreMovement;
 
     private void Awake()
     {
@@ -40,8 +42,8 @@ public class TurnController : MonoBehaviour
     }
     IEnumerator RollAnimation()
     {
-        yield return new WaitForSeconds(0.3f);
         RollNpcMovment();
+        yield return new WaitForSeconds(rollDelay);
         GameManager.Instance.playerUI.EndTurnButtonToggle(true);
         GameManager.Instance.playerUI.AbilitiyUIToggle(true);
 
@@ -80,10 +82,14 @@ public class TurnController : MonoBehaviour
         if (autoStartRound)
         {
             if (GameManager.Instance.playerUI.isGameOver) return;
-
-            StartTurn();
+            StartCoroutine(StartNextTurn());
         }
         else GameManager.Instance.playerUI.StartTurnButtonToggle(true);
+    }
+    IEnumerator StartNextTurn()
+    {
+        yield return new WaitForSeconds(delayAfterMovementFinished);
+        StartTurn();
     }
     public void EndTurn() 
     {

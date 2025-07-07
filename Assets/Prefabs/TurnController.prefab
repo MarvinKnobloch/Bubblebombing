@@ -48,8 +48,8 @@ MonoBehaviour:
   maxActionPoints: 10
   actionPointsEachRound: 5
   autoStartRound: 1
-  npcsOnField: 0
-  npcsNoMoreMovement: 0
+  rollDelay: 0.9
+  delayAfterMovementFinished: 0.5
 --- !u!114 &2879550096688552411
 MonoBehaviour:
   m_ObjectHideFlags: 0

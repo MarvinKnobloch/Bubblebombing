@@ -29,6 +29,14 @@ public class DialogBox : MonoBehaviour
     {
         controls = new Controls();
     }
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
     private void Update()
     {
         if (autoPlayInterval != 0)
