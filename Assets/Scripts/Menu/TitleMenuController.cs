@@ -34,10 +34,6 @@ public class TitleMenuController : MonoBehaviour
 
 	private void Start()
 	{
-		SetDecibel("MasterVolume");
-		SetDecibel("MusicVolume", 100);
-		SetDecibel("SoundVolume", 100);
-
 		baseMenu = titleMenu;
 		baseMenu.SetActive(true);
 		levelSelectionMenu.SetActive(false);
@@ -137,13 +133,4 @@ public class TitleMenuController : MonoBehaviour
 		Time.timeScale = 1;
 		Time.fixedDeltaTime = normalFixedDeltaTime;
 	}
-
-    private void SetDecibel(string audioString, float defaultValue = 60)
-    {
-        float value = PlayerPrefs.GetFloat("SliderValue" + audioString, defaultValue);
-
-        float decibel = value / 100f * 80f - 80;
-
-        audioMixer.SetFloat(audioString, Mathf.Clamp(decibel, -80, 0));
-    }
 }

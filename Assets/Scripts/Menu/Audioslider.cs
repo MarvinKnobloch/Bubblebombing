@@ -55,14 +55,25 @@ public class Audioslider : MonoBehaviour
         }
         //else AudioManager.Instance.PlayUtilityOneshot((int)AudioManager.UtilitySounds.MenuSelect);
     }
-
-    private void SetDecibel(float value, string audioString, int maxDecibel)
+    private void SetDecibel(float sliderValue, string audioString, int maxDecibel)
     {
         PlayerPrefs.SetInt("AudioHasBeenChange", 1);
-        PlayerPrefs.SetFloat("SliderValue" + audioString, value);
+        PlayerPrefs.SetFloat("SliderValue" + audioString, sliderValue);
 
-        float decibel = value / 100f * 80f - 80;
+        float decibel = Mathf.Log10(sliderValue) * 20;
 
-        audioMixer.SetFloat(audioString, Mathf.Clamp(decibel, -80, 0));
+        audioMixer.SetFloat(audioString, decibel);
+        bool gotvalue = audioMixer.GetFloat(audioString, out float soundvalue);
+
+        if (gotvalue == true)
+        {
+            if (soundvalue > maxDecibel)
+            {
+                Debug.Log(soundvalue);
+                audioMixer.SetFloat(audioString, maxDecibel);
+            }
+        }
+        PlayerPrefs.SetFloat(audioString, decibel);
+
     }
 }

@@ -48,35 +48,51 @@ public class AudioManager : MonoBehaviour
         if (PlayerPrefs.GetInt("AudioHasBeenChange") == 0)
         {
             PlayerPrefs.SetFloat("SliderValue" + masterVolume, 0.8f);
-            PlayerPrefs.SetFloat(masterVolume, Mathf.Log10(PlayerPrefs.GetFloat("SliderValue" + masterVolume) * 20));
-            SetVolume(masterVolume, 0);
+
+            //PlayerPrefs.SetFloat(masterVolume, Mathf.Log10(PlayerPrefs.GetFloat("SliderValue" + masterVolume) * 20));
+            //SetVolume(masterVolume, 0);
 
             PlayerPrefs.SetFloat("SliderValue" + musicVolume, 0.8f);
-            PlayerPrefs.SetFloat(musicVolume, Mathf.Log10(PlayerPrefs.GetFloat("SliderValue" + musicVolume) * 20));
-            SetVolume(musicVolume, 0);
+            //PlayerPrefs.SetFloat(musicVolume, Mathf.Log10(PlayerPrefs.GetFloat("SliderValue" + musicVolume) * 20));
+            //SetVolume(musicVolume, 0);
 
             PlayerPrefs.SetFloat("SliderValue" + soundVolume, 2.4f);
-            PlayerPrefs.SetFloat(soundVolume, Mathf.Log10(PlayerPrefs.GetFloat("SliderValue" + soundVolume) * 20));
-            SetVolume(soundVolume, 0);
-        }
-        else
-        {
-            SetVolume(masterVolume, 0);
-            SetVolume(musicVolume, 0);
-            SetVolume(soundVolume, 10);
+            //PlayerPrefs.SetFloat(soundVolume, Mathf.Log10(PlayerPrefs.GetFloat("SliderValue" + soundVolume) * 20));
+            //SetVolume(soundVolume, 0);
         }
 
+        SetDecibel(PlayerPrefs.GetFloat("SliderValue" + masterVolume), masterVolume, 0);
+        SetDecibel(PlayerPrefs.GetFloat("SliderValue" + musicVolume), musicVolume, 0);
+        SetDecibel(PlayerPrefs.GetFloat("SliderValue" + soundVolume), soundVolume, 10);
+
     }
-    private void SetVolume(string volumename, float maxdb)
+    //private void SetVolume(string volumename, float maxdb)
+    //{
+    //    audioMixer.SetFloat(volumename, PlayerPrefs.GetFloat(volumename));
+    //    bool gotvalue = audioMixer.GetFloat(volumename, out float soundvalue);
+    //    if (gotvalue == true)
+    //    {
+    //        if (soundvalue > maxdb)
+    //        {
+    //            audioMixer.SetFloat(volumename, maxdb);
+    //        }
+    //    }
+    //}
+    private void SetDecibel(float sliderValue, string audioString, int maxDecibel)
     {
-        audioMixer.SetFloat(volumename, PlayerPrefs.GetFloat(volumename));
-        bool gotvalue = audioMixer.GetFloat(volumename, out float soundvalue);
+        float decibel = Mathf.Log10(sliderValue) * 20;
+
+        audioMixer.SetFloat(audioString, decibel);
+        bool gotvalue = audioMixer.GetFloat(audioString, out float soundvalue);
+
         if (gotvalue == true)
         {
-            if (soundvalue > maxdb)
+            if (soundvalue > maxDecibel)
             {
-                audioMixer.SetFloat(volumename, maxdb);
+                Debug.Log(soundvalue);
+                audioMixer.SetFloat(audioString, maxDecibel);
             }
         }
+        PlayerPrefs.SetFloat(audioString, decibel);
     }
 }

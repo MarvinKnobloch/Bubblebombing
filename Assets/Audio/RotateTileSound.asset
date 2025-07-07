@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RotateTileSound
   m_EditorClassIdentifier: Assembly-CSharp::AudioData
   clip: {fileID: 8300000, guid: c7da4e28a6e8d0f4f89c6fc82d4cfd73, type: 3}
-  volume: 1
+  volume: 0.3
   pitch: 1
   pitchVariance: 0.1

@@ -492,11 +492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6268208258607835307, guid: af305484995faa54ea0d04eba871e5ae, type: 3}
       propertyPath: m_MaxValue
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6268208258607835307, guid: af305484995faa54ea0d04eba871e5ae, type: 3}
       propertyPath: m_MinValue
-      value: 0
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 6268208258607835307, guid: af305484995faa54ea0d04eba871e5ae, type: 3}
       propertyPath: m_Colors.m_NormalColor.b
@@ -6403,11 +6403,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6268208258607835307, guid: af305484995faa54ea0d04eba871e5ae, type: 3}
       propertyPath: m_MaxValue
-      value: 100
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6268208258607835307, guid: af305484995faa54ea0d04eba871e5ae, type: 3}
       propertyPath: m_MinValue
-      value: 0
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 6268208258607835307, guid: af305484995faa54ea0d04eba871e5ae, type: 3}
       propertyPath: m_Colors.m_NormalColor.b
@@ -12823,7 +12823,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 0c8ac12190af8f444ba74370059e9183, type: 3}
   m_Resource: {fileID: 8300000, guid: 0c8ac12190af8f444ba74370059e9183, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -13917,11 +13917,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6268208258607835307, guid: af305484995faa54ea0d04eba871e5ae, type: 3}
       propertyPath: m_MaxValue
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6268208258607835307, guid: af305484995faa54ea0d04eba871e5ae, type: 3}
       propertyPath: m_MinValue
-      value: 0
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 6268208258607835307, guid: af305484995faa54ea0d04eba871e5ae, type: 3}
       propertyPath: m_Colors.m_NormalColor.b
