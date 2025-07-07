@@ -26,14 +26,20 @@ public class TileGrafik : MonoBehaviour
 	{
 		spriteRenderer.transform.position = position;
 		foreach (PlaceableObject tileObject in tileObjects)
+		{
+			if (tileObject == null) continue;
 			tileObject.transform.position = position;
+		}
 	}
 
 	public void SetRotation(Quaternion rotation)
 	{
 		spriteRenderer.transform.rotation = rotation;
 		foreach (PlaceableObject tileObject in tileObjects)
+		{
+			if (tileObject == null) continue;
 			tileObject.transform.rotation = Quaternion.identity;
+		}
 	}
 
 	public void SetSprite(Sprite sprite)
@@ -45,7 +51,10 @@ public class TileGrafik : MonoBehaviour
 	{
 		spriteRenderer.enabled = visible;
 		foreach (PlaceableObject tileObject in tileObjects)
+		{
+			if (tileObject == null) continue;
 			tileObject.gameObject.SetActive(visible);
+		}
 	}
 
 	public void MoveObjects(TileGrafik source)
@@ -55,6 +64,7 @@ public class TileGrafik : MonoBehaviour
 		source.tileObjects = new List<PlaceableObject>();
 		foreach (PlaceableObject tileObject in tileObjects)
 		{
+			if (tileObject == null) continue;
 			tileObject.owner = this;
 			tileObject.transform.SetParent(transform);
 			tileObject.transform.localPosition = Vector3.zero;
@@ -79,7 +89,7 @@ public class TileGrafik : MonoBehaviour
 	{
 		foreach (PlaceableObject placeableObject in tileObjects)
 		{
-			if (placeableObject.canBeRemoved)
+			if (placeableObject != null && placeableObject.canBeRemoved)
 			{
 				Debug.Log("Objekt " + placeableObject.name + " entfernt von " + transform.position);
 				Destroy(placeableObject.gameObject);
