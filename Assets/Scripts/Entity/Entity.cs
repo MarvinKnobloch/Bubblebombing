@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Entity : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Entity : MonoBehaviour
     public Direction facedDirection = Direction.Up;
     private Direction[] directionsToCheck = new Direction[4];
     private bool stopMoving;
+    private AudioSource audioSource;
 
     [Header("Other")]
     [SerializeField] private Transform childSprite;
@@ -28,6 +30,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private TextMeshProUGUI movementText;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         Face(facedDirection);
         rb.position = GridRenderer.instance.TileToWorldPosition(PositionOnGrid);
 
@@ -76,7 +79,9 @@ public class Entity : MonoBehaviour
 		{
 			state = EntityState.Move;
             stopMoving = false;
-		}
+            audioSource.enabled = true;
+            audioSource.Play();
+        }
 	}
 
     private void MoveUpdate()
@@ -158,6 +163,7 @@ public class Entity : MonoBehaviour
 		else
 		{
 			zahlenrad.gameObject.SetActive(false);
+            audioSource.enabled = false;
         }
     }
 
@@ -249,6 +255,7 @@ public class Entity : MonoBehaviour
     [ContextMenu("1 Damage")]
     public void Damage()
     {
+        audioSource.enabled = false;
         //Check if player. Player layer = 8
         if (gameObject.layer == 8)
         {
