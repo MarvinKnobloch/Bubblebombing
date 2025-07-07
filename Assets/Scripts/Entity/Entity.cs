@@ -223,7 +223,6 @@ public class Entity : MonoBehaviour
 
     private void Face(Direction direction)
     {
-        Debug.Log("Facing direction: "+direction);
         facedDirection = direction;
         spriteManager.Face(direction);
         //switch (direction)
