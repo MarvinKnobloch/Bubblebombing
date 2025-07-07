@@ -6,9 +6,6 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource soundSource;
-
     [Space]
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private string masterVolume;

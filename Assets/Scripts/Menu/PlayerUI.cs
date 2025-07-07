@@ -140,6 +140,8 @@ public class PlayerUI : MonoBehaviour
     public void Victory()
     {
         int nextlevel = SceneManager.GetActiveScene().buildIndex + 1;
+        GameManager.Instance.menuController.gameIsPaused = true;
+        GameManager.Instance.menuController.TimeScaleToZero();
 
         if (SceneManager.sceneCountInBuildSettings > nextlevel)
         {
