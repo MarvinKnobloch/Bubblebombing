@@ -15,6 +15,7 @@ public class GridManipulator : MonoBehaviour
 
 	public AudioData moveAudio;
 	public AudioData rotateAudio;
+	public AudioData cantPlaceAudio;
 	private AudioSource audioSource;
 
 	public TileGrafik tempGrafik;
