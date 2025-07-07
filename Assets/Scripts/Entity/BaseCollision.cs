@@ -19,7 +19,6 @@ public class BaseCollision : MonoBehaviour
     {
         if (TriggerConditionMet(collision.gameObject))
         {
-            Debug.Log("Basse got triggered");
             TriggerAction(collision.gameObject);
         }
     }
