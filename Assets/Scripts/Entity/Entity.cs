@@ -120,7 +120,6 @@ public class Entity : MonoBehaviour
 
     private void SpawnTick()
     {
-        Debug.Log("Spawn Tick");
         remainingRespawnTime -= 1;
         TurnController.instance.NpcMovementFinished();
         animationT = 2;
@@ -223,6 +222,7 @@ public class Entity : MonoBehaviour
 
     private void Face(Direction direction)
     {
+        Debug.Log("Facing direction: "+direction);
         facedDirection = direction;
         spriteManager.Face(direction);
         //switch (direction)
@@ -274,7 +274,6 @@ public class Entity : MonoBehaviour
         {
             remainingRespawnTime = respawnTime;
             TurnController.instance.NpcMovementFinished();
-            Debug.Log("Respawning " + entityName);
             state = EntityState.Spawning;
             animationT = 2;
         }
@@ -286,7 +285,6 @@ public class Entity : MonoBehaviour
 		remainingSteps = value;
         if (gameObject.layer == 6)
         {
-            Debug.Log("Trieng to rotate");
             int random = UnityEngine.Random.Range(0, 2);
             if (random == 0) {
                 GridInteractionUI.instance.EntityRotate(GridRenderer.instance.WorldToTilePosition(transform.position));
