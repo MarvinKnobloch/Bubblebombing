@@ -268,7 +268,7 @@ public class GridInteractionUI : MonoBehaviour
 				{
 					if (!IsTileAllowedToMove(i, tilePosition.y)) return;
 				}
-				gridManipulator.MoveRow(tilePosition.y, mousePosition.x < GridRenderer.instance.GetGridBounds().center.x ? Direction.Right : Direction.Left, insertTileData);
+				gridManipulator.MoveRow(tilePosition.y, mousePosition.x < GridRenderer.instance.GetGridBounds().center.x ? Direction.Right : Direction.Left);
 			}
 			else
 			{
@@ -276,7 +276,7 @@ public class GridInteractionUI : MonoBehaviour
 				{
 					if (!IsTileAllowedToMove(tilePosition.x, i)) return;
 				}
-				gridManipulator.MoveColumn(tilePosition.x, mousePosition.y < GridRenderer.instance.GetGridBounds().center.y ? Direction.Up : Direction.Down, insertTileData);
+				gridManipulator.MoveColumn(tilePosition.x, mousePosition.y < GridRenderer.instance.GetGridBounds().center.y ? Direction.Up : Direction.Down);
 			}
             TurnController.instance.ActionPointsUpdate(currentInteractionCosts);
         }
