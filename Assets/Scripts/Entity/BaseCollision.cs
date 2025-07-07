@@ -4,10 +4,14 @@ public class BaseCollision : MonoBehaviour
 {
     public LayerMask collisionLayers;
     protected CircleCollider2D circleCollider;
+    public Vector2Int PositionOnGrid = new Vector2Int(0, 0);
+    public bool setPositionOnStart = false;
 
     protected virtual void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
+        if (setPositionOnStart)
+            transform.position = GridRenderer.instance.TileToWorldPosition(PositionOnGrid);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

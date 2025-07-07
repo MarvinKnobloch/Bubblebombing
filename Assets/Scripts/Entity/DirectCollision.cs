@@ -20,11 +20,16 @@ public class DirectCollision : BaseCollision
                 case ObjectType.Slow:
                     target.GetComponent<Entity>().ChangeSteps(-1);
                     break;
-
+                case ObjectType.Goal:
+                    if (target.layer == 8)
+                    {
+                        GameManager.Instance.playerUI.Victory();
+                    }
+                    break;
             }
             if (isDestroyable)
             {
-                Destroy(this);
+                Destroy(gameObject);
             }
         }
     }
@@ -35,5 +40,6 @@ public enum ObjectType
 {
     Damage,
     Speed,
-    Slow
+    Slow,
+    Goal
 }

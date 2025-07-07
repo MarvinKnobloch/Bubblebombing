@@ -249,7 +249,16 @@ public class Entity : MonoBehaviour
     [ContextMenu("1 Damage")]
     public void Damage()
     {
-        GameManager.Instance.playerUI.HealthUpdate(1);
+        //Check if player. Player layer = 8
+        if (gameObject.layer == 8)
+        {
+            GameManager.Instance.playerUI.HealthUpdate(1);
+        }
+        else
+        {
+            Respawn();
+        }
+           
     }
 
     public void Respawn()

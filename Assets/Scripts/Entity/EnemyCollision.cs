@@ -6,7 +6,7 @@ public class EnemyCollision : DirectCollision
 		if (gameObject.GetComponent<Entity>().state != EntityState.Spawning)
 		{
 			base.TriggerAction(target);
-			gameObject.GetComponent<Entity>().Respawn();
+			gameObject.GetComponent<Entity>().Damage();
 		}
     }
 }
