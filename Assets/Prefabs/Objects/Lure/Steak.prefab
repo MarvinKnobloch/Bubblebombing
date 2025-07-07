@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2579038386110415918
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 41903675861394444, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 8011c583e3525d746b46d0b8ace4b4b4, type: 3}
+    - target: {fileID: 41903675861394444, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8011c583e3525d746b46d0b8ace4b4b4, type: 3}
+    - target: {fileID: 5831313709362646692, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 43f268bc10880af438782e17b4e62ea2, type: 2}
+    - target: {fileID: 7069353606035609406, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069353606035609406, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069353606035609406, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069353606035609406, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069353606035609406, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069353606035609406, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069353606035609406, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069353606035609406, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069353606035609406, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069353606035609406, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8188802997547855780, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5275429406482481447, guid: 9a8c22ac3086c0446ace418947dc57f8, type: 3}
+    - target: {fileID: 8733587934543074245, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
+      propertyPath: m_Name
+      value: Steak
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
