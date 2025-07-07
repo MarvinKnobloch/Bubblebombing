@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileGrafik
   spriteRenderer: {fileID: 6976222104955799202}
-  tileObject: {fileID: 0}
+  tileObjects: []
 --- !u!1 &7232816711109229740
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +334,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad30c0c2169c4f4c8ffb5041c9bfa7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridInteractionUI
+  placeableObjectPrefab: {fileID: 0}
+  newTileData:
+    sprite: {fileID: 0}
+    rotation: 0
+    paths:
+      up: 0
+      down: 0
+      left: 0
+      right: 0
   gridManipulator: {fileID: 7569465012848836330}
   insertTileData:
     sprite: {fileID: 21300000, guid: 0304da1004188234699096fb0cf0b34b, type: 3}
@@ -348,6 +357,7 @@ MonoBehaviour:
   allowedColor: {r: 0, g: 1, b: 0, a: 1}
   notAllowedColor: {r: 1, g: 0, b: 0, a: 1}
   arrowOffset: 0.5
+  interactionType: 0
 --- !u!114 &7569465012848836330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,9 +479,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  tempGrafik: {fileID: 8409964634938841410}
   moveAudio: {fileID: 11400000, guid: 938366b6c42c63148b8e81be51543873, type: 2}
   rotateAudio: {fileID: 11400000, guid: b6e98724ac02077499a34bff9593eb9c, type: 2}
+  cantPlaceAudio: {fileID: 11400000, guid: 21aaf505a35b9a94a9022cf589feec11, type: 2}
+  tempGrafik: {fileID: 8409964634938841410}
 --- !u!82 &152083276561771558
 AudioSource:
   m_ObjectHideFlags: 0

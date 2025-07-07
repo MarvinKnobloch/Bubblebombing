@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 public class GridInteractionUI : MonoBehaviour
@@ -239,11 +240,6 @@ public class GridInteractionUI : MonoBehaviour
 	void OnLeftClick(InputAction.CallbackContext context)
 	{
 		if (interactionType == GridInteractionType.None) return;
-        if (TurnController.instance.CheckForActionPoints(currentInteractionCosts) == false)
-        {
-            //PlaySound
-            return;
-        }
 
         Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 		//Debug.Log("Left Click On " + tilePosition);
@@ -251,7 +247,13 @@ public class GridInteractionUI : MonoBehaviour
 		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
 		if (tile == null) return;
 
-		if (interactionType == GridInteractionType.RotateTile)
+        if (TurnController.instance.CheckForActionPoints(currentInteractionCosts) == false)
+        {
+            GetComponent<GridManipulator>().cantPlaceAudio.Play(GetComponent<AudioSource>());
+            return;
+        }
+
+        if (interactionType == GridInteractionType.RotateTile)
 		{
 			if (!IsTileAllowedToMove(tilePosition.x, tilePosition.y)) return;
 			gridManipulator.RotateTileCW(tile.index);
@@ -294,17 +296,19 @@ public class GridInteractionUI : MonoBehaviour
 	void OnRightClick(InputAction.CallbackContext context)
 	{
         if (interactionType == GridInteractionType.None) return;
-		if (TurnController.instance.CheckForActionPoints(currentInteractionCosts) == false)
-		{ 
-			//PlaySound
-			return;
-		}
+
 
         Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
 		if (tile == null) return;
 
-		if (interactionType == GridInteractionType.RotateTile)
+        if (TurnController.instance.CheckForActionPoints(currentInteractionCosts) == false)
+        {
+            GetComponent<GridManipulator>().cantPlaceAudio.Play(GetComponent<AudioSource>());
+            return;
+        }
+
+        if (interactionType == GridInteractionType.RotateTile)
 		{
 			gridManipulator.RotateTileCCW(tile.index);
             TurnController.instance.ActionPointsUpdate(currentInteractionCosts);
