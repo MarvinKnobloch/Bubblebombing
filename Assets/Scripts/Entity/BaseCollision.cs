@@ -3,13 +3,14 @@ using System.Linq;
 public class BaseCollision : MonoBehaviour
 {
     public LayerMask collisionLayers;
-    protected CircleCollider2D circleCollider;
+    protected Collider2D circleCollider;
     public Vector2Int PositionOnGrid = new Vector2Int(0, 0);
     public bool setPositionOnStart = false;
 
     protected virtual void Start()
     {
-        circleCollider = GetComponent<CircleCollider2D>();
+        circleCollider = GetComponent<Collider2D>();
+        circleCollider.enabled = true;
         if (setPositionOnStart)
             transform.position = GridRenderer.instance.TileToWorldPosition(PositionOnGrid);
     }
@@ -18,6 +19,7 @@ public class BaseCollision : MonoBehaviour
     {
         if (TriggerConditionMet(collision.gameObject))
         {
+            Debug.Log("Basse got triggered");
             TriggerAction(collision.gameObject);
         }
     }
