@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlaceableObject : MonoBehaviour
 {
 	public bool canBeRemoved = true;
-	
+	public bool canBeMoved = true;
+
 	[System.NonSerialized] public TileGrafik owner;
 
 	public void UpdatePosition(Vector2Int gridPosition)

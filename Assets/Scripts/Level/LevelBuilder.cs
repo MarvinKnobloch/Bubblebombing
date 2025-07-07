@@ -32,8 +32,19 @@ public class LevelBuilder : MonoBehaviour, ILevelBuilder
 			TileData tileData = GetRandomTileDataByWeight();
 			tiles[i] = new Tile(tileData, i);
 		}
+		// Force Corners
+		SetTile(tiles, 0, levelGenerator.tileData[1]);
+		SetTile(tiles, width - 1, levelGenerator.tileData[2]);
+		SetTile(tiles, width * (height - 1), levelGenerator.tileData[0]);
+		SetTile(tiles, width * height - 1, levelGenerator.tileData[3]);
+
 		return tiles;
     }
+
+	private void SetTile(Tile[] tiles, int index, TileData tileData)
+	{
+		tiles[index] = new Tile(tileData, index);
+	}
 
 	private TileData GetRandomTileDataByWeight()
 	{

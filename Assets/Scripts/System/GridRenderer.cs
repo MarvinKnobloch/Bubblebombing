@@ -154,4 +154,16 @@ public class GridRenderer : MonoBehaviour
 	{
 		return new Vector2Int(LevelGrid.instance.width, LevelGrid.instance.height);
 	}
+
+	public bool IsTileBlocked(int x, int y)
+	{
+		Tile tile = LevelGrid.instance.GetTile(x, y);
+		return tile != null && IsTileBlocked(tile.index);
+	}
+
+	public bool IsTileBlocked(int index)
+	{
+		TileGrafik grafic = GetTileGrafik(index);
+		return grafic.tileObjects.Find(obj => obj.canBeMoved == false) != null;
+	}
 }

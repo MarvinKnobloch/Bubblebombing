@@ -27,6 +27,7 @@ public class GridInteractionUI : MonoBehaviour
 
 	public Controls inputActions;
 	private Vector2 mousePosition;
+	private Color currentColor;
 
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class GridInteractionUI : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+		currentColor = allowedColor;
     }
 
     void Start()
@@ -114,9 +116,11 @@ public class GridInteractionUI : MonoBehaviour
 
 		highlightRect.transform.position = new Vector3(tileBounds.center.x, tileBounds.center.y, 0);
 		highlightRect.size = new Vector2(tileBounds.size.x, tileBounds.size.y);
+		highlightRect.color = currentColor;
 
 		highlightArrow.transform.position = new Vector3(tileBounds.center.x, tileBounds.center.y + 0.1f, 0);
 		highlightArrow.transform.rotation = Quaternion.Euler(0, 0, 180);
+		highlightArrow.color = currentColor;
 
 		SetVisible(true);
 	}
@@ -125,6 +129,8 @@ public class GridInteractionUI : MonoBehaviour
 	{
 		highlightRect.gameObject.SetActive(visible);
 		highlightArrow.gameObject.SetActive(visible && interactionType != GridInteractionType.RotateTile);
+		highlightRect.color = currentColor;
+		highlightArrow.color = currentColor;
 	}
 
 	void OnMousePos(InputAction.CallbackContext context)
@@ -136,6 +142,7 @@ public class GridInteractionUI : MonoBehaviour
 	public void UpdateTool()
 	{
         Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
+		currentColor = allowedColor;
 
 		if (interactionType == GridInteractionType.None)
 		{
@@ -148,6 +155,11 @@ public class GridInteractionUI : MonoBehaviour
                 SetVisible(false);
                 return;
             }
+
+			if (!IsTileAllowedToMove(tilePosition.x, tilePosition.y))
+			{
+				currentColor = notAllowedColor;
+			}
 
             MarkTile(tilePosition.x, tilePosition.y);
             return;
@@ -170,12 +182,28 @@ public class GridInteractionUI : MonoBehaviour
             // Wähle Zeile oder Spalte basierend auf der größeren Entfernung
             if (distanceX > distanceY)
             {
+				for (int i = 0; i < LevelGrid.instance.width; i++)
+				{
+					if (!IsTileAllowedToMove(i, tilePosition.y))
+					{
+						currentColor = notAllowedColor;
+					}
+				}
+
                 // Horizontal weiter entfernt -> Zeile auswählen
                 MarkGridRow(tilePosition.y, mousePosition.x < gridCenter.x ? Direction.Right : Direction.Left);
                 moveRow = true;
             }
             else
             {
+				for (int i = 0; i < LevelGrid.instance.height; i++)
+				{
+					if (!IsTileAllowedToMove(tilePosition.x, i))
+					{
+						currentColor = notAllowedColor;
+					}
+				}
+
                 // Vertikal weiter entfernt -> Spalte auswählen
                 MarkGridCol(tilePosition.x, mousePosition.y < gridCenter.y ? Direction.Down : Direction.Up);
                 moveRow = false;
@@ -225,6 +253,7 @@ public class GridInteractionUI : MonoBehaviour
 
 		if (interactionType == GridInteractionType.RotateTile)
 		{
+			if (!IsTileAllowedToMove(tilePosition.x, tilePosition.y)) return;
 			gridManipulator.RotateTileCW(tile.index);
             TurnController.instance.ActionPointsUpdate(currentInteractionCosts);
         }
@@ -232,9 +261,21 @@ public class GridInteractionUI : MonoBehaviour
 		if (interactionType == GridInteractionType.MoveLine)
 		{
 			if (moveRow)
+			{
+				for (int i = 0; i < LevelGrid.instance.width; i++)
+				{
+					if (!IsTileAllowedToMove(i, tilePosition.y)) return;
+				}
 				gridManipulator.MoveRow(tilePosition.y, mousePosition.x < GridRenderer.instance.GetGridBounds().center.x ? Direction.Right : Direction.Left, insertTileData);
+			}
 			else
+			{
+				for (int i = 0; i < LevelGrid.instance.height; i++)
+				{
+					if (!IsTileAllowedToMove(tilePosition.x, i)) return;
+				}
 				gridManipulator.MoveColumn(tilePosition.x, mousePosition.y < GridRenderer.instance.GetGridBounds().center.y ? Direction.Up : Direction.Down, insertTileData);
+			}
             TurnController.instance.ActionPointsUpdate(currentInteractionCosts);
         }
 
@@ -259,7 +300,6 @@ public class GridInteractionUI : MonoBehaviour
 			return;
 		}
 
-
         Vector2Int tilePosition = GridRenderer.instance.WorldToTilePosition(mousePosition);
 		Tile tile = LevelGrid.instance.GetTile(tilePosition.x, tilePosition.y);
 		if (tile == null) return;
@@ -275,6 +315,7 @@ public class GridInteractionUI : MonoBehaviour
 	{
 		interactionType = interactionType == GridInteractionType.RotateTile ? GridInteractionType.None : GridInteractionType.RotateTile; 
     }
+
 	public void SetInteractionType(GridInteractionType type, int actionCost, PlaceableObject placementPrefab = null)
     {
         interactionType = type;
@@ -289,6 +330,14 @@ public class GridInteractionUI : MonoBehaviour
         Tile tile = LevelGrid.instance.GetTile(pos.x, pos.y);
         gridManipulator.RotateTileCW(tile.index);
     }
+
+	public bool IsTileAllowedToMove(int x, int y)
+	{
+		if (x == 0 && y == 0) return false;
+		if (x == LevelGrid.instance.width - 1 && y == LevelGrid.instance.height - 1) return false;
+		if (GridRenderer.instance.IsTileBlocked(x, y)) return false;
+		return true;
+	}
 
 	/*void LateUpdate()
 	{
