@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b700e12577f660d4082d79c3d54791ef, type: 3}
-  m_Name: Rotate
+  m_Name: Rotieren
   m_EditorClassIdentifier: Assembly-CSharp::AbilityTooltipObj
-  abilityName: Rotate
+  abilityName: Rotieren
   abilityCosts: 2
-  abilityDescription: Rotate one piece by 90 degrees.
+  abilityDescription: "Linksklick: Rotieren ein Feld um 90\xB0 nach links\n\nRechtsklick:
+    Rotiere ein Feld um 90\xB0 nach rechts"
