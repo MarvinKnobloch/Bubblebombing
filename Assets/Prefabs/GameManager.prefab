@@ -8432,7 +8432,7 @@ MonoBehaviour:
   baseColor: {r: 0.40392157, g: 0.40392157, b: 0.40392157, a: 1}
   selectedColor: {r: 0.071591586, g: 0.49056602, b: 0.025453899, a: 1}
   lurePrefab: {fileID: 2887514162442245937, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
-  horrifyPrefab: {fileID: 1479251126492931835, guid: c4c9d997912893e4b92f4302a9864553, type: 3}
+  horrifyPrefab: {fileID: 1847902360722534810, guid: d240b460ab92ead489f902c87f546f24, type: 3}
   boostPrefab: {fileID: 6929845043762324666, guid: a630e43f38a8fd3409e83657a0f1f11b, type: 3}
   slowPrefab: {fileID: 5710585939422997124, guid: bc8bd1e7ebc995443b6e4028a328a8a8, type: 3}
   level1AbilityCount: 2
