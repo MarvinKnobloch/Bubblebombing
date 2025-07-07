@@ -17,7 +17,7 @@ MonoBehaviour:
   pauseGame: 0
   dialogs:
   - characterSprite: {fileID: 0}
-    characterName: Devil
+    characterName: Melodie
     dialogText: HAHAHAHA
     dialogEvent: []
     autoPlayInterval: 0
