@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8343930199029760808, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
       propertyPath: m_Name
-      value: Lure
+      value: SoundObject
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -8649184715317227972, guid: 806ac5b426e82274887edd03c9b1fddf, type: 3}
@@ -104,6 +104,8 @@ MonoBehaviour:
   collisionLayers:
     serializedVersion: 2
     m_Bits: 320
+  PositionOnGrid: {x: 0, y: 0}
+  setPositionOnStart: 0
   soundType: 0
 --- !u!114 &2887514162442245937
 MonoBehaviour:
@@ -169,6 +171,10 @@ PrefabInstance:
     - target: {fileID: 2464554751421610598, guid: 1b5505822166e4147b00a65c1c608196, type: 3}
       propertyPath: m_Name
       value: LerpPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8198314431419248809, guid: 1b5505822166e4147b00a65c1c608196, type: 3}
+      propertyPath: lifeTime
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

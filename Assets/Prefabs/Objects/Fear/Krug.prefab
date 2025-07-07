@@ -20,10 +20,6 @@ PrefabInstance:
       propertyPath: soundType
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5336360149549995869, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
-      propertyPath: lifeTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7069353606035609406, guid: 0bf2948336398394d840e9826e8e2d98, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
