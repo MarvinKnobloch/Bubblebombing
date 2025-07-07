@@ -5,8 +5,6 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using static GameManager;
-using Unity.VisualScripting;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -48,6 +46,9 @@ public class PlayerUI : MonoBehaviour
 
     [Header("CurrentLevel")]
     [SerializeField] private TextMeshProUGUI currentLevelText;
+
+    [Header("Tutorial")]
+    [SerializeField] private GameObject tutorial;
 
     private float timer;
 
@@ -148,5 +149,9 @@ public class PlayerUI : MonoBehaviour
         {
             gameCompleteScreen.SetActive(true);
         }
+    }
+    public void ToggleTutorial(bool toggle)
+    {
+        tutorial.SetActive(toggle);
     }
 }

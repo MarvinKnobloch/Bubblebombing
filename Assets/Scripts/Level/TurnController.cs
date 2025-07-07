@@ -44,6 +44,12 @@ public class TurnController : MonoBehaviour
     {
         RollNpcMovment();
         yield return new WaitForSeconds(rollDelay);
+
+        if(PlayerPrefs.GetInt("ShowTutorial") == 1)
+        {
+            GameManager.Instance.playerUI.ToggleTutorial(true);
+            PlayerPrefs.SetInt("ShowTutorial", 0);
+        }
         GameManager.Instance.playerUI.EndTurnButtonToggle(true);
         GameManager.Instance.playerUI.AbilitiyUIToggle(true);
 

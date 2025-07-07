@@ -13,6 +13,9 @@ public class LevelSelection : MonoBehaviour
 			GameManager.Instance.menuController.gameIsPaused = false;
 			GameManager.Instance.menuController.ResetTimeScale();
 		}
+
+        if (level == Scenes.Level1) PlayerPrefs.SetInt("ShowTutorial", 1);
+
         SceneManager.LoadScene((int)level);
     }
 
