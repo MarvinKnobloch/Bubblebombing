@@ -8,7 +8,6 @@ public class SoundCollision : BaseCollision
     protected override void Start()
     {
         base.Start();
-        base.circleCollider.enabled = false;
     }
 
     // Update is called once per frame
