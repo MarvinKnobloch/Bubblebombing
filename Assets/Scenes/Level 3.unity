@@ -388,7 +388,7 @@ PrefabInstance:
     - target: {fileID: 6753810226441156929, guid: 4721b70add2cbd540884359e6574f5b4, type: 3}
       propertyPath: lurePrefab
       value: 
-      objectReference: {fileID: 8765835402954762337, guid: 16c29b8e85403ee499e46cb6a1790c93, type: 3}
+      objectReference: {fileID: 541927911482940295, guid: 679ac7360fb8fb34694fac5eb5c38131, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

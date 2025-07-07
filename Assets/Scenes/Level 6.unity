@@ -518,11 +518,11 @@ PrefabInstance:
     - target: {fileID: 6753810226441156929, guid: 4721b70add2cbd540884359e6574f5b4, type: 3}
       propertyPath: lurePrefab
       value: 
-      objectReference: {fileID: 326357262503462697, guid: 9f123756bdd5782449163dd5eb9fd794, type: 3}
+      objectReference: {fileID: 7613815899316035020, guid: a48483cc87eec464ab3b5688e28e3bc0, type: 3}
     - target: {fileID: 6753810226441156929, guid: 4721b70add2cbd540884359e6574f5b4, type: 3}
       propertyPath: horrifyPrefab
       value: 
-      objectReference: {fileID: 4787170044604921309, guid: b9a379cd06b225d4aaeb6f8ee35d94d5, type: 3}
+      objectReference: {fileID: 2054872018007413894, guid: c32c787931cdb5b4db86e3112bb3b730, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
