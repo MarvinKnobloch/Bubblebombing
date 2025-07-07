@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bewegen
   m_EditorClassIdentifier: Assembly-CSharp::AbilityTooltipObj
   abilityName: Bewegen
-  abilityCosts: 4
+  abilityCosts: 2
   abilityDescription: Bewege alle Teile in einer Spalte oder Reihe.

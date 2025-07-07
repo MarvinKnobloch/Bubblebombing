@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b700e12577f660d4082d79c3d54791ef, type: 3}
-  m_Name: Slow
+  m_Name: Beschleunigen
   m_EditorClassIdentifier: Assembly-CSharp::AbilityTooltipObj
-  abilityName: Slow
+  abilityName: Beschleunigen
   abilityCosts: 2
-  abilityDescription: Each npc which enters this field will lose one movement.
+  abilityDescription: "Jeder der diese Feld betritt, bekommt ein zus\xE4tzlichen
+    Bewegungspunkt."
