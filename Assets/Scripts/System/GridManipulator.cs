@@ -50,7 +50,7 @@ public class GridManipulator : MonoBehaviour
 		TileGrafik spriteRenderer = GridRenderer.instance.GetTileGrafik(tileId);
 		float startRotation = spriteRenderer.transform.rotation.eulerAngles.z;
 
-		spriteRenderer.sortingOrder = 100;
+		spriteRenderer.sortingOrder = 1;
 
 		float animationTimer = 0f;
 		while (animationTimer < upscaleTime)

@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class GridInteractionUI : MonoBehaviour
 {
+	public static GridInteractionUI instance;
 	[Header("Objekt zum plazieren")]
 	public PlaceableObject placeableObjectPrefab;
 	[Header("TileData für neue Tiles")]
@@ -27,7 +28,19 @@ public class GridInteractionUI : MonoBehaviour
 	public Controls inputActions;
 	private Vector2 mousePosition;
 
-	void Start()
+    private void Awake()
+    {
+        if (instance == null)
+		{
+            instance = this;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+    }
+
+    void Start()
 	{
 		SetVisible(false);
 		inputActions = new Controls();
@@ -265,6 +278,12 @@ public class GridInteractionUI : MonoBehaviour
 		placeableObjectPrefab = placementPrefab;
 
 		UpdateTool();
+    }
+
+	public void EntityRotate(Vector2Int pos)
+	{
+        Tile tile = LevelGrid.instance.GetTile(pos.x, pos.y);
+        gridManipulator.RotateTileCW(tile.index);
     }
 
 	/*void LateUpdate()

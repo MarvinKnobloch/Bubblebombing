@@ -158,7 +158,7 @@ public class Entity : MonoBehaviour
 		else
 		{
 			zahlenrad.gameObject.SetActive(false);
-		}
+        }
     }
 
     private void GetNextTarget()
@@ -277,7 +277,15 @@ public class Entity : MonoBehaviour
 	{
 		int value = zahlenrad.Roll();
 		remainingSteps = value;
-	}
+        if (gameObject.layer == 6)
+        {
+            Debug.Log("Trieng to rotate");
+            int random = UnityEngine.Random.Range(0, 2);
+            if (random == 0) {
+                GridInteractionUI.instance.EntityRotate(GridRenderer.instance.WorldToTilePosition(transform.position));
+            }
+        }
+    }
 
     public void ChangeSteps(int val)
     {
