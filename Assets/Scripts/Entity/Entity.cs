@@ -33,6 +33,7 @@ public class Entity : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         Face(facedDirection);
         rb.position = GridRenderer.instance.TileToWorldPosition(PositionOnGrid);
+		GetComponent<PlaceableObject>().UpdatePosition(PositionOnGrid);
 
         TurnController.instance.AddNpc(gameObject);
         //startTurn();
