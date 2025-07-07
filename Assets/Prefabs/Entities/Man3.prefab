@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2978056483054336611
+--- !u!1001 &8036794264104707661
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,22 +11,22 @@ PrefabInstance:
     - target: {fileID: 6113704151003949846, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: up
       value: 
-      objectReference: {fileID: -3897886784869659357, guid: c7499510c70c900409327f12fc3aca65, type: 3}
+      objectReference: {fileID: -3848769974151316966, guid: 203bfd13e2ad2f84bb471b0d9396f9fc, type: 3}
     - target: {fileID: 6113704151003949846, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: down
       value: 
-      objectReference: {fileID: -4409709849086812523, guid: c7499510c70c900409327f12fc3aca65, type: 3}
+      objectReference: {fileID: -5067351995108177568, guid: 203bfd13e2ad2f84bb471b0d9396f9fc, type: 3}
     - target: {fileID: 6113704151003949846, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: left
       value: 
-      objectReference: {fileID: 4760348687154945532, guid: c7499510c70c900409327f12fc3aca65, type: 3}
+      objectReference: {fileID: 1385314839547063422, guid: 203bfd13e2ad2f84bb471b0d9396f9fc, type: 3}
     - target: {fileID: 6113704151003949846, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: right
       value: 
-      objectReference: {fileID: -5676399903182979462, guid: c7499510c70c900409327f12fc3aca65, type: 3}
+      objectReference: {fileID: 5527218813706274334, guid: 203bfd13e2ad2f84bb471b0d9396f9fc, type: 3}
     - target: {fileID: 8294968291038430156, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: m_Name
-      value: Female1
+      value: Man3
       objectReference: {fileID: 0}
     - target: {fileID: 8603320654266291842, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 8650500976841506432, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4409709849086812523, guid: c7499510c70c900409327f12fc3aca65, type: 3}
+      objectReference: {fileID: -5067351995108177568, guid: 203bfd13e2ad2f84bb471b0d9396f9fc, type: 3}
     - target: {fileID: 8650500976841506432, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2978056483054336611
+--- !u!1001 &2946401202996835217
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,22 +11,22 @@ PrefabInstance:
     - target: {fileID: 6113704151003949846, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: up
       value: 
-      objectReference: {fileID: -3897886784869659357, guid: c7499510c70c900409327f12fc3aca65, type: 3}
+      objectReference: {fileID: -471419232955416053, guid: 24db89ecbb96aff439c20cd0d380e062, type: 3}
     - target: {fileID: 6113704151003949846, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: down
       value: 
-      objectReference: {fileID: -4409709849086812523, guid: c7499510c70c900409327f12fc3aca65, type: 3}
+      objectReference: {fileID: 4896541860151726415, guid: 24db89ecbb96aff439c20cd0d380e062, type: 3}
     - target: {fileID: 6113704151003949846, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: left
       value: 
-      objectReference: {fileID: 4760348687154945532, guid: c7499510c70c900409327f12fc3aca65, type: 3}
+      objectReference: {fileID: -6570864671438353293, guid: 24db89ecbb96aff439c20cd0d380e062, type: 3}
     - target: {fileID: 6113704151003949846, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: right
       value: 
-      objectReference: {fileID: -5676399903182979462, guid: c7499510c70c900409327f12fc3aca65, type: 3}
+      objectReference: {fileID: 8999681474465185369, guid: 24db89ecbb96aff439c20cd0d380e062, type: 3}
     - target: {fileID: 8294968291038430156, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: m_Name
-      value: Female1
+      value: Femal2
       objectReference: {fileID: 0}
     - target: {fileID: 8603320654266291842, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 8650500976841506432, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4409709849086812523, guid: c7499510c70c900409327f12fc3aca65, type: 3}
+      objectReference: {fileID: 4896541860151726415, guid: 24db89ecbb96aff439c20cd0d380e062, type: 3}
     - target: {fileID: 8650500976841506432, guid: a0d3ce137b378d34dba49d94122e5ebb, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

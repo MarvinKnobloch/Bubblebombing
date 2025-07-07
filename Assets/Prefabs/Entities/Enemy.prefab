@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: right
       value: 
       objectReference: {fileID: -420603734303590796, guid: 7e1944a57c536d84aa86f7d4f080f870, type: 3}
+    - target: {fileID: 3175457295711394364, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
+      propertyPath: canBeMoved
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3643108919344086685, guid: d963e2065e3aa15469e3620c46e6ae1e, type: 3}
       propertyPath: m_Size.x
       value: 0.2
@@ -168,5 +172,7 @@ MonoBehaviour:
   collisionLayers:
     serializedVersion: 2
     m_Bits: 256
+  PositionOnGrid: {x: 0, y: 0}
+  setPositionOnStart: 0
   objectType: 0
   isDestroyable: 0
