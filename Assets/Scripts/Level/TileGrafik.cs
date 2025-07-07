@@ -86,4 +86,9 @@ public class TileGrafik : MonoBehaviour
 			}
 		}
 	}
+
+	public void RemoveObject(PlaceableObject placeableObject)
+	{
+		tileObjects.Remove(placeableObject);
+	}
 }

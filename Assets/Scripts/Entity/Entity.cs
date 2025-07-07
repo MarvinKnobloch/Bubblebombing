@@ -354,6 +354,15 @@ public class Entity : MonoBehaviour
                 throw new Exception("Invalid direction");
         }
     }
+
+	void OnDestroy()
+	{
+		var placeableObject = GetComponent<PlaceableObject>();
+		if (placeableObject != null && placeableObject.owner != null)
+		{
+			placeableObject.owner.RemoveObject(placeableObject);
+		}
+	}
 }
 
 [System.Serializable]
