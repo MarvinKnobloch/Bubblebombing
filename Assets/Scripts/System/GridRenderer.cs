@@ -166,4 +166,13 @@ public class GridRenderer : MonoBehaviour
 		TileGrafik grafic = GetTileGrafik(index);
 		return grafic.tileObjects.Find(obj => obj.canBeMoved == false) != null;
 	}
+
+	public TileData DataFromTile(Tile tile)
+	{
+		TileData data = new TileData();
+		data.sprite = spriteRenderers[tile.index].spriteRenderer.sprite;
+		data.rotation = spriteRenderers[tile.index].spriteRenderer.transform.rotation.eulerAngles.z;
+		data.paths = tile.paths;
+		return data;
+	}
 }

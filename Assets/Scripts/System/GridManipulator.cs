@@ -86,20 +86,20 @@ public class GridManipulator : MonoBehaviour
 		tile.locked = false;
 	}
 
-	public void MoveRow(int row, Direction direction, TileData newTileData)
+	public void MoveRow(int row, Direction direction)
 	{
 		if (moveingLine) return;
 		moveingLine = true;
 		moveAudio.Play(audioSource);
-		StartCoroutine(MoveRowAnimation(row, direction, newTileData));
+		StartCoroutine(MoveRowAnimation(row, direction));
 	}
 
-	public void MoveColumn(int column, Direction direction, TileData newTileData)
+	public void MoveColumn(int column, Direction direction)
 	{
 		if (moveingLine) return;
 		moveingLine = true;
 		moveAudio.Play(audioSource);
-		StartCoroutine(MoveColumnAnimation(column, direction, newTileData));
+		StartCoroutine(MoveColumnAnimation(column, direction));
 	}
 
 	public void PlaceObject(int tileId, PlaceableObject placeableObject)
@@ -122,7 +122,7 @@ public class GridManipulator : MonoBehaviour
 		tile.locked = false;
 	}
 
-	private IEnumerator MoveRowAnimation(int row, Direction direction, TileData newTileData)
+	private IEnumerator MoveRowAnimation(int row, Direction direction)
 	{
 		for (int i = 0; i < LevelGrid.instance.width; i++)
 		{
@@ -141,15 +141,18 @@ public class GridManipulator : MonoBehaviour
 		}
 
 		float offset;
+		TileData newTileData;
 		if (direction == Direction.Right)
 		{
 			offset = 1;
 			tempStartPosition = GridRenderer.instance.TileToWorldPosition(new Vector2Int(-1, row));
+			newTileData = GridRenderer.instance.DataFromTile(LevelGrid.instance.tiles[row * LevelGrid.instance.width + LevelGrid.instance.width - 1]);
 		}
 		else
 		{
 			offset = -1;
 			tempStartPosition = GridRenderer.instance.TileToWorldPosition(new Vector2Int(LevelGrid.instance.width, row));
+			newTileData = GridRenderer.instance.DataFromTile(LevelGrid.instance.tiles[row * LevelGrid.instance.width]);
 		}
 		tempGrafik.SetSprite(newTileData.sprite);
 		tempGrafik.SetRotation(Quaternion.Euler(0, 0, newTileData.rotation));
@@ -199,7 +202,7 @@ public class GridManipulator : MonoBehaviour
 		moveingLine = false;
 	}
 
-	private IEnumerator MoveColumnAnimation(int column, Direction direction, TileData newTileData)
+	private IEnumerator MoveColumnAnimation(int column, Direction direction)
 	{
 		for (int i = 0; i < LevelGrid.instance.height; i++)
 		{
@@ -218,15 +221,18 @@ public class GridManipulator : MonoBehaviour
 		}
 
 		float offset;
+		TileData newTileData;
 		if (direction == Direction.Up)
 		{
 			offset = 1;
 			tempStartPosition = GridRenderer.instance.TileToWorldPosition(new Vector2Int(column, -1));
+			newTileData = GridRenderer.instance.DataFromTile(LevelGrid.instance.tiles[column + (LevelGrid.instance.height - 1) * LevelGrid.instance.width]);
 		}
 		else
 		{
 			offset = -1;
 			tempStartPosition = GridRenderer.instance.TileToWorldPosition(new Vector2Int(column, LevelGrid.instance.height));
+			newTileData = GridRenderer.instance.DataFromTile(LevelGrid.instance.tiles[column]);
 		}
 		tempGrafik.SetSprite(newTileData.sprite);
 		tempGrafik.SetRotation(Quaternion.Euler(0, 0, newTileData.rotation));
